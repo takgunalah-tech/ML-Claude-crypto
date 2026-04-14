@@ -220,10 +220,10 @@ def fetch_crypto_base_yfinance(ticker: str) -> pd.DataFrame:
     )
     raw = raw.rename(columns={ts_col: 'timestamp'})
 
-    # Strip timezone → tz-naive UTC
+    # Strip timezone → tz-naive UTC (works across pandas versions)
     raw['timestamp'] = pd.to_datetime(raw['timestamp'])
     if raw['timestamp'].dt.tz is not None:
-        raw['timestamp'] = raw['timestamp'].dt.tz_localize(None)
+        raw['timestamp'] = raw['timestamp'].astype('datetime64[ns]')
 
     raw['volume'] = raw.get('volume', pd.Series(0, index=raw.index)).fillna(0)
 
@@ -265,8 +265,8 @@ def fetch_crypto_incremental_ccxt(ticker: str, since_ms: int) -> pd.DataFrame:
         return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
     df = pd.DataFrame(all_rows, columns=['ts_ms', 'open', 'high', 'low', 'close', 'volume'])
-    # tz_localize(None) strips UTC timezone → tz-naive UTC values (matches base CSV)
-    df['timestamp'] = pd.to_datetime(df['ts_ms'], unit='ms', utc=True).dt.tz_localize(None)
+    # astype('datetime64[ns]') strips tz label → tz-naive UTC values (matches base CSV)
+    df['timestamp'] = pd.to_datetime(df['ts_ms'], unit='ms', utc=True).astype('datetime64[ns]')
     df = df.drop(columns='ts_ms')
     return df[['timestamp', 'open', 'high', 'low', 'close', 'volume']]
 
@@ -318,10 +318,10 @@ def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
     ts_col = str(ts_col).lower()
     raw = raw.rename(columns={ts_col: 'timestamp'})
 
-    # Strip timezone → tz-naive UTC
+    # Strip timezone → tz-naive UTC (works across pandas versions)
     raw['timestamp'] = pd.to_datetime(raw['timestamp'])
     if raw['timestamp'].dt.tz is not None:
-        raw['timestamp'] = raw['timestamp'].dt.tz_localize(None)
+        raw['timestamp'] = raw['timestamp'].astype('datetime64[ns]')
 
     # Fill NaN volume with 0 (VIX and indices have no trading volume)
     raw['volume'] = raw.get('volume', pd.Series(0, index=raw.index)).fillna(0)
