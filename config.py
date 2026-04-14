@@ -5,8 +5,8 @@ load_dotenv()
 
 # ── Tickers ───────────────────────────────────────────────────────────────────
 CRYPTO_TICKERS = [
-    'BTC/USDT', 'ETH/USDT', 'XRP-USD', 'SOL-USD', 'LTC-USD', 'ADA-USD', 'LINK-USD', 'AVAX-USD',
-    'TRX-USD', 'XMR-USD', 'FIL-USD', 'BCH-USD', 'HYPE32196-USD', 'ASTER36341-USD'
+    'BTC/USDT', 'ETH/USDT',  'XRP/USDT', 'SOL/USDT', 'LTC/USDT', 'ADA/USDT', 'AAVE/USDT',
+    'LINK/USDT', 'AVAX/USDT', 'TRX/USDT', 'FIL/USDT', 'BCH/USDT', 'ZEC/USDT'
 ]
 ANCHOR_TICKERS  = ['BTC/USDT', 'ETH/USDT']
 ALTCOIN_TICKERS = [t for t in CRYPTO_TICKERS if t not in ANCHOR_TICKERS]
@@ -25,12 +25,17 @@ MACRO_TICKERS = {
 CRYPTO_YF_MAP = {
     'BTC/USDT':  'BTC-USD',
     'ETH/USDT':  'ETH-USD',
-    'SOL/USDT':  'SOL-USD',
-    'ADA/USDT':  'ADA-USD',
-    'AVAX/USDT': 'AVAX-USD',
+    'XRP/USDT': 'XRP-USD',
+    'SOL/USDT': 'SOL-USD',
+    'LTC/USDT': 'LTC-USD',
+    'ADA/USDT': 'ADA-USD',
     'LINK/USDT': 'LINK-USD',
-    'DOT/USDT':  'DOT-USD',
-    'MATIC/USDT':'MATIC-USD',
+    'AVAX/USDT': 'AVAX-USD',
+    'TRX/USDT': 'TRX-USD',
+    'FIL/USDT': 'FIL-USD',
+    'BCH/USDT': 'BCH-USD',
+    'AAVE/USDT': 'AAVE-USD',
+    'ZEC/USDT': 'ZEC-USD'
 }
 
 # Exchange config

@@ -189,3 +189,285 @@
 2026-04-14 18:12:51,274 WARNING [TLT] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
 2026-04-14 18:12:52,231 WARNING [VIX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
 2026-04-14 18:12:54,258 WARNING [DXY] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:51,224 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,579 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,581 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,582 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,585 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,586 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,589 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,591 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,593 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,594 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,597 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,598 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,601 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,601 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,604 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,606 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,608 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,610 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,613 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,614 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,616 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,618 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:51,621 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:51,622 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:53,352 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:53,930 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:54,466 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:55,060 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:55,683 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:56,269 WARNING [DXY] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:09:58,759 INFO [BTC/USDT] No new candles.
+2026-04-14 20:09:59,052 INFO [ETH/USDT] No new candles.
+2026-04-14 20:09:59,145 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,146 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,149 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,150 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,153 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,154 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,156 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,157 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,160 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,161 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,163 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,164 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,167 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,168 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,171 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,172 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,175 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,176 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,178 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,180 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,182 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,184 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,187 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 20:09:59,188 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:09:59,715 WARNING [SPX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:10:00,253 WARNING [QQQ] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:10:00,853 WARNING [GLD] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:10:01,494 WARNING [TLT] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:10:02,051 WARNING [VIX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:10:02,753 WARNING [DXY] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:11:44,715 INFO [BTC/USDT] No new candles.
+2026-04-14 20:11:45,035 INFO [ETH/USDT] No new candles.
+2026-04-14 20:11:45,152 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,153 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,157 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,158 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,161 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,162 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,166 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,167 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,170 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,171 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,175 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,177 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,180 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,182 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,185 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,187 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,189 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,191 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,195 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,197 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,201 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,203 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,207 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 20:11:45,208 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:11:45,800 WARNING [SPX] Fetch failed (3 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:11:46,529 WARNING [QQQ] Fetch failed (3 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:11:47,070 WARNING [GLD] Fetch failed (3 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:11:47,734 WARNING [TLT] Fetch failed (3 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:11:48,232 WARNING [VIX] Fetch failed (3 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:11:48,767 WARNING [DXY] Fetch failed (3 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:37,220 INFO [BTC/USDT] No new candles.
+2026-04-14 20:32:37,482 INFO [ETH/USDT] No new candles.
+2026-04-14 20:32:37,555 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,555 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,557 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,558 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,561 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,562 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,564 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,565 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,567 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,568 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,570 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,572 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,574 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,574 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,576 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,578 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,580 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,581 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,583 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,585 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,587 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,588 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:37,590 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:37,591 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:38,134 WARNING [SPX] Fetch failed (4 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:38,807 WARNING [QQQ] Fetch failed (4 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:39,355 WARNING [GLD] Fetch failed (4 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:40,079 WARNING [TLT] Fetch failed (4 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:40,588 WARNING [VIX] Fetch failed (4 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:41,172 WARNING [DXY] Fetch failed (4 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:48,898 ERROR HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: ETHUSDT"}}}
+2026-04-14 20:32:49,992 ERROR HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: INVALID_TICKER"}}}
+2026-04-14 20:32:52,027 ERROR HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: BNBBTC"}}}
+2026-04-14 20:32:52,635 INFO [BTC/USDT] No new candles.
+2026-04-14 20:32:52,913 INFO [ETH/USDT] No new candles.
+2026-04-14 20:32:53,056 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,059 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,061 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,063 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,065 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,066 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,068 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,069 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,072 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,073 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,075 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,077 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,078 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,079 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,081 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,082 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,085 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,087 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,090 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,092 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,094 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,096 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,098 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 20:32:53,099 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 20:32:53,574 WARNING [SPX] Fetch failed (5 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:54,064 WARNING [QQQ] Fetch failed (5 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:54,595 WARNING [GLD] Fetch failed (5 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:55,107 WARNING [TLT] Fetch failed (5 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:55,609 WARNING [VIX] Fetch failed (5 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:32:56,154 WARNING [DXY] Fetch failed (5 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:33:18,650 INFO [BTC/USDT] No new candles.
+2026-04-14 20:33:18,905 INFO [ETH/USDT] No new candles.
+2026-04-14 20:33:18,978 INFO [XRP/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:21,355 INFO [XRP/USDT] Base saved: 17477 candles
+2026-04-14 20:33:22,365 INFO [LTC/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:23,691 INFO [LTC/USDT] Base saved: 17476 candles
+2026-04-14 20:33:24,681 INFO [AAVE/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:26,234 INFO [AAVE/USDT] Base saved: 17475 candles
+2026-04-14 20:33:28,103 INFO [TRX/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:29,597 INFO [TRX/USDT] Base saved: 17476 candles
+2026-04-14 20:33:29,883 INFO [FIL/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:31,334 INFO [FIL/USDT] Base saved: 17476 candles
+2026-04-14 20:33:31,614 INFO [BCH/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:33,010 INFO [BCH/USDT] Base saved: 17477 candles
+2026-04-14 20:33:33,266 INFO [ZEC/USDT] First run — downloading base from yfinance...
+2026-04-14 20:33:34,776 INFO [ZEC/USDT] Base saved: 17476 candles
+2026-04-14 20:33:35,762 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:33:36,241 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:33:36,738 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:33:37,236 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:33:37,843 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:33:38,351 WARNING [DXY] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:32,275 INFO [BTC/USDT] No new candles.
+2026-04-14 20:36:32,542 INFO [ETH/USDT] No new candles.
+2026-04-14 20:36:32,807 INFO [XRP/USDT] No new candles.
+2026-04-14 20:36:33,066 INFO [SOL/USDT] No new candles.
+2026-04-14 20:36:33,320 INFO [LTC/USDT] No new candles.
+2026-04-14 20:36:33,577 INFO [ADA/USDT] No new candles.
+2026-04-14 20:36:33,836 INFO [AAVE/USDT] No new candles.
+2026-04-14 20:36:34,095 INFO [LINK/USDT] No new candles.
+2026-04-14 20:36:34,355 INFO [AVAX/USDT] No new candles.
+2026-04-14 20:36:34,748 INFO [TRX/USDT] No new candles.
+2026-04-14 20:36:35,000 INFO [FIL/USDT] No new candles.
+2026-04-14 20:36:35,258 INFO [BCH/USDT] No new candles.
+2026-04-14 20:36:35,509 INFO [ZEC/USDT] No new candles.
+2026-04-14 20:36:37,150 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:37,713 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:38,357 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:38,997 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:39,481 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:40,049 WARNING [DXY] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:43,971 INFO [BTC/USDT] No new candles.
+2026-04-14 20:36:44,220 INFO [ETH/USDT] No new candles.
+2026-04-14 20:36:44,576 INFO [XRP/USDT] No new candles.
+2026-04-14 20:36:44,984 INFO [SOL/USDT] No new candles.
+2026-04-14 20:36:45,277 INFO [LTC/USDT] No new candles.
+2026-04-14 20:36:45,547 INFO [ADA/USDT] No new candles.
+2026-04-14 20:36:45,808 INFO [AAVE/USDT] No new candles.
+2026-04-14 20:36:46,076 INFO [LINK/USDT] No new candles.
+2026-04-14 20:36:46,351 INFO [AVAX/USDT] No new candles.
+2026-04-14 20:36:46,620 INFO [TRX/USDT] No new candles.
+2026-04-14 20:36:46,870 INFO [FIL/USDT] No new candles.
+2026-04-14 20:36:47,150 INFO [BCH/USDT] No new candles.
+2026-04-14 20:36:47,464 INFO [ZEC/USDT] No new candles.
+2026-04-14 20:36:48,018 WARNING [SPX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:48,520 WARNING [QQQ] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:49,049 WARNING [GLD] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:49,587 WARNING [TLT] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:50,089 WARNING [VIX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 20:36:50,635 WARNING [DXY] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 21:13:47,186 INFO [SPX] No new candles.
+2026-04-14 21:13:47,664 INFO [QQQ] No new candles.
+2026-04-14 21:13:48,961 INFO [TLT] No new candles.
+2026-04-14 21:13:49,456 WARNING [VIX] Gap detected: expected next candle at 2026-04-13 21:00:00, got 2026-04-14 07:00:00 (10h gap)
+2026-04-14 21:13:55,372 INFO [BTC/USDT] No new candles.
+2026-04-14 21:13:55,631 INFO [ETH/USDT] No new candles.
+2026-04-14 21:13:55,888 INFO [XRP/USDT] No new candles.
+2026-04-14 21:13:56,143 INFO [SOL/USDT] No new candles.
+2026-04-14 21:13:56,404 INFO [LTC/USDT] No new candles.
+2026-04-14 21:13:56,669 INFO [ADA/USDT] No new candles.
+2026-04-14 21:13:56,944 INFO [AAVE/USDT] No new candles.
+2026-04-14 21:13:57,455 INFO [LINK/USDT] No new candles.
+2026-04-14 21:13:57,747 INFO [AVAX/USDT] No new candles.
+2026-04-14 21:13:58,025 INFO [TRX/USDT] No new candles.
+2026-04-14 21:13:58,336 INFO [FIL/USDT] No new candles.
+2026-04-14 21:13:58,636 INFO [BCH/USDT] No new candles.
+2026-04-14 21:13:58,972 INFO [ZEC/USDT] No new candles.
+2026-04-14 21:13:59,562 INFO [SPX] No new candles.
+2026-04-14 21:14:00,089 INFO [QQQ] No new candles.
+2026-04-14 21:14:00,617 INFO [GLD] No new candles.
+2026-04-14 21:14:01,147 INFO [TLT] No new candles.
+2026-04-14 21:14:01,667 INFO [VIX] No new candles.
+2026-04-14 21:14:02,319 INFO [DXY] No new candles.
+2026-04-14 21:20:16,609 INFO [BTC/USDT] No new candles.
+2026-04-14 21:20:16,970 INFO [ETH/USDT] No new candles.
+2026-04-14 21:20:17,234 INFO [XRP/USDT] No new candles.
+2026-04-14 21:20:17,495 INFO [SOL/USDT] No new candles.
+2026-04-14 21:20:17,750 INFO [LTC/USDT] No new candles.
+2026-04-14 21:20:18,007 INFO [ADA/USDT] No new candles.
+2026-04-14 21:20:18,283 INFO [AAVE/USDT] No new candles.
+2026-04-14 21:20:18,546 INFO [LINK/USDT] No new candles.
+2026-04-14 21:20:18,814 INFO [AVAX/USDT] No new candles.
+2026-04-14 21:20:19,211 INFO [TRX/USDT] No new candles.
+2026-04-14 21:20:19,465 INFO [FIL/USDT] No new candles.
+2026-04-14 21:20:19,719 INFO [BCH/USDT] No new candles.
+2026-04-14 21:20:19,974 INFO [ZEC/USDT] No new candles.
+2026-04-14 21:20:21,912 INFO [SPX] No new candles.
+2026-04-14 21:20:22,498 INFO [QQQ] No new candles.
+2026-04-14 21:20:23,014 INFO [GLD] No new candles.
+2026-04-14 21:20:23,582 INFO [TLT] No new candles.
+2026-04-14 21:20:24,224 INFO [VIX] +1 candles -> 7099 total raw rows
+2026-04-14 21:20:24,825 INFO [DXY] No new candles.
+2026-04-14 21:20:29,384 INFO [BTC/USDT] No new candles.
+2026-04-14 21:20:29,689 INFO [ETH/USDT] No new candles.
+2026-04-14 21:20:29,951 INFO [XRP/USDT] No new candles.
+2026-04-14 21:20:30,400 INFO [SOL/USDT] No new candles.
+2026-04-14 21:20:30,676 INFO [LTC/USDT] No new candles.
+2026-04-14 21:20:31,006 INFO [ADA/USDT] No new candles.
+2026-04-14 21:20:31,284 INFO [AAVE/USDT] No new candles.
+2026-04-14 21:20:31,572 INFO [LINK/USDT] No new candles.
+2026-04-14 21:20:31,889 INFO [AVAX/USDT] No new candles.
+2026-04-14 21:20:32,167 INFO [TRX/USDT] No new candles.
+2026-04-14 21:20:32,457 INFO [FIL/USDT] No new candles.
+2026-04-14 21:20:32,764 INFO [BCH/USDT] No new candles.
+2026-04-14 21:20:33,044 INFO [ZEC/USDT] No new candles.
+2026-04-14 21:20:33,576 INFO [SPX] No new candles.
+2026-04-14 21:20:34,061 INFO [QQQ] No new candles.
+2026-04-14 21:20:34,569 INFO [GLD] No new candles.
+2026-04-14 21:20:35,086 INFO [TLT] No new candles.
+2026-04-14 21:20:35,565 INFO [VIX] No new candles.
+2026-04-14 21:20:36,090 INFO [DXY] No new candles.

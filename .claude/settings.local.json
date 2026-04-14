@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(python -c ':*)"
+      "Bash(python -c ':*)",
+      "Bash(python _patch_nb02.py)",
+      "Bash(python -u -c ':*)",
+      "Bash(grep -n \"→\\\\|\\\\\\\\\\\\\\\\u2192\" utils/data_utils.py)"
     ]
   }
 }

@@ -62,6 +62,8 @@ def load_base_csv(ticker: str, asset_type: str) -> pd.DataFrame:
     if not os.path.exists(path):
         return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     df = pd.read_csv(path, parse_dates=['timestamp'])
+    if df['timestamp'].dt.tz is not None:          # pandas 3.x reads 'Z' suffix as UTC-aware
+        df['timestamp'] = df['timestamp'].dt.tz_convert(None)
     df = df.sort_values('timestamp').drop_duplicates('timestamp').reset_index(drop=True)
     return df
 
@@ -96,6 +98,8 @@ def load_snapshot_csv(ticker: str, asset_type: str) -> pd.DataFrame | None:
     if not os.path.exists(path):
         return None
     df = pd.read_csv(path, parse_dates=['timestamp'])
+    if df['timestamp'].dt.tz is not None:          # pandas 3.x reads 'Z' suffix as UTC-aware
+        df['timestamp'] = df['timestamp'].dt.tz_convert(None)
     df = df.sort_values('timestamp').drop_duplicates('timestamp').reset_index(drop=True)
     return df
 
@@ -469,7 +473,7 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     actual_first = pd.Timestamp(new_df['timestamp'].iloc[0]).tz_localize(None)
     # 2. Clean the entire timestamp column (Safer than checking the index)
     if pd.api.types.is_datetime64tz_dtype(new_df['timestamp']):
-        new_df['timestamp'] = new_df['timestamp'].dt.tz_localize(None)
+        new_df['timestamp'] = new_df['timestamp'].dt.tz_convert(None)
     # 3. Clean expected_next
     expected_next_naive = pd.Timestamp(expected_next).tz_localize(None)
     # 4. Now the calculation is safe
@@ -503,7 +507,7 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
 
     merged_raw = merge_incremental(raw_base_df, new_ohlcv)
     save_base_csv(merged_raw, ticker, asset_type)            # Layer 0 updated
-    logger.info(f'[{ticker}] +{len(new_df)} candles → {len(merged_raw)} total raw rows')
+    logger.info(f'[{ticker}] +{len(new_df)} candles -> {len(merged_raw)} total raw rows')
 
     # ── Build and save Layer 1 snapshot ──────────────────────────────────────
     working_df = apply_integrity_protocol(merged_raw.copy(), asset_type)

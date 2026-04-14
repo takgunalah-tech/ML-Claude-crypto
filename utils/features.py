@@ -249,6 +249,13 @@ def compute_altcoin_features(
 
     out = pd.DataFrame(index=df.index)
 
+    # ── OHLCV passthrough (needed by generate_labels / _atr_norm) ─────────────
+    out['open']   = df['open']
+    out['high']   = df['high']
+    out['low']    = df['low']
+    out['close']  = df['close']
+    out['volume'] = df['volume']
+
     # ── Standard Indicators ───────────────────────────────────────────────────
     for length in [7, 14, 21]:
         out[f'RSI_{length}'] = _get_ta().rsi(close, length=length)
