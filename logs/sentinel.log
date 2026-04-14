@@ -471,3 +471,35 @@
 2026-04-14 21:20:35,086 INFO [TLT] No new candles.
 2026-04-14 21:20:35,565 INFO [VIX] No new candles.
 2026-04-14 21:20:36,090 INFO [DXY] No new candles.
+2026-04-14 22:51:22,205 INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 22:51:22,207 INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 22:51:22,226 INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-14 22:51:22,227 INFO Added job "run_hourly_pipeline" to job store "default"
+2026-04-14 22:51:22,229 INFO Added job "run_retrain" to job store "default"
+2026-04-14 22:51:22,231 INFO Added job "send_morning_report_job" to job store "default"
+2026-04-14 22:51:22,232 INFO Scheduler started
+2026-04-14 22:51:22,236 INFO === Hourly pipeline START ===
+2026-04-14 22:51:23,939 INFO [BTC/USDT] +1 candles -> 17479 total raw rows
+2026-04-14 22:51:24,652 INFO [ETH/USDT] +1 candles -> 17476 total raw rows
+2026-04-14 22:51:25,346 INFO [XRP/USDT] +1 candles -> 17479 total raw rows
+2026-04-14 22:51:26,089 INFO [SOL/USDT] +1 candles -> 17478 total raw rows
+2026-04-14 22:51:26,825 INFO [LTC/USDT] +1 candles -> 17478 total raw rows
+2026-04-14 22:51:27,591 INFO [ADA/USDT] +1 candles -> 17476 total raw rows
+2026-04-14 22:51:28,505 INFO [AAVE/USDT] +1 candles -> 17477 total raw rows
+2026-04-14 22:51:29,316 INFO [LINK/USDT] +1 candles -> 17476 total raw rows
+2026-04-14 22:51:30,664 INFO [AVAX/USDT] +1 candles -> 17476 total raw rows
+2026-04-14 22:51:31,500 INFO [TRX/USDT] +1 candles -> 17478 total raw rows
+2026-04-14 22:51:32,306 INFO [FIL/USDT] +1 candles -> 17478 total raw rows
+2026-04-14 22:51:33,073 INFO [BCH/USDT] +1 candles -> 17479 total raw rows
+2026-04-14 22:51:33,835 INFO [ZEC/USDT] +1 candles -> 17478 total raw rows
+2026-04-14 22:51:34,729 WARNING [SPX] Gap detected: expected next candle at 2026-04-13 20:30:00, got 2026-04-14 13:30:00 (17h gap)
+2026-04-14 22:51:34,789 INFO [SPX] +2 candles -> 3469 total raw rows
+2026-04-14 22:51:35,313 WARNING [QQQ] Gap detected: expected next candle at 2026-04-13 20:30:00, got 2026-04-14 13:30:00 (17h gap)
+2026-04-14 22:51:35,372 INFO [QQQ] +2 candles -> 3469 total raw rows
+2026-04-14 22:51:36,120 INFO [GLD] +1 candles -> 11429 total raw rows
+2026-04-14 22:51:36,765 WARNING [TLT] Gap detected: expected next candle at 2026-04-13 20:30:00, got 2026-04-14 13:30:00 (17h gap)
+2026-04-14 22:51:36,841 INFO [TLT] +2 candles -> 3469 total raw rows
+2026-04-14 22:51:37,613 INFO [VIX] +1 candles -> 7100 total raw rows
+2026-04-14 22:51:38,479 INFO [DXY] +1 candles -> 11934 total raw rows
+2026-04-14 22:51:38,902 INFO === Hourly pipeline END ===
+2026-04-14 22:54:08,906 INFO Scheduler has been shut down
