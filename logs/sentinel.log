@@ -63,3 +63,52 @@
 1 Failed download:
 2026-04-14 11:32:15,734 ERROR ['DX=F']: possibly delisted; no timezone found
 2026-04-14 11:32:15,739 ERROR [DXY] Base download returned empty data.
+2026-04-14 16:23:44,734 WARNING [BTC/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for BTC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:24:05,954 WARNING [ETH/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for ETH/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:24:27,192 WARNING [SOL/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for SOL/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:24:48,464 WARNING [ADA/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for ADA/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:09,703 WARNING [AVAX/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for AVAX/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:30,924 WARNING [LINK/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for LINK/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:52,179 WARNING [DOT/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for DOT/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:52,586 INFO [MATIC/USDT] First run — downloading base from yfinance...
+2026-04-14 16:25:52,745 ERROR $MATIC-USD: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:25:52,753 ERROR 
+1 Failed download:
+2026-04-14 16:25:52,755 ERROR ['MATIC-USD']: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:25:52,764 ERROR [MATIC/USDT] Base download returned empty data.
+2026-04-14 16:25:52,935 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,111 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,298 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,493 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,688 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,726 INFO [DXY] First run — downloading base from yfinance...
+2026-04-14 16:25:54,070 ERROR HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: DX=F"}}}
+2026-04-14 16:25:54,187 ERROR $DX=F: possibly delisted; no timezone found
+2026-04-14 16:25:54,193 ERROR 
+1 Failed download:
+2026-04-14 16:25:54,193 ERROR ['DX=F']: possibly delisted; no timezone found
+2026-04-14 16:25:54,201 ERROR [DXY] Base download returned empty data.
+2026-04-14 16:28:47,920 WARNING [BTC/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for BTC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:29:09,122 WARNING [ETH/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for ETH/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:29:30,345 WARNING [SOL/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for SOL/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:29:51,545 WARNING [ADA/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for ADA/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:12,777 WARNING [AVAX/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for AVAX/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:33,997 WARNING [LINK/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for LINK/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:55,282 WARNING [DOT/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for DOT/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:55,365 INFO [MATIC/USDT] First run — downloading base from yfinance...
+2026-04-14 16:30:55,490 ERROR $MATIC-USD: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:30:55,496 ERROR 
+1 Failed download:
+2026-04-14 16:30:55,498 ERROR ['MATIC-USD']: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:30:55,507 ERROR [MATIC/USDT] Base download returned empty data.
+2026-04-14 16:30:55,670 WARNING [SPX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:55,867 WARNING [QQQ] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,086 WARNING [GLD] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,289 WARNING [TLT] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,475 WARNING [VIX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,521 INFO [DXY] First run — downloading base from yfinance...
+2026-04-14 16:30:56,529 ERROR $DX=F: possibly delisted; no timezone found
+2026-04-14 16:30:56,535 ERROR 
+1 Failed download:
+2026-04-14 16:30:56,538 ERROR ['DX=F']: possibly delisted; no timezone found
+2026-04-14 16:30:56,546 ERROR [DXY] Base download returned empty data.
