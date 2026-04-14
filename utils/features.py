@@ -312,6 +312,19 @@ def compute_altcoin_features(
         (out['EMA_50'] > out['EMA_200']).astype(int)
     ).astype(float) - 1.5   # centre around 0
 
+    # ── Time-of-day features (derived from tz-naive UTC index, no tz storage) ─
+    # These capture intra-day and session patterns without storing raw timezone.
+    hour = pd.Series(out.index.hour, index=out.index, dtype=float)
+    out['Hour_UTC'] = hour   # 0–23
+
+    def _session(h: float) -> float:
+        if  0 <= h <  7: return 0.0   # Asia
+        if  7 <= h < 13: return 1.0   # Europe
+        if 13 <= h < 22: return 2.0   # US
+        return 3.0                     # Off-hours / overnight
+
+    out['Session'] = hour.map(_session)
+
     # ── Cross-Asset Injection ─────────────────────────────────────────────────
     btc_cols = [c for c in btc_anchor.columns if c != 'timestamp']
     eth_cols = [c for c in eth_anchor.columns if c != 'timestamp']

@@ -284,16 +284,22 @@ def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
     yf_ticker = config.MACRO_TICKERS.get(ticker, ticker)
     end_dt = datetime.utcnow() + timedelta(days=1)
 
-    raw = yf.download(
-        yf_ticker,
-        start=start_dt.strftime('%Y-%m-%d'),
-        end=end_dt.strftime('%Y-%m-%d'),
-        interval='1h',
-        auto_adjust=True,
-        progress=False,
-    )
+    _EMPTY = pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+    try:
+        raw = yf.download(
+            yf_ticker,
+            start=start_dt.strftime('%Y-%m-%d'),
+            end=end_dt.strftime('%Y-%m-%d'),
+            interval='1h',
+            auto_adjust=True,
+            progress=False,
+        )
+    except Exception as e:
+        logger.warning(f'[{ticker}] yf.download raised: {e}')
+        return _EMPTY
+
     if raw is None or raw.empty:
-        return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+        return _EMPTY
 
     # Flatten MultiIndex columns (yfinance >= 0.2)
     if isinstance(raw.columns, pd.MultiIndex):
