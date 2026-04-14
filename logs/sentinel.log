@@ -1,0 +1,191 @@
+2026-04-13 19:50:43,185 WARNING [BTC/USDT] fetch failed: ccxt fetch failed for BTC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:50:53,211 WARNING [ETH/USDT] fetch failed: ccxt fetch failed for ETH/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:03,238 WARNING [SOL/USDT] fetch failed: ccxt fetch failed for SOL/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:13,267 WARNING [ADA/USDT] fetch failed: ccxt fetch failed for ADA/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:23,313 WARNING [AVAX/USDT] fetch failed: ccxt fetch failed for AVAX/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:33,341 WARNING [LINK/USDT] fetch failed: ccxt fetch failed for LINK/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:43,385 WARNING [DOT/USDT] fetch failed: ccxt fetch failed for DOT/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:53,440 WARNING [MATIC/USDT] fetch failed: ccxt fetch failed for MATIC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 19:51:57,096 WARNING [SPY] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 19:51:57,454 WARNING [QQQ] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 19:51:57,797 WARNING [GLD] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 19:51:58,201 WARNING [TLT] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 19:51:58,632 WARNING [VIX] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 19:51:59,102 WARNING [DXY] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 20:04:31,431 WARNING [BTC/USDT] fetch failed: ccxt fetch failed for BTC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:04:41,462 WARNING [ETH/USDT] fetch failed: ccxt fetch failed for ETH/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:04:51,486 WARNING [SOL/USDT] fetch failed: ccxt fetch failed for SOL/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:05:01,504 WARNING [ADA/USDT] fetch failed: ccxt fetch failed for ADA/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:05:11,524 WARNING [AVAX/USDT] fetch failed: ccxt fetch failed for AVAX/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:05:21,553 WARNING [LINK/USDT] fetch failed: ccxt fetch failed for LINK/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:05:31,631 WARNING [DOT/USDT] fetch failed: ccxt fetch failed for DOT/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:05:41,659 WARNING [MATIC/USDT] fetch failed: ccxt fetch failed for MATIC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo. Will retry next run.
+2026-04-13 20:05:42,013 WARNING [SPY] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 20:05:42,341 WARNING [QQQ] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 20:05:42,645 WARNING [GLD] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 20:05:42,954 WARNING [TLT] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 20:05:43,276 WARNING [VIX] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-13 20:05:43,674 WARNING [DXY] Validation failed: Missing columns: {'low', 'open', 'volume', 'close', 'high'}. Skipping save.
+2026-04-14 11:32:04,199 INFO [BTC/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:05,486 INFO [BTC/USDT] Base saved: 17468 candles
+2026-04-14 11:32:05,847 INFO [ETH/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:06,503 INFO [ETH/USDT] Base saved: 17465 candles
+2026-04-14 11:32:06,763 INFO [SOL/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:07,510 INFO [SOL/USDT] Base saved: 17467 candles
+2026-04-14 11:32:07,800 INFO [ADA/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:08,540 INFO [ADA/USDT] Base saved: 17465 candles
+2026-04-14 11:32:08,813 INFO [AVAX/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:09,534 INFO [AVAX/USDT] Base saved: 17465 candles
+2026-04-14 11:32:09,898 INFO [LINK/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:10,715 INFO [LINK/USDT] Base saved: 17465 candles
+2026-04-14 11:32:11,010 INFO [DOT/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:11,803 INFO [DOT/USDT] Base saved: 17467 candles
+2026-04-14 11:32:12,146 INFO [MATIC/USDT] First run — downloading base from yfinance...
+2026-04-14 11:32:12,283 ERROR $MATIC-USD: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 11:32:12,291 ERROR 
+1 Failed download:
+2026-04-14 11:32:12,293 ERROR ['MATIC-USD']: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 11:32:12,299 ERROR [MATIC/USDT] Base download returned empty data.
+2026-04-14 11:32:12,301 INFO [SPX] First run — downloading base from yfinance...
+2026-04-14 11:32:12,776 INFO [SPX] Base saved: 3467 candles
+2026-04-14 11:32:12,836 INFO [QQQ] First run — downloading base from yfinance...
+2026-04-14 11:32:13,204 INFO [QQQ] Base saved: 3467 candles
+2026-04-14 11:32:13,264 INFO [GLD] First run — downloading base from yfinance...
+2026-04-14 11:32:13,826 INFO [GLD] Base saved: 11418 candles
+2026-04-14 11:32:14,016 INFO [TLT] First run — downloading base from yfinance...
+2026-04-14 11:32:14,359 INFO [TLT] Base saved: 3467 candles
+2026-04-14 11:32:14,421 INFO [VIX] First run — downloading base from yfinance...
+2026-04-14 11:32:14,885 INFO [VIX] Base saved: 7092 candles
+2026-04-14 11:32:14,989 INFO [DXY] First run — downloading base from yfinance...
+2026-04-14 11:32:15,651 ERROR HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: DX=F"}}}
+2026-04-14 11:32:15,724 ERROR $DX=F: possibly delisted; no timezone found
+2026-04-14 11:32:15,733 ERROR 
+1 Failed download:
+2026-04-14 11:32:15,734 ERROR ['DX=F']: possibly delisted; no timezone found
+2026-04-14 11:32:15,739 ERROR [DXY] Base download returned empty data.
+2026-04-14 16:23:44,734 WARNING [BTC/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for BTC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:24:05,954 WARNING [ETH/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for ETH/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:24:27,192 WARNING [SOL/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for SOL/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:24:48,464 WARNING [ADA/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for ADA/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:09,703 WARNING [AVAX/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for AVAX/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:30,924 WARNING [LINK/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for LINK/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:52,179 WARNING [DOT/USDT] Fetch failed (1 consecutive): ccxt RequestTimeout for DOT/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:25:52,586 INFO [MATIC/USDT] First run — downloading base from yfinance...
+2026-04-14 16:25:52,745 ERROR $MATIC-USD: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:25:52,753 ERROR 
+1 Failed download:
+2026-04-14 16:25:52,755 ERROR ['MATIC-USD']: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:25:52,764 ERROR [MATIC/USDT] Base download returned empty data.
+2026-04-14 16:25:52,935 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,111 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,298 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,493 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,688 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:25:53,726 INFO [DXY] First run — downloading base from yfinance...
+2026-04-14 16:25:54,070 ERROR HTTP Error 404: {"quoteSummary":{"result":null,"error":{"code":"Not Found","description":"Quote not found for symbol: DX=F"}}}
+2026-04-14 16:25:54,187 ERROR $DX=F: possibly delisted; no timezone found
+2026-04-14 16:25:54,193 ERROR 
+1 Failed download:
+2026-04-14 16:25:54,193 ERROR ['DX=F']: possibly delisted; no timezone found
+2026-04-14 16:25:54,201 ERROR [DXY] Base download returned empty data.
+2026-04-14 16:28:47,920 WARNING [BTC/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for BTC/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:29:09,122 WARNING [ETH/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for ETH/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:29:30,345 WARNING [SOL/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for SOL/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:29:51,545 WARNING [ADA/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for ADA/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:12,777 WARNING [AVAX/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for AVAX/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:33,997 WARNING [LINK/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for LINK/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:55,282 WARNING [DOT/USDT] Fetch failed (2 consecutive): ccxt RequestTimeout for DOT/USDT: binance GET https://api.binance.com/api/v3/exchangeInfo
+2026-04-14 16:30:55,365 INFO [MATIC/USDT] First run — downloading base from yfinance...
+2026-04-14 16:30:55,490 ERROR $MATIC-USD: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:30:55,496 ERROR 
+1 Failed download:
+2026-04-14 16:30:55,498 ERROR ['MATIC-USD']: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 16:30:55,507 ERROR [MATIC/USDT] Base download returned empty data.
+2026-04-14 16:30:55,670 WARNING [SPX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:55,867 WARNING [QQQ] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,086 WARNING [GLD] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,289 WARNING [TLT] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,475 WARNING [VIX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 16:30:56,521 INFO [DXY] First run — downloading base from yfinance...
+2026-04-14 16:30:56,529 ERROR $DX=F: possibly delisted; no timezone found
+2026-04-14 16:30:56,535 ERROR 
+1 Failed download:
+2026-04-14 16:30:56,538 ERROR ['DX=F']: possibly delisted; no timezone found
+2026-04-14 16:30:56,546 ERROR [DXY] Base download returned empty data.
+2026-04-14 18:09:29,868 INFO [MATIC/USDT] First run — downloading base from yfinance...
+2026-04-14 18:09:31,918 ERROR $MATIC-USD: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 18:09:31,923 ERROR 
+1 Failed download:
+2026-04-14 18:09:31,924 ERROR ['MATIC-USD']: possibly delisted; no price data found  (1h 2024-04-15 -> 2026-04-15)
+2026-04-14 18:09:31,964 ERROR [MATIC/USDT] Base download returned empty data.
+2026-04-14 18:09:33,003 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:09:34,433 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:09:35,349 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:09:36,210 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:09:37,302 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:09:37,343 INFO [DXY] First run — downloading base from yfinance...
+2026-04-14 18:09:39,249 INFO [DXY] Base saved: 11929 candles
+2026-04-14 18:12:37,347 INFO [BTC/USDT] No new candles.
+2026-04-14 18:12:37,596 INFO [ETH/USDT] No new candles.
+2026-04-14 18:12:37,725 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,938 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,941 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,942 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,944 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,945 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,947 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,949 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,951 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,952 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,954 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,955 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,959 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,960 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,964 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,965 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,968 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,970 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,972 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,974 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,977 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,978 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:37,982 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:37,984 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:40,945 WARNING [SPX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:41,871 WARNING [QQQ] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:42,745 WARNING [GLD] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:43,578 WARNING [TLT] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:44,406 WARNING [VIX] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:45,346 WARNING [DXY] Fetch failed (1 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:46,752 INFO [BTC/USDT] No new candles.
+2026-04-14 18:12:46,986 INFO [ETH/USDT] No new candles.
+2026-04-14 18:12:47,049 INFO [XRP-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,050 ERROR [XRP-USD] Base download failed: No yfinance mapping for 'XRP-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,052 INFO [SOL-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,053 ERROR [SOL-USD] Base download failed: No yfinance mapping for 'SOL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,054 INFO [LTC-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,055 ERROR [LTC-USD] Base download failed: No yfinance mapping for 'LTC-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,057 INFO [ADA-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,058 ERROR [ADA-USD] Base download failed: No yfinance mapping for 'ADA-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,060 INFO [LINK-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,062 ERROR [LINK-USD] Base download failed: No yfinance mapping for 'LINK-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,064 INFO [AVAX-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,065 ERROR [AVAX-USD] Base download failed: No yfinance mapping for 'AVAX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,067 INFO [TRX-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,068 ERROR [TRX-USD] Base download failed: No yfinance mapping for 'TRX-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,070 INFO [XMR-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,071 ERROR [XMR-USD] Base download failed: No yfinance mapping for 'XMR-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,073 INFO [FIL-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,074 ERROR [FIL-USD] Base download failed: No yfinance mapping for 'FIL-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,076 INFO [BCH-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,078 ERROR [BCH-USD] Base download failed: No yfinance mapping for 'BCH-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,080 INFO [HYPE32196-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,081 ERROR [HYPE32196-USD] Base download failed: No yfinance mapping for 'HYPE32196-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:47,083 INFO [ASTER36341-USD] First run — downloading base from yfinance...
+2026-04-14 18:12:47,084 ERROR [ASTER36341-USD] Base download failed: No yfinance mapping for 'ASTER36341-USD'. Add it to config.CRYPTO_YF_MAP.
+2026-04-14 18:12:48,496 WARNING [SPX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:49,402 WARNING [QQQ] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:50,322 WARNING [GLD] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:51,274 WARNING [TLT] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:52,231 WARNING [VIX] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
+2026-04-14 18:12:54,258 WARNING [DXY] Fetch failed (2 consecutive): Invalid comparison between dtype=datetime64[s] and Timestamp
