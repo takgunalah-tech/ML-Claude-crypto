@@ -5,9 +5,8 @@ load_dotenv()
 
 # ── Tickers ───────────────────────────────────────────────────────────────────
 CRYPTO_TICKERS = [
-    'BTC/USDT', 'ETH/USDT',
-    'SOL/USDT', 'ADA/USDT', 'AVAX/USDT',
-    'LINK/USDT', 'DOT/USDT', 'MATIC/USDT',
+    'BTC/USDT', 'ETH/USDT', 'XRP-USD', 'SOL-USD', 'LTC-USD', 'ADA-USD', 'LINK-USD', 'AVAX-USD',
+    'TRX-USD', 'XMR-USD', 'FIL-USD', 'BCH-USD', 'HYPE32196-USD', 'ASTER36341-USD'
 ]
 ANCHOR_TICKERS  = ['BTC/USDT', 'ETH/USDT']
 ALTCOIN_TICKERS = [t for t in CRYPTO_TICKERS if t not in ANCHOR_TICKERS]

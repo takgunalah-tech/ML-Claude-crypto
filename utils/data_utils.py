@@ -461,8 +461,24 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
 
     # ── Continuity check: first new candle should be last_ts + 1h ────────────
     expected_next = last_ts + timedelta(hours=1)
-    actual_first  = pd.Timestamp(new_df['timestamp'].iloc[0])
-    gap_hours = (actual_first - expected_next).total_seconds() / 3600
+    # actual_first  = pd.Timestamp(new_df['timestamp'].iloc[0])
+
+    # ======change start========
+
+    # 1. Clean the actual_first timestamp
+    actual_first = pd.Timestamp(new_df['timestamp'].iloc[0]).tz_localize(None)
+    # 2. Clean the entire timestamp column (Safer than checking the index)
+    if pd.api.types.is_datetime64tz_dtype(new_df['timestamp']):
+        new_df['timestamp'] = new_df['timestamp'].dt.tz_localize(None)
+    # 3. Clean expected_next
+    expected_next_naive = pd.Timestamp(expected_next).tz_localize(None)
+    # 4. Now the calculation is safe
+    gap_hours = (actual_first - expected_next_naive).total_seconds() / 3600
+
+    # ======change end========
+
+    # gap_hours = (actual_first - expected_next).total_seconds() / 3600
+ 
     if gap_hours > 1.5:
         logger.warning(
             f'[{ticker}] Gap detected: expected next candle at {expected_next}, '
@@ -481,6 +497,10 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     # ── Merge into Layer 0 and save (OHLCV only) ─────────────────────────────
     ohlcv_cols = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
     new_ohlcv  = new_df[[c for c in ohlcv_cols if c in new_df.columns]]
+    
+    # === ADD THIS LINE TO FIX THE MERGE ERROR ===
+    raw_base_df['timestamp'] = pd.to_datetime(raw_base_df['timestamp']).dt.tz_localize(None)
+
     merged_raw = merge_incremental(raw_base_df, new_ohlcv)
     save_base_csv(merged_raw, ticker, asset_type)            # Layer 0 updated
     logger.info(f'[{ticker}] +{len(new_df)} candles → {len(merged_raw)} total raw rows')
