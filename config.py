@@ -19,7 +19,7 @@ MACRO_TICKERS = {
     'GLD': 'GC=F',    # Gold Futures (not GLD ETF — GLD has market-hours gaps)
     'TLT': 'TLT',     # 20-Year Treasury ETF — works for 1h
     'VIX': '^VIX',    # Volatility Index — volume will be 0
-    'DXY': 'DX=F',    # US Dollar Index Futures (DX-Y.NYB was unreliable)
+    'DXY': 'DX-Y.NYB',    # US Dollar Index Futures (DX-Y.NYB was unreliable)
 }
 
 # yfinance symbols for BASE historical download of crypto (~729 days of 1h data)
