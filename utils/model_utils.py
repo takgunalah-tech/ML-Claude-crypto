@@ -1,7 +1,7 @@
 """
 Layer C — Strategy Engine utilities.
 
-XGBoost training, profit-factor evaluation, validity gates, SHAP drivers.
+XGBoost training, monetary profit-factor evaluation, validity gates, SHAP drivers.
 """
 
 import os
@@ -39,7 +39,7 @@ def train_xgboost(X: pd.DataFrame, y: pd.Series) -> xgb.XGBClassifier:
     return model
 
 
-# ── Evaluation ────────────────────────────────────────────────────────────────
+# ── Evaluation — MONETARY Profit Factor ──────────────────────────────────────
 
 def compute_profit_factor(
     model: xgb.XGBClassifier,
@@ -47,13 +47,27 @@ def compute_profit_factor(
     y: pd.Series,
     threshold: float = None,
     direction: str = 'long',
+    tp_pct: float = 0.030,
+    sl_pct: float = 0.015,
+    k1: float = 0.5,
+    k2: float = 0.3,
+    atr_norm: np.ndarray = None,
 ) -> tuple[float, int]:
     """
-    Simulate trades at the given P(win) threshold and compute Profit Factor.
+    Simulate trades at the given P(win) threshold and compute MONETARY Profit Factor.
+
+    PF = Gross Profit / Gross Loss
+
+    For each triggered trade:
+      - Win  (y=1): profit = tp_pct + k1 * atr_norm_i  (TP distance as % of price)
+      - Loss (y=0): loss   = sl_pct + k2 * atr_norm_i  (SL distance as % of price)
+
+    PF = sum(profits for all wins) / sum(losses for all losses)
+
+    If atr_norm is None: uses fixed tp_pct/sl_pct per trade (symmetric).
 
     direction='long':  take trades where p_win >= threshold
-    direction='short': take trades where p_win <= (1 - threshold)
-                       (i.e. p_short = 1 - p_win >= threshold)
+    direction='short': take trades where p_win <= threshold  (SHORT_THRESHOLD = 0.40)
 
     Returns (profit_factor, trade_count).
     """
@@ -65,21 +79,26 @@ def compute_profit_factor(
     if direction == 'long':
         mask = p_win >= threshold
     else:
-        mask = p_win <= (1 - threshold)
+        mask = p_win <= threshold   # p_win <= SHORT_THRESHOLD (already the right value)
 
     if mask.sum() == 0:
         return 0.0, 0
 
     y_sel = np.array(y)[mask]
-    wins   = y_sel.sum()
-    losses = len(y_sel) - wins
 
-    if losses == 0:
-        pf = float('inf')
+    if atr_norm is not None:
+        atr_sel          = np.array(atr_norm)[mask]
+        profits_per_trade = tp_pct + k1 * atr_sel
+        losses_per_trade  = sl_pct + k2 * atr_sel
     else:
-        pf = wins / losses
+        profits_per_trade = np.full(len(y_sel), tp_pct)
+        losses_per_trade  = np.full(len(y_sel), sl_pct)
 
-    return round(pf, 4), int(mask.sum())
+    gross_profit = (y_sel       * profits_per_trade).sum()
+    gross_loss   = ((1 - y_sel) * losses_per_trade).sum()
+
+    pf = gross_profit / gross_loss if gross_loss > 0 else float('inf')
+    return round(float(pf), 4), int(mask.sum())
 
 
 def evaluate_model(
@@ -88,8 +107,16 @@ def evaluate_model(
     y: pd.Series,
     threshold: float = None,
     direction: str = 'long',
+    tp_pct: float = 0.030,
+    sl_pct: float = 0.015,
+    k1: float = 0.5,
+    k2: float = 0.3,
+    atr_norm: np.ndarray = None,
 ) -> dict:
-    """Return full metrics dict: PF, trade_count, win_rate."""
+    """
+    Return full metrics dict: monetary PF, trade_count, win_rate.
+    Pass the same tp_pct/sl_pct/k1/k2/atr_norm used in labeling for correct PF.
+    """
     if threshold is None:
         threshold = config.LONG_THRESHOLD if direction == 'long' else config.SHORT_THRESHOLD
 
@@ -97,20 +124,30 @@ def evaluate_model(
     if direction == 'long':
         mask = p_win >= threshold
     else:
-        mask = p_win <= (1 - threshold)
+        mask = p_win <= threshold
 
-    n_trades = mask.sum()
+    n_trades = int(mask.sum())
     if n_trades == 0:
         return {'PF': 0.0, 'trade_count': 0, 'win_rate': 0.0}
 
-    y_sel  = np.array(y)[mask]
-    wins   = y_sel.sum()
-    losses = len(y_sel) - wins
-    pf     = wins / losses if losses > 0 else float('inf')
+    y_sel = np.array(y)[mask]
+    wins  = int(y_sel.sum())
+
+    if atr_norm is not None:
+        atr_sel          = np.array(atr_norm)[mask]
+        profits_per_trade = tp_pct + k1 * atr_sel
+        losses_per_trade  = sl_pct + k2 * atr_sel
+    else:
+        profits_per_trade = np.full(len(y_sel), tp_pct)
+        losses_per_trade  = np.full(len(y_sel), sl_pct)
+
+    gross_profit = (y_sel       * profits_per_trade).sum()
+    gross_loss   = ((1 - y_sel) * losses_per_trade).sum()
+    pf = gross_profit / gross_loss if gross_loss > 0 else float('inf')
 
     return {
         'PF':          round(float(pf), 4),
-        'trade_count': int(n_trades),
+        'trade_count': n_trades,
         'win_rate':    round(float(wins / n_trades), 4),
     }
 
@@ -122,7 +159,7 @@ def check_validity(test1: dict, test2: dict) -> bool:
     A model is valid if ALL three gates pass:
       1. test1 trade_count >= MIN_TRADE_COUNT
       2. test1 PF >= MIN_PF_TEST1
-      3. test2 PF >= test1 PF * PF_STABILITY_RATIO
+      3. test2 PF >= test1 PF * PF_STABILITY_RATIO  (out-of-sample stability)
     """
     if test1['trade_count'] < config.MIN_TRADE_COUNT:
         return False
@@ -150,7 +187,7 @@ def get_shap_drivers(
         return list(X_sample.columns[top_idx])
     except Exception as e:
         logger.warning(f'SHAP failed: {e}. Falling back to XGBoost importance.')
-        imp = model.feature_importances_
+        imp     = model.feature_importances_
         top_idx = np.argsort(imp)[::-1][:n]
         return list(X_sample.columns[top_idx])
 
@@ -158,12 +195,12 @@ def get_shap_drivers(
 # ── Save / Load model ─────────────────────────────────────────────────────────
 
 def _model_path(ticker: str) -> str:
-    safe = ticker.replace('/', '_')
+    safe = ticker.replace('/', '_').replace('^', '')
     return os.path.join(config.MODELS_DIR, f'{safe}.json')
 
 
 def _meta_path(ticker: str) -> str:
-    safe = ticker.replace('/', '_')
+    safe = ticker.replace('/', '_').replace('^', '')
     return os.path.join(config.MODELS_DIR, f'{safe}_meta.json')
 
 
@@ -190,14 +227,22 @@ def load_model(ticker: str) -> tuple[xgb.XGBClassifier | None, dict | None]:
 
 
 def list_valid_models() -> list[str]:
-    """Return list of tickers that have a saved model + meta."""
+    """
+    Return list of tickers that have a saved model + meta.
+    Reads the original ticker from the 'ticker' field in the meta JSON
+    (avoids fragile filename→ticker reconstruction which breaks for macro tickers).
+    """
     if not os.path.exists(config.MODELS_DIR):
         return []
-    files = os.listdir(config.MODELS_DIR)
     tickers = []
-    for f in files:
-        if f.endswith('_meta.json'):
-            safe = f.replace('_meta.json', '')
-            ticker = safe.replace('_', '/', 1)   # BTC_USDT → BTC/USDT
-            tickers.append(ticker)
+    for fname in os.listdir(config.MODELS_DIR):
+        if not fname.endswith('_meta.json'):
+            continue
+        path = os.path.join(config.MODELS_DIR, fname)
+        try:
+            with open(path) as fh:
+                meta = json.load(fh)
+            tickers.append(meta['ticker'])
+        except (json.JSONDecodeError, KeyError):
+            logger.warning(f'Could not read ticker from {fname} — skipping.')
     return tickers

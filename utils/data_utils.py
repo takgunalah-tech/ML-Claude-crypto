@@ -1,18 +1,28 @@
 """
-Layer A — Snowball DB Engine
-Handles all data fetching, validation, integrity, and incremental CSV storage.
+Layer A — Snowball DB Engine  (3-layer architecture)
+
+  Layer 0  data/base/{asset_type}/{ticker}.csv
+           Raw OHLCV only — never modified with TA or ffill.
+           Source of record; rollback point.
+
+  Layer 1  data/working/{ticker}_snapshot.csv
+           Integrity-protocol-applied working copy.
+           Saved after every successful update so the model can recover
+           without re-downloading raw data (debug / rollback).
+
+  working_df (returned)
+           In-memory Layer 1 slice handed to feature computation + model.
 """
 
 import os
 import time
 import logging
-import tempfile
 import shutil
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
 
 import pandas as pd
 import numpy as np
-# ccxt and yfinance are imported lazily inside their fetch functions
+# ccxt and yfinance are lazy-imported inside their fetch functions
 # to keep module-load time fast (~5-8s saved on ccxt alone)
 
 import sys
@@ -21,25 +31,34 @@ import config
 
 logger = logging.getLogger(__name__)
 
+# Tracks consecutive fetch failures per ticker across hourly calls
+_fetch_failure_counts: dict[str, int] = {}
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
+
+# ── Path helpers ──────────────────────────────────────────────────────────────
 
 def _ticker_to_filename(ticker: str) -> str:
-    """'BTC/USDT' → 'BTC_USDT_1h'"""
+    """'BTC/USDT' → 'BTC_USDT_1h'  (safe for filesystem)"""
     return ticker.replace('/', '_').replace('^', '').replace('-', '_') + f'_{config.TIMEFRAME}'
 
 
-def _csv_path(ticker: str, asset_type: str) -> str:
+def _base_csv_path(ticker: str, asset_type: str) -> str:
     folder = os.path.join(config.DATA_BASE, asset_type)
     os.makedirs(folder, exist_ok=True)
     return os.path.join(folder, f'{_ticker_to_filename(ticker)}.csv')
 
 
-# ── Load / Save ───────────────────────────────────────────────────────────────
+def _snapshot_csv_path(ticker: str, asset_type: str) -> str:
+    folder = os.path.join(config.DATA_WORKING, asset_type)
+    os.makedirs(folder, exist_ok=True)
+    return os.path.join(folder, f'{_ticker_to_filename(ticker)}_snapshot.csv')
+
+
+# ── Load / Save — Layer 0 (raw base CSV) ─────────────────────────────────────
 
 def load_base_csv(ticker: str, asset_type: str) -> pd.DataFrame:
-    """Load existing base CSV. Returns empty DataFrame if file does not exist."""
-    path = _csv_path(ticker, asset_type)
+    """Load Layer 0 raw OHLCV CSV. Returns empty DataFrame if not found."""
+    path = _base_csv_path(ticker, asset_type)
     if not os.path.exists(path):
         return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     df = pd.read_csv(path, parse_dates=['timestamp'])
@@ -48,14 +67,40 @@ def load_base_csv(ticker: str, asset_type: str) -> pd.DataFrame:
 
 
 def save_base_csv(df: pd.DataFrame, ticker: str, asset_type: str) -> None:
-    """Atomically overwrite CSV (write to temp → rename) for crash safety."""
-    path = _csv_path(ticker, asset_type)
+    """Atomically overwrite Layer 0 CSV (write .tmp → rename) — crash-safe."""
+    path = _base_csv_path(ticker, asset_type)
     df_out = df[['timestamp', 'open', 'high', 'low', 'close', 'volume']].copy()
     df_out['timestamp'] = df_out['timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
     tmp = path + '.tmp'
     df_out.to_csv(tmp, index=False)
     shutil.move(tmp, path)
 
+
+# ── Load / Save — Layer 1 (working snapshot CSV) ─────────────────────────────
+
+def save_snapshot_csv(df: pd.DataFrame, ticker: str, asset_type: str) -> None:
+    """Save enriched Layer 1 snapshot (all columns, not just OHLCV). Atomic write."""
+    path = _snapshot_csv_path(ticker, asset_type)
+    df_out = df.copy()
+    if 'timestamp' in df_out.columns and hasattr(df_out['timestamp'], 'dt'):
+        df_out['timestamp'] = df_out['timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
+    tmp = path + '.tmp'
+    df_out.to_csv(tmp, index=False)
+    shutil.move(tmp, path)
+    logger.debug(f'[{ticker}] Snapshot saved: {len(df_out)} rows × {len(df_out.columns)} cols')
+
+
+def load_snapshot_csv(ticker: str, asset_type: str) -> pd.DataFrame | None:
+    """Load Layer 1 snapshot. Returns None if not found."""
+    path = _snapshot_csv_path(ticker, asset_type)
+    if not os.path.exists(path):
+        return None
+    df = pd.read_csv(path, parse_dates=['timestamp'])
+    df = df.sort_values('timestamp').drop_duplicates('timestamp').reset_index(drop=True)
+    return df
+
+
+# ── Merge helper ──────────────────────────────────────────────────────────────
 
 def merge_incremental(base_df: pd.DataFrame, new_df: pd.DataFrame) -> pd.DataFrame:
     """Concatenate, deduplicate on timestamp, sort ascending."""
@@ -106,7 +151,7 @@ def validate_ohlcv(df: pd.DataFrame) -> tuple[bool, str]:
     return True, 'OK'
 
 
-# ── Exchange instance cache (markets loaded once, shared across all tickers) ──
+# ── Exchange instance cache ───────────────────────────────────────────────────
 
 _exchange_cache: dict = {}
 
@@ -116,7 +161,7 @@ def _get_exchange(exchange_id: str):
         import ccxt  # lazy — ccxt takes 5-8s to import
         ex = getattr(ccxt, exchange_id)({
             'enableRateLimit': True,
-            'timeout': 30000,          # 30s (default 10s causes timeouts on slow connections)
+            'timeout': 30000,
             'options': {'defaultType': 'spot'},
         })
         _exchange_cache[exchange_id] = ex
@@ -124,8 +169,8 @@ def _get_exchange(exchange_id: str):
 
 
 def check_exchange_connectivity(exchange_id: str = None) -> tuple[bool, str]:
-    """Quick connectivity test — tries to ping the exchange. Returns (ok, message)."""
-    exchange_id = exchange_id or config.EXCHANGE
+    """Quick connectivity test — tries to load markets. Returns (ok, message)."""
+    exchange_id = exchange_id or config.EXCHANGE_SPOT
     try:
         ex = _get_exchange(exchange_id)
         ex.load_markets()
@@ -134,39 +179,84 @@ def check_exchange_connectivity(exchange_id: str = None) -> tuple[bool, str]:
         return False, f'{type(e).__name__}: {e}'
 
 
-# ── Fetch: Crypto (ccxt / Binance) ───────────────────────────────────────────
+# ── Fetch: Crypto BASE (yfinance, first-run ~17k candles) ────────────────────
 
-def fetch_crypto_ohlcv(
-    ticker: str,
-    since_ms: int,
-    exchange_id: str = None,
-) -> pd.DataFrame:
+def fetch_crypto_base_yfinance(ticker: str) -> pd.DataFrame:
     """
-    Paginated fetch from Binance via ccxt.
-    since_ms: epoch milliseconds (fetch from this timestamp forward).
-    Exchange instance is cached so markets are loaded only once across all tickers.
+    First-run only: download ~729 days of 1h OHLCV from yfinance.
+    Maps ccxt symbol ('BTC/USDT') → yfinance symbol ('BTC-USD') via config.CRYPTO_YF_MAP.
+    Handles yfinance >= 0.2 MultiIndex columns automatically.
     """
-    exchange_id = exchange_id or config.EXCHANGE
-    exchange = _get_exchange(exchange_id)
+    import yfinance as yf  # lazy import
+
+    yf_symbol = config.CRYPTO_YF_MAP.get(ticker)
+    if not yf_symbol:
+        raise ValueError(
+            f'No yfinance mapping for {ticker!r}. '
+            f'Add it to config.CRYPTO_YF_MAP.'
+        )
+
+    start = (datetime.utcnow() - timedelta(days=729)).strftime('%Y-%m-%d')
+    end   = (datetime.utcnow() + timedelta(days=1)).strftime('%Y-%m-%d')
+
+    raw = yf.download(
+        yf_symbol, start=start, end=end,
+        interval='1h', auto_adjust=True, progress=False,
+    )
+    if raw is None or raw.empty:
+        return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+
+    # Flatten MultiIndex columns (yfinance >= 0.2 returns ('Close','BTC-USD') etc.)
+    if isinstance(raw.columns, pd.MultiIndex):
+        raw.columns = [col[0] for col in raw.columns]
+
+    raw = raw.reset_index()
+    # Normalise column names to lowercase
+    raw.columns = [str(c).lower() for c in raw.columns]
+    # Detect timestamp column (may be 'datetime', 'date', or 'index')
+    ts_col = next(
+        (c for c in raw.columns if c in ('datetime', 'date', 'index')),
+        raw.columns[0]
+    )
+    raw = raw.rename(columns={ts_col: 'timestamp'})
+
+    # Strip timezone → tz-naive UTC
+    raw['timestamp'] = pd.to_datetime(raw['timestamp'])
+    if raw['timestamp'].dt.tz is not None:
+        raw['timestamp'] = raw['timestamp'].dt.tz_convert(None)
+
+    raw['volume'] = raw.get('volume', pd.Series(0, index=raw.index)).fillna(0)
+
+    df = raw[['timestamp', 'open', 'high', 'low', 'close', 'volume']].copy()
+    df = df.dropna(subset=['open', 'high', 'low', 'close'])
+    return df.reset_index(drop=True)
+
+
+# ── Fetch: Crypto INCREMENTAL (ccxt/Binance, hourly updates) ─────────────────
+
+def fetch_crypto_incremental_ccxt(ticker: str, since_ms: int) -> pd.DataFrame:
+    """
+    Incremental fetch from ccxt/Binance. Paginated (handles >1000 candles if
+    multiple hours were missed). Used for every update AFTER base data exists.
+    Exchange instance is cached — markets loaded only once.
+    """
+    exchange = _get_exchange(config.EXCHANGE_SPOT)
     all_rows = []
-    limit = 1000
     current_since = since_ms
 
     while True:
         try:
             candles = exchange.fetch_ohlcv(
-                ticker, config.TIMEFRAME, since=current_since, limit=limit
+                ticker, config.TIMEFRAME, since=current_since, limit=1000
             )
         except Exception as e:
-            raise RuntimeError(
-                f'ccxt {type(e).__name__} for {ticker}: {e}'
-            ) from e
+            raise RuntimeError(f'ccxt {type(e).__name__} for {ticker}: {e}') from e
 
         if not candles:
             break
         all_rows.extend(candles)
         last_ts = candles[-1][0]
-        if len(candles) < limit:
+        if len(candles) < 1000:
             break
         current_since = last_ts + 1
         time.sleep(exchange.rateLimit / 1000)
@@ -175,25 +265,25 @@ def fetch_crypto_ohlcv(
         return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
     df = pd.DataFrame(all_rows, columns=['ts_ms', 'open', 'high', 'low', 'close', 'volume'])
-    # tz_convert(None) strips UTC timezone → tz-naive UTC values
+    # tz_convert(None) strips UTC timezone → tz-naive UTC values (matches base CSV)
     df['timestamp'] = pd.to_datetime(df['ts_ms'], unit='ms', utc=True).dt.tz_convert(None)
     df = df.drop(columns='ts_ms')
     return df[['timestamp', 'open', 'high', 'low', 'close', 'volume']]
 
 
-# ── Fetch: Macro (yfinance) ───────────────────────────────────────────────────
+# ── Fetch: Macro (yfinance, both base and incremental) ───────────────────────
 
 def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
     """
     Download hourly OHLCV from yfinance starting at start_dt.
+    Used for both first-run (since 729 days ago) and incremental (since last_ts + 1h).
     yfinance 1h data is available for ~730 days.
-
-    Handles both old yfinance (flat columns) and new yfinance >= 0.2
-    (MultiIndex columns like ('Close', 'SPY')).
     """
     import yfinance as yf  # lazy import
+
     yf_ticker = config.MACRO_TICKERS.get(ticker, ticker)
     end_dt = datetime.utcnow() + timedelta(days=1)
+
     raw = yf.download(
         yf_ticker,
         start=start_dt.strftime('%Y-%m-%d'),
@@ -205,17 +295,16 @@ def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
     if raw is None or raw.empty:
         return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
-    # ── Flatten MultiIndex columns (yfinance >= 0.2 returns ('Close','SPY') etc.) ──
+    # Flatten MultiIndex columns (yfinance >= 0.2)
     if isinstance(raw.columns, pd.MultiIndex):
-        raw.columns = [col[0] for col in raw.columns]  # keep price-type level only
+        raw.columns = [col[0] for col in raw.columns]
 
-    # ── Move DatetimeIndex into a plain column ────────────────────────────────
     raw = raw.reset_index()
 
-    # Detect timestamp column (may be 'Datetime', 'Date', or 'index')
+    # Detect timestamp column
     ts_col = next(
         (c for c in raw.columns if str(c).lower() in ('datetime', 'date', 'index')),
-        raw.columns[0]   # fallback: first column
+        raw.columns[0]
     )
 
     # Normalise all column names to lowercase
@@ -223,113 +312,183 @@ def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
     ts_col = str(ts_col).lower()
     raw = raw.rename(columns={ts_col: 'timestamp'})
 
-    # ── Strip timezone → tz-naive UTC ────────────────────────────────────────
+    # Strip timezone → tz-naive UTC
     raw['timestamp'] = pd.to_datetime(raw['timestamp'])
     if raw['timestamp'].dt.tz is not None:
         raw['timestamp'] = raw['timestamp'].dt.tz_convert(None)
 
-    # Fill NaN volume with 0 (VIX and some indices have no trading volume)
+    # Fill NaN volume with 0 (VIX and indices have no trading volume)
     raw['volume'] = raw.get('volume', pd.Series(0, index=raw.index)).fillna(0)
 
     df = raw[['timestamp', 'open', 'high', 'low', 'close', 'volume']].copy()
     df = df[df['timestamp'] >= pd.Timestamp(start_dt)].reset_index(drop=True)
+    df = df.dropna(subset=['open', 'high', 'low', 'close'])
     return df
 
 
-# ── Integrity Protocol ────────────────────────────────────────────────────────
+# ── Integrity Protocol — applied to working_df ONLY (not to base CSV) ────────
 
 def apply_integrity_protocol(df: pd.DataFrame, asset_type: str) -> pd.DataFrame:
     """
-    Macro  → forward-fill gaps up to 4 candles (weekends/holidays are valid).
-    Crypto → interpolate gaps ≤ 3 candles; preserve larger gaps as NaN.
+    Fill gaps in the WORKING DataFrame to ensure downstream indicators have
+    no NaN holes. Base CSV (Layer 0) is never modified by this function.
+
+    Macro:  ffill up to 72h (3-day weekends/holidays are expected gaps)
+    Crypto:
+      - Gaps ≤ 3h : linear interpolation (minor API hiccup)
+      - Gaps > 3h : forward-fill (prevents NaN propagation through RSI/MACD/BB)
+                    A warning is logged so the user can investigate.
     """
     df = df.set_index('timestamp').sort_index()
 
     if asset_type == 'macro':
-        df = df.ffill(limit=4)
+        df = df.ffill(limit=72)  # up to 3 days (weekend + holiday)
     else:
-        # Build a full hour-by-hour index to expose missing rows
         if len(df) >= 2:
             full_idx = pd.date_range(df.index[0], df.index[-1], freq='1h')
             df = df.reindex(full_idx)
-            # Find gap lengths
-            null_mask = df['close'].isnull()
-            gap_sizes = null_mask.groupby((null_mask != null_mask.shift()).cumsum()).transform('sum')
+
+            null_mask  = df['close'].isnull()
+            gap_groups = (null_mask != null_mask.shift()).cumsum()
+            gap_sizes  = null_mask.groupby(gap_groups).transform('sum')
+
             small_gap = null_mask & (gap_sizes <= 3)
-            # Interpolate only small gaps
+            large_gap = null_mask & (gap_sizes  > 3)
+
+            # Small gaps: linear interpolation
             df_interp = df.interpolate(method='linear', limit=3)
             df[small_gap] = df_interp[small_gap]
-            # Large gaps remain NaN
+
+            # Large gaps: forward-fill (NaN would break all downstream indicators)
+            if large_gap.any():
+                n_large = int(large_gap.sum())
+                logger.warning(
+                    f'Large data gap: {n_large} missing candles → forward-filled. '
+                    f'Investigate source data if this recurs.'
+                )
+                df = df.ffill()
 
     df = df.reset_index().rename(columns={'index': 'timestamp'})
     return df
 
 
-# ── Main update function ──────────────────────────────────────────────────────
+# ── Main update function — 3-layer Snowball flow ──────────────────────────────
 
 def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     """
     Incremental self-healing update for a single ticker.
 
-    1. Load existing CSV → determine last saved timestamp.
-    2. Fetch only new candles (since last saved ts).
-    3. Validate downloaded data.
-    4. Merge, apply integrity protocol, save.
-    5. Return merged in-memory DataFrame (ready to use immediately).
-
-    Returns None if validation fails (caller should skip this ticker).
+    Layer 0: data/base/{asset_type}/{ticker}.csv  — raw OHLCV (never touched by integrity)
+    Layer 1: data/working/{asset_type}/{ticker}_snapshot.csv — enriched working copy
+    Returns: working_df (in-memory Layer 1) ready for feature computation.
+    Returns None only on catastrophic first-run failure.
     """
-    base_df = load_base_csv(ticker, asset_type)
+    # ── Load Layer 0 ─────────────────────────────────────────────────────────
+    raw_base_df = load_base_csv(ticker, asset_type)
 
-    # Determine fetch start
-    if base_df.empty:
-        # First run: fetch full history (up to exchange/API limits)
-        if asset_type == 'crypto':
-            # ~2 years of 1h data
-            since_dt = datetime.utcnow() - timedelta(days=730)
-            since_ms = int(since_dt.timestamp() * 1000)
-        else:
-            since_dt = datetime.utcnow() - timedelta(days=729)
+    # ── FIRST RUN: Layer 0 empty → download full history from yfinance ───────
+    if raw_base_df.empty:
+        logger.info(f'[{ticker}] First run — downloading base from yfinance...')
+        try:
+            if asset_type == 'crypto':
+                new_df = fetch_crypto_base_yfinance(ticker)
+            else:
+                since_dt = datetime.utcnow() - timedelta(days=729)
+                new_df = fetch_macro_ohlcv(ticker, since_dt)
+        except Exception as e:
+            logger.error(f'[{ticker}] Base download failed: {e}')
+            return None
+
+        if new_df is None or new_df.empty:
+            logger.error(f'[{ticker}] Base download returned empty data.')
+            return None
+
+        valid, reason = validate_ohlcv(new_df)
+        if not valid:
+            logger.warning(f'[{ticker}] Base validation failed: {reason}')
+            return None
+
+        save_base_csv(new_df, ticker, asset_type)             # Layer 0
+        logger.info(f'[{ticker}] Base saved: {len(new_df)} candles')
+
+        working_df = apply_integrity_protocol(new_df.copy(), asset_type)
+        save_snapshot_csv(working_df, ticker, asset_type)     # Layer 1
+        _fetch_failure_counts[ticker] = 0
+        return working_df
+
+    # ── INCREMENTAL: fetch only new candles ───────────────────────────────────
+    last_ts  = pd.Timestamp(raw_base_df['timestamp'].max())
+    since_ms = None
+    since_dt = None
+
+    if asset_type == 'crypto':
+        since_ms = int((last_ts + timedelta(hours=1)).timestamp() * 1000)
     else:
-        last_ts = pd.Timestamp(base_df['timestamp'].max())
-        if asset_type == 'crypto':
-            since_ms = int((last_ts + timedelta(hours=1)).timestamp() * 1000)
-        else:
-            since_dt = last_ts + timedelta(hours=1)
+        since_dt = last_ts + timedelta(hours=1)
 
-    # Fetch
+    new_df = None
     try:
         if asset_type == 'crypto':
-            new_df = fetch_crypto_ohlcv(ticker, since_ms)
+            new_df = fetch_crypto_incremental_ccxt(ticker, since_ms)
         else:
             new_df = fetch_macro_ohlcv(ticker, since_dt)
+        _fetch_failure_counts[ticker] = 0  # reset on success
+
     except Exception as e:
-        logger.warning(f'[{ticker}] fetch failed: {e}. Will retry next run.')
-        return None
+        fail_count = _fetch_failure_counts.get(ticker, 0) + 1
+        _fetch_failure_counts[ticker] = fail_count
+        logger.warning(f'[{ticker}] Fetch failed ({fail_count} consecutive): {e}')
+        if fail_count >= 4:
+            logger.error(
+                f'[{ticker}] 4+ consecutive fetch failures — data gap ≥4h. '
+                f'Working DF will ffill the gap via integrity protocol.'
+            )
 
-    # If nothing new, just return existing data
-    if new_df.empty:
-        logger.info(f'[{ticker}] No new candles.')
-        return base_df if not base_df.empty else None
+    # Fetch failed → fall back to existing snapshot (or rebuild from raw)
+    if new_df is None or new_df.empty:
+        if new_df is not None:
+            logger.info(f'[{ticker}] No new candles.')
+        snapshot = load_snapshot_csv(ticker, asset_type)
+        if snapshot is not None:
+            return snapshot
+        return apply_integrity_protocol(raw_base_df.copy(), asset_type)
 
-    # Validate new data
+    # ── Continuity check: first new candle should be last_ts + 1h ────────────
+    expected_next = last_ts + timedelta(hours=1)
+    actual_first  = pd.Timestamp(new_df['timestamp'].iloc[0])
+    gap_hours = (actual_first - expected_next).total_seconds() / 3600
+    if gap_hours > 1.5:
+        logger.warning(
+            f'[{ticker}] Gap detected: expected next candle at {expected_next}, '
+            f'got {actual_first} ({gap_hours:.0f}h gap)'
+        )
+
+    # ── Validate new_df ───────────────────────────────────────────────────────
     valid, reason = validate_ohlcv(new_df)
     if not valid:
-        logger.warning(f'[{ticker}] Validation failed: {reason}. Skipping save.')
-        return base_df if not base_df.empty else None
+        logger.warning(f'[{ticker}] New data validation failed: {reason}. Using existing snapshot.')
+        snapshot = load_snapshot_csv(ticker, asset_type)
+        if snapshot is not None:
+            return snapshot
+        return apply_integrity_protocol(raw_base_df.copy(), asset_type)
 
-    # Merge + integrity + save
-    merged = merge_incremental(base_df, new_df)
-    merged = apply_integrity_protocol(merged, asset_type)
-    save_base_csv(merged, ticker, asset_type)
+    # ── Merge into Layer 0 and save (OHLCV only) ─────────────────────────────
+    ohlcv_cols = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
+    new_ohlcv  = new_df[[c for c in ohlcv_cols if c in new_df.columns]]
+    merged_raw = merge_incremental(raw_base_df, new_ohlcv)
+    save_base_csv(merged_raw, ticker, asset_type)            # Layer 0 updated
+    logger.info(f'[{ticker}] +{len(new_df)} candles → {len(merged_raw)} total raw rows')
 
-    n_new = len(new_df)
-    logger.info(f'[{ticker}] +{n_new} candles → {len(merged)} total rows saved.')
-    return merged
+    # ── Build and save Layer 1 snapshot ──────────────────────────────────────
+    working_df = apply_integrity_protocol(merged_raw.copy(), asset_type)
+    save_snapshot_csv(working_df, ticker, asset_type)        # Layer 1 updated
+    return working_df
 
+
+# ── Convenience: update all configured tickers ───────────────────────────────
 
 def update_all_tickers() -> dict[str, pd.DataFrame]:
-    """Update all crypto + macro tickers. Returns dict of loaded DataFrames."""
+    """Update all crypto + macro tickers. Returns dict ticker → working_df."""
     results = {}
     for ticker in config.CRYPTO_TICKERS:
         df = update_ticker(ticker, 'crypto')

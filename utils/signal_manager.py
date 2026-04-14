@@ -2,7 +2,7 @@
 Signal state manager — deduplication, aging, archiving.
 
 State file: state/signals_state.json
-Schema:
+Schema per coin:
 {
   "SOL/USDT": {
     "direction":       "LONG",
@@ -13,7 +13,7 @@ Schema:
     "p_win":           0.64,
     "tp_pct":          0.030,
     "sl_pct":          0.015,
-    "first_signal_at": "2026-04-13T10:00:00Z",
+    "first_signal_at": "2026-04-14T10:00:00Z",
     "repeat_count":    0,
     "archived":        false,
     "archive_reason":  null   # "TP_HIT" | "SL_HIT" | "EXPIRED" | "MAX_REPEATS"
@@ -61,7 +61,7 @@ def _now_utc() -> str:
 
 
 def _rr(signal: dict, current_price: float) -> float:
-    """Remaining risk-reward ratio from current_price."""
+    """Remaining risk-reward ratio from current_price to TP / SL."""
     try:
         tp = signal['tp']
         sl = signal['sl']
@@ -79,12 +79,26 @@ def _rr(signal: dict, current_price: float) -> float:
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def is_new_signal(coin: str, direction: str) -> bool:
-    """True only if coin has no active (non-archived) signal."""
+    """
+    Returns True only if we should fire a new signal for this coin+direction.
+
+    Logic:
+      - No record at all         → True  (first signal ever)
+      - Record is archived       → True  (previous signal closed; can open new)
+      - Record active, different direction → True  (LONG→SHORT flip is allowed)
+      - Record active, same direction      → False (duplicate; suppress)
+    """
     state = _load_state()
     if coin not in state:
         return True
     sig = state[coin]
-    return sig.get('archived', True)
+    # Default is False (assume active) — only True if explicitly archived
+    if sig.get('archived', False):
+        return True
+    # Active signal exists — allow only if direction changed
+    if sig.get('direction') != direction:
+        return True
+    return False
 
 
 def register_signal(
@@ -98,14 +112,14 @@ def register_signal(
     tp_pct: float,
     sl_pct: float,
 ) -> None:
-    """Register a new signal (overwrites any previous archived entry)."""
+    """Register a new signal (overwrites any previous archived entry for this coin)."""
     state = _load_state()
     state[coin] = {
         'direction':       direction,
         'entry':           round(entry, 8),
-        'tp':              round(tp, 8),
-        'sl':              round(sl, 8),
-        'qty':             round(qty, 8),
+        'tp':              round(tp,    8),
+        'sl':              round(sl,    8),
+        'qty':             round(qty,   8),
         'p_win':           round(p_win, 4),
         'tp_pct':          tp_pct,
         'sl_pct':          sl_pct,
@@ -128,10 +142,12 @@ def check_signal_aging(coin: str, current_price: float) -> str:
     if coin not in state:
         return 'already_archived'
     sig = state[coin]
-    if sig.get('archived', True):
+
+    # Default False — only treat as archived if explicitly set
+    if sig.get('archived', False):
         return 'already_archived'
 
-    if sig['repeat_count'] >= 1:
+    if sig['repeat_count'] >= config.MAX_SIGNAL_REPEATS:
         sig['archived']       = True
         sig['archive_reason'] = 'MAX_REPEATS'
         state[coin] = sig
@@ -160,20 +176,20 @@ def check_open_signals_status(current_prices: dict[str, float]) -> dict[str, str
     Returns dict: coin → 'TP_HIT' | 'SL_HIT' | 'OPEN'
     Side effect: archives signals that hit TP or SL.
     """
-    state  = _load_state()
-    result = {}
+    state   = _load_state()
+    result  = {}
     changed = False
 
     for coin, sig in state.items():
-        if sig.get('archived'):
+        if sig.get('archived', False):
             continue
         price = current_prices.get(coin)
         if price is None:
             result[coin] = 'OPEN'
             continue
 
-        tp = sig['tp']
-        sl = sig['sl']
+        tp        = sig['tp']
+        sl        = sig['sl']
         direction = sig['direction']
 
         hit = None
@@ -208,7 +224,7 @@ def get_active_signals() -> list[dict]:
     return [
         {**v, 'coin': k}
         for k, v in state.items()
-        if not v.get('archived', True)
+        if not v.get('archived', False)   # default False = assume active
     ]
 
 
@@ -220,11 +236,14 @@ def get_archived_signals(since: datetime | None = None) -> list[dict]:
         if not v.get('archived', False):
             continue
         if since is not None:
-            ts = datetime.strptime(v['first_signal_at'], '%Y-%m-%dT%H:%M:%SZ').replace(
-                tzinfo=timezone.utc
-            )
-            if ts < since:
-                continue
+            try:
+                ts = datetime.strptime(
+                    v['first_signal_at'], '%Y-%m-%dT%H:%M:%SZ'
+                ).replace(tzinfo=timezone.utc)
+                if ts < since:
+                    continue
+            except (KeyError, ValueError):
+                continue  # skip entries with missing/corrupt timestamps
         out.append({**v, 'coin': k})
     return out
 
@@ -238,7 +257,7 @@ def recalc_open_signal_qty(signal: dict, current_price: float) -> dict | None:
     if rr < 1.0:
         return None
 
-    sl = signal['sl']
+    sl   = signal['sl']
     risk = abs(current_price - sl)
     if risk == 0:
         return None
