@@ -4,7 +4,10 @@
       "Bash(python -c ':*)",
       "Bash(python _patch_nb02.py)",
       "Bash(python -u -c ':*)",
-      "Bash(grep -n \"→\\\\|\\\\\\\\\\\\\\\\u2192\" utils/data_utils.py)"
+      "Bash(grep -n \"→\\\\|\\\\\\\\\\\\\\\\u2192\" utils/data_utils.py)",
+      "Bash(python3)",
+      "Bash(python run_parallel_grid_test.py)",
+      "Bash(ls -la utils/*.py)"
     ]
   }
 }

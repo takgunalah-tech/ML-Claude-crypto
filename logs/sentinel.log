@@ -874,3 +874,302 @@
 2026-04-15 18:06:18,017 INFO [ZEC/USDT] SHORT repeat \#1 P=0.21
 2026-04-15 18:06:18,018 INFO === Hourly pipeline END ===
 2026-04-15 18:17:18,046 INFO Scheduler has been shut down
+2026-04-15 18:20:08,487 INFO [BTC/USDT] No new candles.
+2026-04-15 18:20:08,769 INFO [ETH/USDT] No new candles.
+2026-04-15 18:20:09,122 INFO [XRP/USDT] No new candles.
+2026-04-15 18:20:09,408 INFO [SOL/USDT] No new candles.
+2026-04-15 18:20:09,741 INFO [LTC/USDT] No new candles.
+2026-04-15 18:20:10,021 INFO [ADA/USDT] No new candles.
+2026-04-15 18:20:10,300 INFO [AAVE/USDT] No new candles.
+2026-04-15 18:20:10,612 INFO [LINK/USDT] No new candles.
+2026-04-15 18:20:10,919 INFO [AVAX/USDT] No new candles.
+2026-04-15 18:20:11,330 INFO [TRX/USDT] No new candles.
+2026-04-15 18:20:11,623 INFO [FIL/USDT] No new candles.
+2026-04-15 18:20:11,971 INFO [BCH/USDT] No new candles.
+2026-04-15 18:20:12,269 INFO [ZEC/USDT] No new candles.
+2026-04-15 18:20:14,734 INFO [SPX] No new candles.
+2026-04-15 18:20:15,239 INFO [QQQ] No new candles.
+2026-04-15 18:20:16,089 INFO [GLD] +1 candles -> 11447 total raw rows
+2026-04-15 18:20:16,831 INFO [TLT] No new candles.
+2026-04-15 18:20:17,802 INFO [VIX] +1 candles -> 7110 total raw rows
+2026-04-15 18:20:18,973 INFO [DXY] +1 candles -> 11953 total raw rows
+2026-04-15 18:20:26,073 INFO [BTC/USDT] No new candles.
+2026-04-15 18:20:26,384 INFO [ETH/USDT] No new candles.
+2026-04-15 18:20:26,699 INFO [XRP/USDT] No new candles.
+2026-04-15 18:20:27,208 INFO [SOL/USDT] No new candles.
+2026-04-15 18:20:27,531 INFO [LTC/USDT] No new candles.
+2026-04-15 18:20:27,844 INFO [ADA/USDT] No new candles.
+2026-04-15 18:20:28,150 INFO [AAVE/USDT] No new candles.
+2026-04-15 18:20:28,476 INFO [LINK/USDT] No new candles.
+2026-04-15 18:20:28,819 INFO [AVAX/USDT] No new candles.
+2026-04-15 18:20:29,128 INFO [TRX/USDT] No new candles.
+2026-04-15 18:20:29,428 INFO [FIL/USDT] No new candles.
+2026-04-15 18:20:29,760 INFO [BCH/USDT] No new candles.
+2026-04-15 18:20:30,058 INFO [ZEC/USDT] No new candles.
+2026-04-15 18:20:30,702 INFO [SPX] No new candles.
+2026-04-15 18:20:31,247 INFO [QQQ] No new candles.
+2026-04-15 18:20:31,772 INFO [GLD] No new candles.
+2026-04-15 18:20:32,345 INFO [TLT] No new candles.
+2026-04-15 18:20:32,842 INFO [VIX] No new candles.
+2026-04-15 18:20:33,415 INFO [DXY] No new candles.
+2026-04-15 18:32:15,369 INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-15 18:32:15,370 INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-15 18:32:15,378 INFO Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-04-15 18:32:15,379 INFO Added job "run_hourly_pipeline" to job store "default"
+2026-04-15 18:32:15,380 INFO Added job "run_retrain" to job store "default"
+2026-04-15 18:32:15,381 INFO Added job "send_morning_report_job" to job store "default"
+2026-04-15 18:32:15,382 INFO Scheduler started
+2026-04-15 18:32:15,385 INFO === Hourly pipeline START ===
+2026-04-15 18:32:16,669 INFO [BTC/USDT] No new candles.
+2026-04-15 18:32:16,918 INFO [ETH/USDT] No new candles.
+2026-04-15 18:32:17,168 INFO [XRP/USDT] No new candles.
+2026-04-15 18:32:17,418 INFO [SOL/USDT] No new candles.
+2026-04-15 18:32:17,672 INFO [LTC/USDT] No new candles.
+2026-04-15 18:32:17,916 INFO [ADA/USDT] No new candles.
+2026-04-15 18:32:18,159 INFO [AAVE/USDT] No new candles.
+2026-04-15 18:32:18,407 INFO [LINK/USDT] No new candles.
+2026-04-15 18:32:18,656 INFO [AVAX/USDT] No new candles.
+2026-04-15 18:32:18,909 INFO [TRX/USDT] No new candles.
+2026-04-15 18:32:19,166 INFO [FIL/USDT] No new candles.
+2026-04-15 18:32:19,412 INFO [BCH/USDT] No new candles.
+2026-04-15 18:32:19,665 INFO [ZEC/USDT] No new candles.
+2026-04-15 18:32:20,297 INFO [SPX] No new candles.
+2026-04-15 18:32:20,784 INFO [QQQ] No new candles.
+2026-04-15 18:32:21,292 INFO [GLD] No new candles.
+2026-04-15 18:32:21,820 INFO [TLT] No new candles.
+2026-04-15 18:32:22,310 INFO [VIX] No new candles.
+2026-04-15 18:32:22,846 INFO [DXY] No new candles.
+2026-04-15 18:32:23,445 INFO === Hourly pipeline END ===
+2026-04-15 19:32:15,435 INFO Running job "run_hourly_pipeline (trigger: interval[1:00:00], next run at: 2026-04-15 11:32:15 UTC)" (scheduled at 2026-04-15 11:32:15.368966+00:00)
+2026-04-15 19:32:15,467 INFO === Hourly pipeline START ===
+2026-04-15 19:32:18,755 INFO [BTC/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 19:32:20,461 INFO [ETH/USDT] +1 candles -> 17497 total raw rows
+2026-04-15 19:32:22,196 INFO [XRP/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 19:32:24,039 INFO [SOL/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 19:32:25,808 INFO [LTC/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 19:32:27,527 INFO [ADA/USDT] +1 candles -> 17497 total raw rows
+2026-04-15 19:32:29,259 INFO [AAVE/USDT] +1 candles -> 17498 total raw rows
+2026-04-15 19:32:31,028 INFO [LINK/USDT] +1 candles -> 17497 total raw rows
+2026-04-15 19:32:32,783 INFO [AVAX/USDT] +1 candles -> 17497 total raw rows
+2026-04-15 19:32:34,577 INFO [TRX/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 19:32:36,233 INFO [FIL/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 19:32:38,090 INFO [BCH/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 19:32:39,966 INFO [ZEC/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 19:32:41,458 INFO [SPX] No new candles.
+2026-04-15 19:32:42,135 INFO [QQQ] No new candles.
+2026-04-15 19:32:43,678 INFO [GLD] +1 candles -> 11448 total raw rows
+2026-04-15 19:32:44,893 INFO [TLT] No new candles.
+2026-04-15 19:32:46,069 INFO [VIX] +1 candles -> 7111 total raw rows
+2026-04-15 19:32:47,505 INFO [DXY] +1 candles -> 11954 total raw rows
+2026-04-15 19:32:49,267 INFO [ZEC/USDT] Signal registered: SHORT entry=356.4400
+2026-04-15 19:32:52,643 INFO [ZEC/USDT] SHORT signal fired P=0.27
+2026-04-15 19:32:52,647 INFO === Hourly pipeline END ===
+2026-04-15 19:32:52,653 INFO Job "run_hourly_pipeline (trigger: interval[1:00:00], next run at: 2026-04-15 12:32:15 UTC)" executed successfully
+2026-04-15 20:32:15,425 INFO Running job "run_hourly_pipeline (trigger: interval[1:00:00], next run at: 2026-04-15 13:32:15 UTC)" (scheduled at 2026-04-15 12:32:15.368966+00:00)
+2026-04-15 20:32:15,458 INFO === Hourly pipeline START ===
+2026-04-15 20:32:20,484 INFO [BTC/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 20:32:23,235 INFO [ETH/USDT] +1 candles -> 17498 total raw rows
+2026-04-15 20:32:25,184 INFO [XRP/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 20:32:27,124 INFO [SOL/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 20:32:28,937 INFO [LTC/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 20:32:30,844 INFO [ADA/USDT] +1 candles -> 17498 total raw rows
+2026-04-15 20:32:32,712 INFO [AAVE/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 20:32:34,852 INFO [LINK/USDT] +1 candles -> 17498 total raw rows
+2026-04-15 20:32:36,661 INFO [AVAX/USDT] +1 candles -> 17498 total raw rows
+2026-04-15 20:32:38,538 INFO [TRX/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 20:32:40,439 INFO [FIL/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 20:32:42,305 INFO [BCH/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 20:32:43,993 INFO [ZEC/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 20:32:45,710 INFO [SPX] No new candles.
+2026-04-15 20:32:46,470 INFO [QQQ] No new candles.
+2026-04-15 20:32:47,992 INFO [GLD] +1 candles -> 11449 total raw rows
+2026-04-15 20:32:48,981 INFO [TLT] No new candles.
+2026-04-15 20:32:50,220 INFO [VIX] +1 candles -> 7112 total raw rows
+2026-04-15 20:32:51,797 INFO [DXY] +1 candles -> 11955 total raw rows
+2026-04-15 20:32:57,420 INFO [ZEC/USDT] SHORT repeat \#1 P=0.22
+2026-04-15 20:32:57,424 INFO === Hourly pipeline END ===
+2026-04-15 20:32:57,431 INFO Job "run_hourly_pipeline (trigger: interval[1:00:00], next run at: 2026-04-15 13:32:15 UTC)" executed successfully
+2026-04-15 21:32:15,396 INFO Running job "run_hourly_pipeline (trigger: interval[1:00:00], next run at: 2026-04-15 14:32:15 UTC)" (scheduled at 2026-04-15 13:32:15.368966+00:00)
+2026-04-15 21:32:15,408 INFO === Hourly pipeline START ===
+2026-04-15 21:32:17,274 INFO [BTC/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 21:32:18,068 INFO [ETH/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 21:32:18,921 INFO [XRP/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 21:32:20,002 INFO [SOL/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 21:32:21,433 INFO [LTC/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 21:32:22,575 INFO [ADA/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 21:32:23,613 INFO [AAVE/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 21:32:24,889 INFO [LINK/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 21:32:25,993 INFO [AVAX/USDT] +1 candles -> 17499 total raw rows
+2026-04-15 21:32:27,014 INFO [TRX/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 21:32:28,468 INFO [FIL/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 21:32:29,586 INFO [BCH/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 21:32:30,822 INFO [ZEC/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 21:32:32,283 WARNING [SPX] Gap detected: expected next candle at 2026-04-14 20:30:00, got 2026-04-15 13:30:00 (17h gap)
+2026-04-15 21:32:32,450 INFO [SPX] +1 candles -> 3475 total raw rows
+2026-04-15 21:32:33,309 WARNING [QQQ] Gap detected: expected next candle at 2026-04-14 20:30:00, got 2026-04-15 13:30:00 (17h gap)
+2026-04-15 21:32:33,433 INFO [QQQ] +1 candles -> 3475 total raw rows
+2026-04-15 21:32:34,463 INFO [GLD] +1 candles -> 11450 total raw rows
+2026-04-15 21:32:35,552 WARNING [TLT] Gap detected: expected next candle at 2026-04-14 20:30:00, got 2026-04-15 13:30:00 (17h gap)
+2026-04-15 21:32:35,697 INFO [TLT] +1 candles -> 3475 total raw rows
+2026-04-15 21:32:36,542 INFO [VIX] +1 candles -> 7113 total raw rows
+2026-04-15 21:32:37,670 INFO [DXY] +1 candles -> 11956 total raw rows
+2026-04-15 21:32:40,004 INFO === Hourly pipeline END ===
+2026-04-15 21:32:40,011 INFO Job "run_hourly_pipeline (trigger: interval[1:00:00], next run at: 2026-04-15 14:32:15 UTC)" executed successfully
+2026-04-15 22:09:24,101 INFO Scheduler has been shut down
+2026-04-15 22:12:25,663 INFO [BTC/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 22:12:29,420 INFO [ETH/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 22:12:33,508 INFO [XRP/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 22:12:44,006 INFO [SOL/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 22:12:47,793 INFO [LTC/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 22:12:52,134 INFO [ADA/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 22:12:56,939 INFO [AAVE/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 22:13:00,989 INFO [LINK/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 22:13:05,238 INFO [AVAX/USDT] +1 candles -> 17500 total raw rows
+2026-04-15 22:13:09,509 INFO [TRX/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 22:13:13,219 INFO [FIL/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 22:13:17,689 INFO [BCH/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 22:13:21,720 INFO [ZEC/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 22:13:34,519 ERROR 
+1 Failed download:
+2026-04-15 22:13:34,522 ERROR ['^GSPC']: TypeError("'NoneType' object is not subscriptable")
+2026-04-15 22:13:34,534 INFO [SPX] No new candles.
+2026-04-15 22:13:44,848 ERROR 
+1 Failed download:
+2026-04-15 22:13:44,850 ERROR ['QQQ']: TypeError("'NoneType' object is not subscriptable")
+2026-04-15 22:13:44,862 INFO [QQQ] No new candles.
+2026-04-15 22:13:49,685 INFO [GLD] +1 candles -> 11451 total raw rows
+2026-04-15 22:13:52,607 INFO [TLT] No new candles.
+2026-04-15 22:13:59,300 INFO [VIX] No new candles.
+2026-04-15 22:14:02,876 INFO [DXY] +1 candles -> 11957 total raw rows
+2026-04-15 22:19:00,265 INFO [BTC/USDT] No new candles.
+2026-04-15 22:19:00,900 INFO [ETH/USDT] No new candles.
+2026-04-15 22:19:01,321 INFO [XRP/USDT] No new candles.
+2026-04-15 22:19:01,822 INFO [SOL/USDT] No new candles.
+2026-04-15 22:19:02,244 INFO [LTC/USDT] No new candles.
+2026-04-15 22:19:02,678 INFO [ADA/USDT] No new candles.
+2026-04-15 22:19:03,196 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:19:03,702 INFO [LINK/USDT] No new candles.
+2026-04-15 22:19:04,121 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:21:30,990 INFO [BTC/USDT] No new candles.
+2026-04-15 22:21:31,422 INFO [ETH/USDT] No new candles.
+2026-04-15 22:21:31,871 INFO [XRP/USDT] No new candles.
+2026-04-15 22:21:32,294 INFO [SOL/USDT] No new candles.
+2026-04-15 22:21:32,684 INFO [LTC/USDT] No new candles.
+2026-04-15 22:21:33,114 INFO [ADA/USDT] No new candles.
+2026-04-15 22:21:33,518 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:21:34,064 INFO [LINK/USDT] No new candles.
+2026-04-15 22:21:34,540 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:21:35,172 INFO [TRX/USDT] No new candles.
+2026-04-15 22:21:35,741 INFO [FIL/USDT] No new candles.
+2026-04-15 22:21:36,178 INFO [BCH/USDT] No new candles.
+2026-04-15 22:21:36,653 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:22:04,297 ERROR 
+1 Failed download:
+2026-04-15 22:22:04,299 ERROR ['^GSPC']: TypeError("'NoneType' object is not subscriptable")
+2026-04-15 22:22:04,315 INFO [SPX] No new candles.
+2026-04-15 22:22:34,444 ERROR 
+1 Failed download:
+2026-04-15 22:22:34,446 ERROR ['QQQ']: TypeError("'NoneType' object is not subscriptable")
+2026-04-15 22:22:34,455 INFO [QQQ] No new candles.
+2026-04-15 22:23:04,647 ERROR 
+1 Failed download:
+2026-04-15 22:23:04,649 ERROR ['GC=F']: TypeError("'NoneType' object is not subscriptable")
+2026-04-15 22:23:04,666 INFO [GLD] No new candles.
+2026-04-15 22:23:07,480 INFO [TLT] No new candles.
+2026-04-15 22:23:09,139 INFO [VIX] +1 candles -> 7114 total raw rows
+2026-04-15 22:23:10,744 INFO [DXY] No new candles.
+2026-04-15 22:23:19,480 INFO [BTC/USDT] No new candles.
+2026-04-15 22:23:19,914 INFO [ETH/USDT] No new candles.
+2026-04-15 22:23:20,314 INFO [XRP/USDT] No new candles.
+2026-04-15 22:23:21,113 INFO [SOL/USDT] No new candles.
+2026-04-15 22:23:21,615 INFO [LTC/USDT] No new candles.
+2026-04-15 22:23:22,091 INFO [ADA/USDT] No new candles.
+2026-04-15 22:23:22,599 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:23:23,114 INFO [LINK/USDT] No new candles.
+2026-04-15 22:23:23,476 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:23:23,817 INFO [TRX/USDT] No new candles.
+2026-04-15 22:23:24,162 INFO [FIL/USDT] No new candles.
+2026-04-15 22:23:24,477 INFO [BCH/USDT] No new candles.
+2026-04-15 22:23:24,791 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:23:26,162 INFO [SPX] No new candles.
+2026-04-15 22:23:27,423 INFO [QQQ] No new candles.
+2026-04-15 22:23:29,135 INFO [GLD] No new candles.
+2026-04-15 22:23:30,310 INFO [TLT] No new candles.
+2026-04-15 22:23:31,883 INFO [VIX] No new candles.
+2026-04-15 22:23:33,191 INFO [DXY] No new candles.
+2026-04-15 22:37:04,328 INFO [BTC/USDT] No new candles.
+2026-04-15 22:37:04,590 INFO [ETH/USDT] No new candles.
+2026-04-15 22:37:04,895 INFO [XRP/USDT] No new candles.
+2026-04-15 22:37:05,182 INFO [SOL/USDT] No new candles.
+2026-04-15 22:37:05,530 INFO [LTC/USDT] No new candles.
+2026-04-15 22:37:05,843 INFO [ADA/USDT] No new candles.
+2026-04-15 22:37:06,140 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:37:06,439 INFO [LINK/USDT] No new candles.
+2026-04-15 22:37:06,810 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:37:07,272 INFO [TRX/USDT] No new candles.
+2026-04-15 22:37:07,563 INFO [FIL/USDT] No new candles.
+2026-04-15 22:37:07,859 INFO [BCH/USDT] No new candles.
+2026-04-15 22:37:08,155 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:37:10,413 INFO [SPX] +1 candles -> 3476 total raw rows
+2026-04-15 22:37:11,147 INFO [QQQ] +1 candles -> 3476 total raw rows
+2026-04-15 22:37:11,696 INFO [GLD] No new candles.
+2026-04-15 22:37:12,290 INFO [TLT] +1 candles -> 3476 total raw rows
+2026-04-15 22:37:12,834 INFO [VIX] No new candles.
+2026-04-15 22:37:13,406 INFO [DXY] No new candles.
+2026-04-15 22:37:20,575 INFO [BTC/USDT] No new candles.
+2026-04-15 22:37:20,836 INFO [ETH/USDT] No new candles.
+2026-04-15 22:37:21,282 INFO [XRP/USDT] No new candles.
+2026-04-15 22:37:21,553 INFO [SOL/USDT] No new candles.
+2026-04-15 22:37:21,851 INFO [LTC/USDT] No new candles.
+2026-04-15 22:37:22,142 INFO [ADA/USDT] No new candles.
+2026-04-15 22:37:22,432 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:37:22,715 INFO [LINK/USDT] No new candles.
+2026-04-15 22:37:22,993 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:37:23,270 INFO [TRX/USDT] No new candles.
+2026-04-15 22:37:23,653 INFO [FIL/USDT] No new candles.
+2026-04-15 22:37:23,951 INFO [BCH/USDT] No new candles.
+2026-04-15 22:37:24,236 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:37:24,796 INFO [SPX] No new candles.
+2026-04-15 22:37:25,269 INFO [QQQ] No new candles.
+2026-04-15 22:37:25,797 INFO [GLD] No new candles.
+2026-04-15 22:37:26,343 INFO [TLT] No new candles.
+2026-04-15 22:37:26,842 INFO [VIX] No new candles.
+2026-04-15 22:37:27,371 INFO [DXY] No new candles.
+2026-04-15 22:40:39,582 INFO [BTC/USDT] No new candles.
+2026-04-15 22:40:39,871 INFO [ETH/USDT] No new candles.
+2026-04-15 22:40:40,150 INFO [XRP/USDT] No new candles.
+2026-04-15 22:40:40,431 INFO [SOL/USDT] No new candles.
+2026-04-15 22:40:40,715 INFO [LTC/USDT] No new candles.
+2026-04-15 22:40:41,021 INFO [ADA/USDT] No new candles.
+2026-04-15 22:40:41,320 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:40:41,601 INFO [LINK/USDT] No new candles.
+2026-04-15 22:40:41,855 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:40:42,277 INFO [TRX/USDT] No new candles.
+2026-04-15 22:40:42,559 INFO [FIL/USDT] No new candles.
+2026-04-15 22:40:42,824 INFO [BCH/USDT] No new candles.
+2026-04-15 22:40:43,137 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:40:43,782 INFO [SPX] No new candles.
+2026-04-15 22:40:44,391 INFO [QQQ] No new candles.
+2026-04-15 22:40:44,924 INFO [GLD] No new candles.
+2026-04-15 22:40:45,449 INFO [TLT] No new candles.
+2026-04-15 22:40:45,945 INFO [VIX] No new candles.
+2026-04-15 22:40:46,508 INFO [DXY] No new candles.
+2026-04-15 22:40:51,588 INFO [BTC/USDT] No new candles.
+2026-04-15 22:40:51,903 INFO [ETH/USDT] No new candles.
+2026-04-15 22:40:52,200 INFO [XRP/USDT] No new candles.
+2026-04-15 22:40:52,484 INFO [SOL/USDT] No new candles.
+2026-04-15 22:40:52,877 INFO [LTC/USDT] No new candles.
+2026-04-15 22:40:53,203 INFO [ADA/USDT] No new candles.
+2026-04-15 22:40:53,560 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:40:53,875 INFO [LINK/USDT] No new candles.
+2026-04-15 22:40:54,174 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:40:54,451 INFO [TRX/USDT] No new candles.
+2026-04-15 22:40:54,793 INFO [FIL/USDT] No new candles.
+2026-04-15 22:40:55,069 INFO [BCH/USDT] No new candles.
+2026-04-15 22:40:55,356 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:40:56,064 INFO [SPX] No new candles.
+2026-04-15 22:40:56,697 INFO [QQQ] No new candles.
+2026-04-15 22:40:57,235 INFO [GLD] No new candles.
+2026-04-15 22:40:57,767 INFO [TLT] No new candles.
+2026-04-15 22:40:58,301 INFO [VIX] No new candles.
+2026-04-15 22:40:58,864 INFO [DXY] No new candles.

@@ -1,0 +1,45 @@
+Config,Ticker,PF_Test1,N_Test1,PF_Test2,N_Test2,Stability,Status
+Baseline (current),XRP/USDT,,0,,0,0,✗ Invalid
+Baseline (current),SOL/USDT,,0,,0,0,✗ Invalid
+Baseline (current),LTC/USDT,,0,,0,0,✗ Invalid
+Baseline (current),ADA/USDT,,0,,0,0,✗ Invalid
+Baseline (current),AAVE/USDT,,0,,0,0,✗ Invalid
+Baseline (current),LINK/USDT,,0,,0,0,✗ Invalid
+Baseline (current),AVAX/USDT,,0,,0,0,✗ Invalid
+Baseline (current),TRX/USDT,,0,,0,0,✗ Invalid
+Baseline (current),FIL/USDT,,0,,0,0,✗ Invalid
+Baseline (current),BCH/USDT,,0,,0,0,✗ Invalid
+Baseline (current),ZEC/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),XRP/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),SOL/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),LTC/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),ADA/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),AAVE/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),LINK/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),AVAX/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),TRX/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),FIL/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),BCH/USDT,,0,,0,0,✗ Invalid
+Tight (smaller grid),ZEC/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),XRP/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),SOL/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),LTC/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),ADA/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),AAVE/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),LINK/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),AVAX/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),TRX/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),FIL/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),BCH/USDT,,0,,0,0,✗ Invalid
+Wide (larger grid),ZEC/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,XRP/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,SOL/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,LTC/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,ADA/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,AAVE/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,LINK/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,AVAX/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,TRX/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,FIL/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,BCH/USDT,,0,,0,0,✗ Invalid
+Relaxed stability,ZEC/USDT,,0,,0,0,✗ Invalid
