@@ -1173,3 +1173,49 @@
 2026-04-15 22:40:57,767 INFO [TLT] No new candles.
 2026-04-15 22:40:58,301 INFO [VIX] No new candles.
 2026-04-15 22:40:58,864 INFO [DXY] No new candles.
+2026-04-15 22:53:07,278 INFO [ZEC/USDT] Model saved.
+2026-04-15 22:53:07,581 INFO === Hourly pipeline START ===
+2026-04-15 22:53:11,840 INFO [BTC/USDT] No new candles.
+2026-04-15 22:53:12,095 INFO [ETH/USDT] No new candles.
+2026-04-15 22:53:12,354 INFO [XRP/USDT] No new candles.
+2026-04-15 22:53:12,625 INFO [SOL/USDT] No new candles.
+2026-04-15 22:53:12,893 INFO [LTC/USDT] No new candles.
+2026-04-15 22:53:13,189 INFO [ADA/USDT] No new candles.
+2026-04-15 22:53:13,473 INFO [AAVE/USDT] No new candles.
+2026-04-15 22:53:13,757 INFO [LINK/USDT] No new candles.
+2026-04-15 22:53:14,025 INFO [AVAX/USDT] No new candles.
+2026-04-15 22:53:14,285 INFO [TRX/USDT] No new candles.
+2026-04-15 22:53:14,548 INFO [FIL/USDT] No new candles.
+2026-04-15 22:53:14,809 INFO [BCH/USDT] No new candles.
+2026-04-15 22:53:15,086 INFO [ZEC/USDT] No new candles.
+2026-04-15 22:53:15,891 INFO [SPX] No new candles.
+2026-04-15 22:53:16,374 INFO [QQQ] No new candles.
+2026-04-15 22:53:16,896 INFO [GLD] No new candles.
+2026-04-15 22:53:17,437 INFO [TLT] No new candles.
+2026-04-15 22:53:17,952 INFO [VIX] No new candles.
+2026-04-15 22:53:18,497 INFO [DXY] No new candles.
+2026-04-15 22:53:20,268 INFO [ZEC/USDT] Signal registered: SHORT entry=358.4800
+2026-04-15 22:53:22,554 INFO [ZEC/USDT] SHORT signal fired P=0.24
+2026-04-15 22:53:22,555 INFO === Hourly pipeline END ===
+2026-04-15 23:00:00,756 INFO === Hourly pipeline START ===
+2026-04-15 23:00:05,265 INFO [BTC/USDT] +1 candles -> 17504 total raw rows
+2026-04-15 23:00:05,958 INFO [ETH/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 23:00:06,652 INFO [XRP/USDT] +1 candles -> 17504 total raw rows
+2026-04-15 23:00:07,358 INFO [SOL/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 23:00:08,073 INFO [LTC/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 23:00:08,754 INFO [ADA/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 23:00:09,463 INFO [AAVE/USDT] +1 candles -> 17502 total raw rows
+2026-04-15 23:00:10,188 INFO [LINK/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 23:00:10,914 INFO [AVAX/USDT] +1 candles -> 17501 total raw rows
+2026-04-15 23:00:11,632 INFO [TRX/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 23:00:12,394 INFO [FIL/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 23:00:13,080 INFO [BCH/USDT] +1 candles -> 17504 total raw rows
+2026-04-15 23:00:13,779 INFO [ZEC/USDT] +1 candles -> 17503 total raw rows
+2026-04-15 23:00:14,616 INFO [SPX] No new candles.
+2026-04-15 23:00:15,199 INFO [QQQ] No new candles.
+2026-04-15 23:00:15,713 INFO [GLD] No new candles.
+2026-04-15 23:00:16,274 INFO [TLT] No new candles.
+2026-04-15 23:00:16,782 INFO [VIX] No new candles.
+2026-04-15 23:00:17,326 INFO [DXY] No new candles.
+2026-04-15 23:00:20,034 INFO [ZEC/USDT] SHORT repeat \#1 P=0.22
+2026-04-15 23:00:20,035 INFO === Hourly pipeline END ===
