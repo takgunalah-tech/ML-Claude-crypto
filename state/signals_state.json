@@ -1,15 +1,17 @@
 {
   "ZEC/USDT": {
     "direction": "SHORT",
-    "entry": 354.5,
-    "tp": 339.10969419,
-    "sl": 359.83468349,
-    "qty": 0.93726273,
-    "p_win": 0.1809,
-    "tp_pct": 0.035,
+    "entry": 359.19,
+    "tp": 344.92155407,
+    "sl": 363.77982741,
+    "qty": 1.08936558,
+    "p_win": 0.1586,
+    "tp_pct": 0.03,
     "sl_pct": 0.01,
-    "first_signal_at": "2026-04-15T03:17:49Z",
-    "repeat_count": 0,
+    "k1": 0.7,
+    "k2": 0.2,
+    "first_signal_at": "2026-04-15T09:07:16Z",
+    "repeat_count": 1,
     "archived": false,
     "archive_reason": null
   }

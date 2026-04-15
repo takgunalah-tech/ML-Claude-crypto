@@ -63,23 +63,45 @@
     "Macro_Risk_State"
   ],
   "label_params": {
-    "tp_pct": 0.035,
+    "tp_pct": 0.03,
     "sl_pct": 0.01,
-    "k1": 0.5,
-    "k2": 0.3
+    "k1": 0.7,
+    "k2": 0.2
   },
   "test1": {
-    "PF": 1.5359,
-    "trade_count": 83,
-    "win_rate": 0.3494
+    "PF": 1.8807,
+    "trade_count": 65,
+    "win_rate": 0.3846
   },
   "test2": {
     "PF": Infinity,
-    "trade_count": 2,
+    "trade_count": 3,
     "win_rate": 1.0
   },
-  "trained_at": "2026-04-15T03:17:35.880101+00:00",
+  "trained_at": "2026-04-15T06:06:11.922910+00:00",
   "runner_ups": [
+    {
+      "params": {
+        "tp_pct": 0.03,
+        "sl_pct": 0.01,
+        "k1": 0.7,
+        "k2": 0.2
+      },
+      "score": Infinity,
+      "pf": Infinity,
+      "n_trades": 90
+    },
+    {
+      "params": {
+        "tp_pct": 0.035,
+        "sl_pct": 0.01,
+        "k1": 0.5,
+        "k2": 0.2
+      },
+      "score": Infinity,
+      "pf": Infinity,
+      "n_trades": 86
+    },
     {
       "params": {
         "tp_pct": 0.035,
@@ -89,29 +111,7 @@
       },
       "score": Infinity,
       "pf": Infinity,
-      "n_trades": 76
-    },
-    {
-      "params": {
-        "tp_pct": 0.035,
-        "sl_pct": 0.01,
-        "k1": 0.7,
-        "k2": 0.2
-      },
-      "score": Infinity,
-      "pf": Infinity,
-      "n_trades": 59
-    },
-    {
-      "params": {
-        "tp_pct": 0.04,
-        "sl_pct": 0.01,
-        "k1": 0.3,
-        "k2": 0.2
-      },
-      "score": Infinity,
-      "pf": Infinity,
-      "n_trades": 71
+      "n_trades": 81
     }
   ]
 }

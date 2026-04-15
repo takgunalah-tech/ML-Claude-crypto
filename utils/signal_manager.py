@@ -111,8 +111,15 @@ def register_signal(
     p_win: float,
     tp_pct: float,
     sl_pct: float,
+    k1: float = 0.0,
+    k2: float = 0.0,
 ) -> None:
-    """Register a new signal (overwrites any previous archived entry for this coin)."""
+    """Register a new signal (overwrites any previous archived entry for this coin).
+
+    k1 and k2 are the ATR multipliers used when computing TP/SL prices.
+    They are stored so repeat messages can recalculate ATR-adjusted levels and
+    display deltas relative to the original signal.
+    """
     state = _load_state()
     state[coin] = {
         'direction':       direction,
@@ -123,6 +130,8 @@ def register_signal(
         'p_win':           round(p_win, 4),
         'tp_pct':          tp_pct,
         'sl_pct':          sl_pct,
+        'k1':              k1,
+        'k2':              k2,
         'first_signal_at': _now_utc(),
         'repeat_count':    0,
         'archived':        False,

@@ -412,13 +412,22 @@ _ROLLING_WARM_UP = 210  # candles of overlap needed for correct rolling window i
 
 
 def _feature_parquet_path(ticker: str) -> str:
+    """Canonical path for a ticker's feature parquet.
+
+    ALL code that reads or writes feature parquets MUST call this function —
+    never construct the path inline.  This prevents the path-mismatch bug where
+    two parts of the project silently disagree on where the file lives.
+
+    Convention: data/working/{TICKER_USDT}_features.parquet  (flat, no subdirectory)
+    """
     safe = ticker.replace('/', '_').replace('^', '')
-    return os.path.join(config.DATA_WORKING, 'crypto', f'{safe}_features.parquet')
+    return os.path.join(config.DATA_WORKING, f'{safe}_features.parquet')
 
 
 def _feature_meta_path(ticker: str) -> str:
+    """Canonical path for a ticker's feature parquet metadata (last-computed timestamp)."""
     safe = ticker.replace('/', '_').replace('^', '')
-    return os.path.join(config.DATA_WORKING, 'crypto', f'{safe}_features_meta.json')
+    return os.path.join(config.DATA_WORKING, f'{safe}_features_meta.json')
 
 
 def _load_feature_parquet(ticker: str) -> pd.DataFrame | None:

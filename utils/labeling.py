@@ -52,10 +52,16 @@ def _generate_labels_python(
     Original pure-Python label generator (reference implementation).
     Kept for parity testing against the vectorized version.
     ~840k iterations per call at default horizon=48 on 17,500-row datasets.
+
+    The returned Series always carries the SAME index as the input df.
+    Internal computation resets to 0-based for array indexing, but the
+    original index is restored before returning so callers can safely do
+    df.loc[labels.notna(), ...] without an IndexingError.
     """
     if horizon is None:
         horizon = config.LABEL_HORIZON
 
+    original_index = df.index
     df    = df.reset_index(drop=True)
     close = df['close'].values
     high  = df['high'].values
@@ -71,7 +77,7 @@ def _generate_labels_python(
             f'generate_labels: horizon ({horizon}) >= dataset length ({n}). '
             f'All labels will be NaN.'
         )
-        return pd.Series(labels, index=df.index, name='label')
+        return pd.Series(labels, index=original_index, name='label')
 
     if direction == 'long':
         tp_prices = close * (1 + tp_pct + k1 * atr_norm)
@@ -106,7 +112,7 @@ def _generate_labels_python(
         elif sl_hit < tp_hit:
             labels[i] = 0
 
-    return pd.Series(labels, index=df.index, name='label')
+    return pd.Series(labels, index=original_index, name='label')
 
 
 def _generate_labels_numpy(
@@ -132,10 +138,16 @@ def _generate_labels_numpy(
       - Simultaneous TP+SL hit in the same candle → NaN (same as Python)
       - Neither hit within horizon → NaN
       - Last `horizon` rows → NaN (incomplete look-ahead window)
+
+    The returned Series always carries the SAME index as the input df.
+    Internal computation resets to 0-based for array indexing, but the
+    original index is restored before returning so callers can safely do
+    df.loc[labels.notna(), ...] without an IndexingError.
     """
     if horizon is None:
         horizon = config.LABEL_HORIZON
 
+    original_index = df.index
     df    = df.reset_index(drop=True)
     close = df['close'].values.astype(np.float64)
     high  = df['high'].values.astype(np.float64)
@@ -151,7 +163,7 @@ def _generate_labels_numpy(
             f'generate_labels: horizon ({horizon}) >= dataset length ({n}). '
             f'All labels will be NaN.'
         )
-        return pd.Series(labels, index=df.index, name='label')
+        return pd.Series(labels, index=original_index, name='label')
 
     n_valid = n - horizon  # number of rows that can receive a label
 
@@ -199,7 +211,8 @@ def _generate_labels_numpy(
     labels[:n_valid][win]  = 1
     labels[:n_valid][loss] = 0
 
-    return pd.Series(labels, index=df.index, name='label')
+    # Restore the caller's original index so df.loc[labels.notna(), ...] aligns correctly
+    return pd.Series(labels, index=original_index, name='label')
 
 
 def generate_labels(
