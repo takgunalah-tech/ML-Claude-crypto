@@ -89,3 +89,9 @@ MORNING_REPORT_HOUR = 7   # 7am UTC
 # ── Scheduler ─────────────────────────────────────────────────────────────────
 SCHEDULER_INTERVAL_MIN  = 60
 RETRAIN_INTERVAL_HOURS  = 72
+
+# ── Training performance ───────────────────────────────────────────────────────
+# Grid search uses a lightweight model (fast ranking), final model uses full depth.
+# Set to None to use FINAL_ESTIMATORS for both (disables two-stage training).
+GRID_SEARCH_ESTIMATORS  = 50   # n_estimators used during grid search (ranking pass)
+FINAL_ESTIMATORS        = 300  # n_estimators used for the production model

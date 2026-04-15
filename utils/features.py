@@ -6,6 +6,8 @@ Model B : Anchor (BTC/ETH) → regime, volatility, breakout, direction features
 Model C : Altcoin feature matrix (standard TA + derived + cross-asset injection)
 """
 
+import json
+import logging
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import MinMaxScaler
@@ -22,6 +24,9 @@ def _get_ta():
 
 import os, sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import config
+
+logger = logging.getLogger(__name__)
 
 
 # ── Utilities ─────────────────────────────────────────────────────────────────
@@ -361,7 +366,8 @@ def build_all_features(
     macro_dfs:  dict[str, pd.DataFrame],
 ) -> dict[str, pd.DataFrame]:
     """
-    Compute features for all altcoins.
+    Compute features for all altcoins (full recompute from scratch).
+    BTC/ETH anchors and macro state are computed once and broadcast to all coins.
     Returns dict: ticker → feature DataFrame.
     """
     macro_state = compute_macro_risk_state(macro_dfs)
@@ -375,12 +381,159 @@ def build_all_features(
     eth_anchor = compute_anchor_features(eth_df, 'ETH')
 
     feature_dfs = {}
-    import config
     for ticker in config.ALTCOIN_TICKERS:
         if ticker not in crypto_dfs:
             continue
         df   = crypto_dfs[ticker]
         feat = compute_altcoin_features(df, btc_anchor, eth_anchor, macro_state)
         feature_dfs[ticker] = feat
+
+    return feature_dfs
+
+
+# ── Incremental Feature Store (F1 + F4) ───────────────────────────────────────
+#
+# Features for past candles are immutable — ATR_14 at timestamp t depends only
+# on data through t. Once computed and stored, they never need recomputation.
+#
+# Strategy:
+#   1. Load stored feature parquet (full history).
+#   2. Find last stored timestamp.
+#   3. Take the full OHLCV df and compute features only for rows after
+#      (last_stored_ts - ROLLING_WARM_UP candles) to get correct rolling windows.
+#   4. Append only the truly new rows (after last_stored_ts) to the parquet.
+#   5. Return the full merged parquet.
+#
+# On first run (no parquet exists): fall back to build_all_features() + save.
+#
+# ROLLING_WARM_UP = 210 candles (covers EMA_200 + a 10-candle margin).
+
+_ROLLING_WARM_UP = 210  # candles of overlap needed for correct rolling window init
+
+
+def _feature_parquet_path(ticker: str) -> str:
+    safe = ticker.replace('/', '_').replace('^', '')
+    return os.path.join(config.DATA_WORKING, 'crypto', f'{safe}_features.parquet')
+
+
+def _feature_meta_path(ticker: str) -> str:
+    safe = ticker.replace('/', '_').replace('^', '')
+    return os.path.join(config.DATA_WORKING, 'crypto', f'{safe}_features_meta.json')
+
+
+def _load_feature_parquet(ticker: str) -> pd.DataFrame | None:
+    path = _feature_parquet_path(ticker)
+    if not os.path.exists(path):
+        return None
+    try:
+        df = pd.read_parquet(path)
+        if 'timestamp' not in df.columns:
+            return None
+        df['timestamp'] = pd.to_datetime(df['timestamp'], utc=True)
+        return df
+    except Exception as e:
+        logger.warning(f'[{ticker}] Could not load feature parquet: {e}')
+        return None
+
+
+def _save_feature_parquet(ticker: str, feat_df: pd.DataFrame) -> None:
+    path = _feature_parquet_path(ticker)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    feat_df.to_parquet(path, index=False)
+    # Write metadata with last computed timestamp
+    if 'timestamp' in feat_df.columns and len(feat_df) > 0:
+        last_ts = pd.to_datetime(feat_df['timestamp']).max()
+        meta = {'last_timestamp': str(last_ts), 'n_rows': len(feat_df)}
+        with open(_feature_meta_path(ticker), 'w') as fh:
+            json.dump(meta, fh)
+
+
+def build_all_features_incremental(
+    crypto_dfs: dict[str, pd.DataFrame],
+    macro_dfs:  dict[str, pd.DataFrame],
+) -> dict[str, pd.DataFrame]:
+    """
+    Compute features for all altcoins using incremental / delta strategy.
+
+    On first run (no stored parquet): runs full computation via build_all_features()
+    and saves the result to parquet.
+
+    On subsequent runs: loads the stored parquet, computes features only for the
+    new candles (+ _ROLLING_WARM_UP overlap for correct rolling windows), appends
+    new rows, and returns the full merged DataFrame.
+
+    Speedup: 30-40 min → ~30-60s on retrain (72 new candles vs 17,500).
+    """
+    macro_state = compute_macro_risk_state(macro_dfs)
+
+    btc_df = crypto_dfs.get('BTC/USDT')
+    eth_df = crypto_dfs.get('ETH/USDT')
+    if btc_df is None or eth_df is None:
+        raise ValueError('BTC/USDT and ETH/USDT are required anchor assets.')
+
+    # Compute anchors once for all altcoins
+    btc_anchor = compute_anchor_features(btc_df, 'BTC')
+    eth_anchor = compute_anchor_features(eth_df, 'ETH')
+
+    feature_dfs: dict[str, pd.DataFrame] = {}
+
+    for ticker in config.ALTCOIN_TICKERS:
+        if ticker not in crypto_dfs:
+            continue
+
+        raw_df      = crypto_dfs[ticker]
+        stored_feat = _load_feature_parquet(ticker)
+
+        if stored_feat is None:
+            # First run: full computation
+            logger.info(f'[{ticker}] Feature parquet not found — full compute.')
+            feat = compute_altcoin_features(raw_df, btc_anchor, eth_anchor, macro_state)
+            _save_feature_parquet(ticker, feat)
+            feature_dfs[ticker] = feat
+            continue
+
+        # Find last stored timestamp
+        stored_feat['timestamp'] = pd.to_datetime(stored_feat['timestamp'], utc=True)
+        last_stored_ts = stored_feat['timestamp'].max()
+
+        # Determine the slice of raw_df to recompute (new rows + warm-up buffer)
+        raw_df = raw_df.copy()
+        raw_df['timestamp'] = pd.to_datetime(raw_df['timestamp'], utc=True)
+        all_ts = raw_df['timestamp'].sort_values()
+
+        # Find position of last_stored_ts, step back by warm-up candles
+        positions   = (all_ts <= last_stored_ts).sum()
+        warm_start  = max(0, positions - _ROLLING_WARM_UP)
+        delta_df    = raw_df[raw_df['timestamp'] >= all_ts.iloc[warm_start]].copy()
+
+        has_new = (raw_df['timestamp'] > last_stored_ts).any()
+        if not has_new:
+            logger.info(f'[{ticker}] Feature parquet up-to-date ({last_stored_ts}). Skipping.')
+            feature_dfs[ticker] = stored_feat
+            continue
+
+        logger.info(
+            f'[{ticker}] Incremental feature compute: '
+            f'{int((raw_df["timestamp"] > last_stored_ts).sum())} new candles '
+            f'(+ {_ROLLING_WARM_UP} warm-up buffer).'
+        )
+
+        # Compute features on delta slice (warm-up buffer ensures correct rolling windows)
+        delta_feat = compute_altcoin_features(delta_df, btc_anchor, eth_anchor, macro_state)
+        delta_feat['timestamp'] = pd.to_datetime(delta_feat['timestamp'], utc=True)
+
+        # Keep only rows strictly newer than last stored timestamp
+        new_rows = delta_feat[delta_feat['timestamp'] > last_stored_ts].copy()
+
+        if new_rows.empty:
+            feature_dfs[ticker] = stored_feat
+            continue
+
+        # Append new rows to stored parquet
+        merged = pd.concat([stored_feat, new_rows], ignore_index=True)
+        merged = merged.drop_duplicates(subset=['timestamp']).sort_values('timestamp').reset_index(drop=True)
+        _save_feature_parquet(ticker, merged)
+
+        feature_dfs[ticker] = merged
 
     return feature_dfs

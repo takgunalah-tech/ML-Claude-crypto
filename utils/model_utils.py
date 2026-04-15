@@ -21,10 +21,24 @@ logger = logging.getLogger(__name__)
 
 # ── Training ──────────────────────────────────────────────────────────────────
 
-def train_xgboost(X: pd.DataFrame, y: pd.Series) -> xgb.XGBClassifier:
-    """Train an XGBoost binary classifier."""
+def train_xgboost(
+    X: pd.DataFrame,
+    y: pd.Series,
+    n_estimators: int | None = None,
+    nthread: int | None = None,
+) -> xgb.XGBClassifier:
+    """Train an XGBoost binary classifier.
+
+    Args:
+        n_estimators: Override tree count. None → uses config.FINAL_ESTIMATORS (300).
+                      Pass config.GRID_SEARCH_ESTIMATORS (50) for fast grid-search ranking.
+        nthread:      Override XGBoost thread count. Set to 1 when running inside
+                      joblib.Parallel to avoid CPU over-subscription.
+    """
+    if n_estimators is None:
+        n_estimators = config.FINAL_ESTIMATORS
     model = xgb.XGBClassifier(
-        n_estimators=300,
+        n_estimators=n_estimators,
         max_depth=4,
         learning_rate=0.05,
         subsample=0.8,
@@ -34,6 +48,7 @@ def train_xgboost(X: pd.DataFrame, y: pd.Series) -> xgb.XGBClassifier:
         use_label_encoder=False,
         verbosity=0,
         random_state=42,
+        nthread=nthread,
     )
     model.fit(X, y)
     return model
@@ -172,15 +187,45 @@ def check_validity(test1: dict, test2: dict) -> bool:
 
 # ── Feature importance (SHAP) ─────────────────────────────────────────────────
 
+# Module-level SHAP explainer cache: {ticker: (model_path_mtime, explainer)}
+# Invalidated automatically when the model file is updated (every 72h retrain).
+_shap_cache: dict[str, tuple[float, object]] = {}
+
+
 def get_shap_drivers(
     model: xgb.XGBClassifier,
     X_sample: pd.DataFrame,
     n: int = 5,
+    ticker: str | None = None,
 ) -> list[str]:
-    """Return top-n feature names by mean absolute SHAP value."""
+    """Return top-n feature names by mean absolute SHAP value.
+
+    If `ticker` is provided, the SHAP TreeExplainer is cached in memory and
+    reused across hourly calls — it is only rebuilt when the model file changes
+    (i.e., after a 72h retrain). This saves ~2s per coin per hourly pipeline run.
+    """
+    global _shap_cache
     try:
-        import shap  # lazy import — shap takes ~2s to load
-        explainer = shap.TreeExplainer(model)
+        import shap  # lazy import — shap takes ~2s to load on first call
+
+        explainer = None
+
+        if ticker is not None:
+            model_path = _model_path(ticker)
+            try:
+                mtime = os.path.getmtime(model_path)
+            except OSError:
+                mtime = None
+
+            cached = _shap_cache.get(ticker)
+            if cached is not None and cached[0] == mtime:
+                explainer = cached[1]  # cache hit — reuse existing explainer
+            else:
+                explainer = shap.TreeExplainer(model)
+                _shap_cache[ticker] = (mtime, explainer)
+        else:
+            explainer = shap.TreeExplainer(model)
+
         shap_vals = explainer.shap_values(X_sample)
         mean_abs  = np.abs(shap_vals).mean(axis=0)
         top_idx   = np.argsort(mean_abs)[::-1][:n]
