@@ -1219,3 +1219,87 @@
 2026-04-15 23:00:17,326 INFO [DXY] No new candles.
 2026-04-15 23:00:20,034 INFO [ZEC/USDT] SHORT repeat \#1 P=0.22
 2026-04-15 23:00:20,035 INFO === Hourly pipeline END ===
+2026-04-16 00:00:00,528 INFO === Hourly pipeline START ===
+2026-04-16 00:00:03,607 WARNING [BTC/USDT] Fetch failed (1 consecutive): ccxt NetworkError for BTC/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=BTCUSDT&startTime=1776268800000
+2026-04-16 00:00:03,751 WARNING [ETH/USDT] Fetch failed (1 consecutive): ccxt NetworkError for ETH/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=ETHUSDT&startTime=1776268800000
+2026-04-16 00:00:03,903 WARNING [XRP/USDT] Fetch failed (1 consecutive): ccxt NetworkError for XRP/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=XRPUSDT&startTime=1776268800000
+2026-04-16 00:00:04,053 WARNING [SOL/USDT] Fetch failed (1 consecutive): ccxt NetworkError for SOL/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=SOLUSDT&startTime=1776268800000
+2026-04-16 00:00:04,206 WARNING [LTC/USDT] Fetch failed (1 consecutive): ccxt NetworkError for LTC/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=LTCUSDT&startTime=1776268800000
+2026-04-16 00:00:04,355 WARNING [ADA/USDT] Fetch failed (1 consecutive): ccxt NetworkError for ADA/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=ADAUSDT&startTime=1776268800000
+2026-04-16 00:00:04,509 WARNING [AAVE/USDT] Fetch failed (1 consecutive): ccxt NetworkError for AAVE/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=AAVEUSDT&startTime=1776268800000
+2026-04-16 00:00:04,660 WARNING [LINK/USDT] Fetch failed (1 consecutive): ccxt NetworkError for LINK/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=LINKUSDT&startTime=1776268800000
+2026-04-16 00:00:04,809 WARNING [AVAX/USDT] Fetch failed (1 consecutive): ccxt NetworkError for AVAX/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=AVAXUSDT&startTime=1776268800000
+2026-04-16 00:00:04,983 WARNING [TRX/USDT] Fetch failed (1 consecutive): ccxt NetworkError for TRX/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=TRXUSDT&startTime=1776268800000
+2026-04-16 00:00:05,131 WARNING [FIL/USDT] Fetch failed (1 consecutive): ccxt NetworkError for FIL/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=FILUSDT&startTime=1776268800000
+2026-04-16 00:00:05,276 WARNING [BCH/USDT] Fetch failed (1 consecutive): ccxt NetworkError for BCH/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=BCHUSDT&startTime=1776268800000
+2026-04-16 00:00:05,423 WARNING [ZEC/USDT] Fetch failed (1 consecutive): ccxt NetworkError for ZEC/USDT: binance GET https://api.binance.com/api/v3/klines?interval=1h&limit=1000&symbol=ZECUSDT&startTime=1776268800000
+2026-04-16 00:00:05,537 ERROR 
+1 Failed download:
+2026-04-16 00:00:05,538 ERROR ['^GSPC']: TypeError("'NoneType' object is not subscriptable")
+2026-04-16 00:00:05,545 INFO [SPX] No new candles.
+2026-04-16 00:00:05,600 ERROR 
+1 Failed download:
+2026-04-16 00:00:05,601 ERROR ['QQQ']: TypeError("'NoneType' object is not subscriptable")
+2026-04-16 00:00:05,607 INFO [QQQ] No new candles.
+2026-04-16 00:00:05,741 ERROR 
+1 Failed download:
+2026-04-16 00:00:05,742 ERROR ['GC=F']: TypeError("'NoneType' object is not subscriptable")
+2026-04-16 00:00:05,748 INFO [GLD] No new candles.
+2026-04-16 00:00:05,837 ERROR 
+1 Failed download:
+2026-04-16 00:00:05,838 ERROR ['TLT']: TypeError("'NoneType' object is not subscriptable")
+2026-04-16 00:00:05,844 INFO [TLT] No new candles.
+2026-04-16 00:00:05,917 ERROR 
+1 Failed download:
+2026-04-16 00:00:05,918 ERROR ['^VIX']: TypeError("'NoneType' object is not subscriptable")
+2026-04-16 00:00:05,923 INFO [VIX] No new candles.
+2026-04-16 00:00:06,025 ERROR 
+1 Failed download:
+2026-04-16 00:00:06,026 ERROR ['DX-Y.NYB']: TypeError("'NoneType' object is not subscriptable")
+2026-04-16 00:00:06,031 INFO [DXY] No new candles.
+2026-04-16 00:00:06,611 INFO === Hourly pipeline END ===
+2026-04-16 01:00:00,639 INFO === Hourly pipeline START ===
+2026-04-16 01:00:05,076 INFO [BTC/USDT] +2 candles -> 17506 total raw rows
+2026-04-16 01:00:05,739 INFO [ETH/USDT] +2 candles -> 17503 total raw rows
+2026-04-16 01:00:06,421 INFO [XRP/USDT] +2 candles -> 17506 total raw rows
+2026-04-16 01:00:07,481 INFO [SOL/USDT] +2 candles -> 17505 total raw rows
+2026-04-16 01:00:08,165 INFO [LTC/USDT] +2 candles -> 17505 total raw rows
+2026-04-16 01:00:08,841 INFO [ADA/USDT] +2 candles -> 17503 total raw rows
+2026-04-16 01:00:09,532 INFO [AAVE/USDT] +2 candles -> 17504 total raw rows
+2026-04-16 01:00:10,238 INFO [LINK/USDT] +2 candles -> 17503 total raw rows
+2026-04-16 01:00:11,295 INFO [AVAX/USDT] +2 candles -> 17503 total raw rows
+2026-04-16 01:00:12,100 INFO [TRX/USDT] +2 candles -> 17505 total raw rows
+2026-04-16 01:00:12,829 INFO [FIL/USDT] +2 candles -> 17505 total raw rows
+2026-04-16 01:00:13,525 INFO [BCH/USDT] +2 candles -> 17506 total raw rows
+2026-04-16 01:00:14,241 INFO [ZEC/USDT] +2 candles -> 17505 total raw rows
+2026-04-16 01:00:15,314 INFO [SPX] +2 candles -> 3478 total raw rows
+2026-04-16 01:00:15,899 INFO [QQQ] +2 candles -> 3478 total raw rows
+2026-04-16 01:00:16,576 INFO [GLD] +2 candles -> 11453 total raw rows
+2026-04-16 01:00:17,243 INFO [TLT] +2 candles -> 3478 total raw rows
+2026-04-16 01:00:18,005 INFO [VIX] +2 candles -> 7116 total raw rows
+2026-04-16 01:00:18,760 INFO [DXY] +2 candles -> 11959 total raw rows
+2026-04-16 01:00:19,434 INFO [ZEC/USDT] Signal registered: SHORT entry=355.7500
+2026-04-16 01:00:21,505 INFO [ZEC/USDT] SHORT signal fired P=0.28
+2026-04-16 01:00:21,506 INFO === Hourly pipeline END ===
+2026-04-16 02:00:00,654 INFO === Hourly pipeline START ===
+2026-04-16 02:00:05,101 INFO [BTC/USDT] +1 candles -> 17507 total raw rows
+2026-04-16 02:00:06,449 INFO [ETH/USDT] +1 candles -> 17504 total raw rows
+2026-04-16 02:00:07,135 INFO [XRP/USDT] +1 candles -> 17507 total raw rows
+2026-04-16 02:00:07,817 INFO [SOL/USDT] +1 candles -> 17506 total raw rows
+2026-04-16 02:00:08,499 INFO [LTC/USDT] +1 candles -> 17506 total raw rows
+2026-04-16 02:00:09,170 INFO [ADA/USDT] +1 candles -> 17504 total raw rows
+2026-04-16 02:00:09,862 INFO [AAVE/USDT] +1 candles -> 17505 total raw rows
+2026-04-16 02:00:10,538 INFO [LINK/USDT] +1 candles -> 17504 total raw rows
+2026-04-16 02:00:11,258 INFO [AVAX/USDT] +1 candles -> 17504 total raw rows
+2026-04-16 02:00:12,020 INFO [TRX/USDT] +1 candles -> 17506 total raw rows
+2026-04-16 02:00:13,007 INFO [FIL/USDT] +1 candles -> 17506 total raw rows
+2026-04-16 02:00:13,681 INFO [BCH/USDT] +1 candles -> 17507 total raw rows
+2026-04-16 02:00:14,366 INFO [ZEC/USDT] +1 candles -> 17506 total raw rows
+2026-04-16 02:00:15,258 INFO [SPX] +1 candles -> 3479 total raw rows
+2026-04-16 02:00:15,828 INFO [QQQ] +1 candles -> 3479 total raw rows
+2026-04-16 02:00:16,511 INFO [GLD] +1 candles -> 11454 total raw rows
+2026-04-16 02:00:17,160 INFO [TLT] +1 candles -> 3479 total raw rows
+2026-04-16 02:00:17,812 INFO [VIX] +1 candles -> 7117 total raw rows
+2026-04-16 02:00:18,614 INFO [DXY] +1 candles -> 11960 total raw rows
+2026-04-16 02:00:21,407 INFO [ZEC/USDT] SHORT repeat \#1 P=0.30
+2026-04-16 02:00:21,409 INFO === Hourly pipeline END ===
