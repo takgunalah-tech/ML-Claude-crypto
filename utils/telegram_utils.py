@@ -20,27 +20,72 @@ _API_BASE = 'https://api.telegram.org/bot{token}/sendMessage'
 
 # ── Core send ─────────────────────────────────────────────────────────────────
 
+# def _send(text: str) -> bool:
+#     """Send a plain-text message to the configured chat. Returns True on success."""
+#     if not config.TELEGRAM_BOT_TOKEN or not config.TELEGRAM_CHAT_ID:
+#         logger.warning('Telegram not configured (missing BOT_TOKEN or CHAT_ID).')
+#         return False
+#     url = _API_BASE.format(token=config.TELEGRAM_BOT_TOKEN)
+#     try:
+#         resp = requests.post(url, json={
+#             'chat_id':    config.TELEGRAM_CHAT_ID,
+#             'text':       text,
+#             'parse_mode': 'HTML',
+#         }, timeout=10)
+#         if not resp.ok:
+#             # Truncate error body to prevent log bloat from large HTML error pages
+#             err_preview = resp.text[:200] if resp.text else ''
+#             logger.error(f'Telegram send failed: {resp.status_code} {err_preview}')
+#             return False
+#         return True
+#     except Exception as e:
+#         logger.error(f'Telegram request error: {e}')
+#         return False
+
+import time  # Add this to your imports at the top
+from requests.exceptions import RequestException, Timeout
+
 def _send(text: str) -> bool:
-    """Send a plain-text message to the configured chat. Returns True on success."""
+    """Send a plain-text message with retries and longer timeout."""
     if not config.TELEGRAM_BOT_TOKEN or not config.TELEGRAM_CHAT_ID:
         logger.warning('Telegram not configured (missing BOT_TOKEN or CHAT_ID).')
         return False
+        
     url = _API_BASE.format(token=config.TELEGRAM_BOT_TOKEN)
-    try:
-        resp = requests.post(url, json={
-            'chat_id':    config.TELEGRAM_CHAT_ID,
-            'text':       text,
-            'parse_mode': 'HTML',
-        }, timeout=10)
-        if not resp.ok:
-            # Truncate error body to prevent log bloat from large HTML error pages
-            err_preview = resp.text[:200] if resp.text else ''
-            logger.error(f'Telegram send failed: {resp.status_code} {err_preview}')
+    payload = {
+        'chat_id':    config.TELEGRAM_CHAT_ID,
+        'text':       text,
+        'parse_mode': 'HTML',
+    }
+
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            # Increased timeout to 30 seconds
+            resp = requests.post(url, json=payload, timeout=30)
+            
+            if resp.status_code == 429:  # Rate Limited
+                retry_after = resp.json().get('parameters', {}).get('retry_after', 5)
+                logger.warning(f"Rate limited. Sleeping {retry_after}s...")
+                time.sleep(retry_after)
+                continue
+
+            if not resp.ok:
+                err_preview = resp.text[:200] if resp.text else ''
+                logger.error(f'Telegram send failed: {resp.status_code} {err_preview}')
+                return False
+                
+            return True
+
+        except Timeout:
+            logger.warning(f"Telegram timeout on attempt {attempt + 1}. Retrying...")
+            time.sleep(2)  # Short pause before retrying
+        except RequestException as e:
+            logger.error(f'Telegram request error: {e}')
             return False
-        return True
-    except Exception as e:
-        logger.error(f'Telegram request error: {e}')
-        return False
+
+    logger.error("Telegram send failed after max retries due to timeouts.")
+    return False
 
 
 # ── Signal message ────────────────────────────────────────────────────────────
