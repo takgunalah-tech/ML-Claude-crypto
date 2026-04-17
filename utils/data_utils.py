@@ -174,7 +174,8 @@ def _get_exchange(exchange_id: str):
 
 def check_exchange_connectivity(exchange_id: str = None) -> tuple[bool, str]:
     """Quick connectivity test — tries to load markets. Returns (ok, message)."""
-    exchange_id = exchange_id or config.EXCHANGE_SPOT
+    # exchange_id = exchange_id or config.EXCHANGE_SPOT
+    exchange_id = exchange_id or config.EXCHANGE_FUTURES
     try:
         ex = _get_exchange(exchange_id)
         ex.load_markets()
@@ -244,7 +245,8 @@ def fetch_crypto_incremental_ccxt(ticker: str, since_ms: int) -> pd.DataFrame:
     multiple hours were missed). Used for every update AFTER base data exists.
     Exchange instance is cached — markets loaded only once.
     """
-    exchange = _get_exchange(config.EXCHANGE_SPOT)
+    # exchange = _get_exchange(config.EXCHANGE_SPOT)
+    exchange = _get_exchange(config.EXCHANGE_FUTURES)
     all_rows = []
     current_since = since_ms
 

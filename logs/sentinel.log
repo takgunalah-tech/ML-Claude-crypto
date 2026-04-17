@@ -1815,3 +1815,446 @@
 2026-04-17 14:00:42,584 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
 2026-04-17 14:00:42,587 INFO [ZEC/USDT] SHORT signal fired P=0.25
 2026-04-17 14:00:42,588 INFO === Hourly pipeline END ===
+2026-04-17 15:00:00,871 INFO === Hourly pipeline START ===
+2026-04-17 15:00:05,528 INFO [BTC/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 15:00:06,916 INFO [ETH/USDT] +1 candles -> 17541 total raw rows
+2026-04-17 15:00:08,350 INFO [TRX/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 15:00:09,901 INFO [FIL/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 15:00:11,233 INFO [BCH/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 15:00:12,508 INFO [ZEC/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 15:00:13,730 INFO [XRP/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 15:00:15,215 INFO [BNB/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:16,533 INFO [SOL/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 15:00:17,853 INFO [ADA/USDT] +1 candles -> 17541 total raw rows
+2026-04-17 15:00:19,088 INFO [DOGE/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:19,774 INFO [TRX/USDT] No new candles.
+2026-04-17 15:00:20,632 INFO [AVAX/USDT] +1 candles -> 17541 total raw rows
+2026-04-17 15:00:21,626 INFO [LINK/USDT] +1 candles -> 17541 total raw rows
+2026-04-17 15:00:22,901 INFO [DOT/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 15:00:23,938 INFO [NEAR/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:24,258 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 15:00:25,038 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 15:00:25,046 ERROR 
+1 Failed download:
+2026-04-17 15:00:25,050 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 15:00:25,061 ERROR [APT/USDT] Base download returned empty data.
+2026-04-17 15:00:25,065 INFO [SUI/USDT] First run — downloading base from yfinance...
+2026-04-17 15:00:25,766 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 15:00:25,772 ERROR 
+1 Failed download:
+2026-04-17 15:00:25,778 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 15:00:25,789 ERROR [SUI/USDT] Base download returned empty data.
+2026-04-17 15:00:26,526 INFO [ARB/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:27,765 INFO [LTC/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 15:00:28,875 INFO [INJ/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:30,080 INFO [HBAR/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:31,215 INFO [AAVE/USDT] +1 candles -> 17542 total raw rows
+2026-04-17 15:00:32,334 INFO [ONDO/USDT] +1 candles -> 17348 total raw rows
+2026-04-17 15:00:33,796 INFO [SPX] No new candles.
+2026-04-17 15:00:37,835 INFO [QQQ] No new candles.
+2026-04-17 15:00:40,138 INFO [GLD] +1 candles -> 11488 total raw rows
+2026-04-17 15:00:41,269 INFO [TLT] No new candles.
+2026-04-17 15:00:42,200 INFO [VIX] No new candles.
+2026-04-17 15:00:43,721 INFO [DXY] +1 candles -> 11996 total raw rows
+2026-04-17 15:00:46,314 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-17 15:00:46,317 INFO [ZEC/USDT] SHORT repeat \#1 P=0.23
+2026-04-17 15:00:46,319 INFO === Hourly pipeline END ===
+2026-04-17 16:00:00,864 INFO === Hourly pipeline START ===
+2026-04-17 16:00:05,477 INFO [BTC/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 16:00:06,817 INFO [ETH/USDT] +1 candles -> 17542 total raw rows
+2026-04-17 16:00:08,062 INFO [TRX/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 16:00:11,553 INFO [FIL/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 16:00:12,732 INFO [BCH/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 16:00:13,979 INFO [ZEC/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 16:00:15,003 INFO [XRP/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 16:00:16,364 INFO [BNB/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:17,633 INFO [SOL/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 16:00:18,873 INFO [ADA/USDT] +1 candles -> 17542 total raw rows
+2026-04-17 16:00:20,008 INFO [DOGE/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:20,739 INFO [TRX/USDT] No new candles.
+2026-04-17 16:00:21,447 INFO [AVAX/USDT] +1 candles -> 17542 total raw rows
+2026-04-17 16:00:22,513 INFO [LINK/USDT] +1 candles -> 17542 total raw rows
+2026-04-17 16:00:23,493 INFO [DOT/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 16:00:24,555 INFO [NEAR/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:24,973 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 16:00:25,708 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 16:00:25,712 ERROR 
+1 Failed download:
+2026-04-17 16:00:25,714 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 16:00:25,725 ERROR [APT/USDT] Base download returned empty data.
+2026-04-17 16:00:25,728 INFO [SUI/USDT] First run — downloading base from yfinance...
+2026-04-17 16:00:26,869 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 16:00:26,876 ERROR 
+1 Failed download:
+2026-04-17 16:00:26,878 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 16:00:26,889 ERROR [SUI/USDT] Base download returned empty data.
+2026-04-17 16:00:27,436 INFO [ARB/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:28,434 INFO [LTC/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 16:00:29,301 INFO [INJ/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:30,191 INFO [HBAR/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:31,074 INFO [AAVE/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 16:00:32,072 INFO [ONDO/USDT] +1 candles -> 17349 total raw rows
+2026-04-17 16:00:33,807 INFO [SPX] No new candles.
+2026-04-17 16:00:35,421 INFO [QQQ] No new candles.
+2026-04-17 16:00:36,666 INFO [GLD] +1 candles -> 11489 total raw rows
+2026-04-17 16:00:37,900 INFO [TLT] No new candles.
+2026-04-17 16:00:38,772 WARNING [VIX] Gap detected: expected next candle at 2026-04-16 21:00:00, got 2026-04-17 07:00:00 (10h gap)
+2026-04-17 16:00:38,917 INFO [VIX] +1 candles -> 7135 total raw rows
+2026-04-17 16:00:40,632 INFO [DXY] +1 candles -> 11997 total raw rows
+2026-04-17 16:00:41,608 INFO === Hourly pipeline END ===
+2026-04-17 17:00:00,631 INFO === Hourly pipeline START ===
+2026-04-17 17:00:04,931 INFO [BTC/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 17:00:06,523 INFO [ETH/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 17:00:07,859 INFO [TRX/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 17:00:09,068 INFO [FIL/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 17:00:10,078 INFO [BCH/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 17:00:11,071 INFO [ZEC/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 17:00:12,321 INFO [XRP/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 17:00:13,597 INFO [BNB/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:14,804 INFO [SOL/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 17:00:16,191 INFO [ADA/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 17:00:17,740 INFO [DOGE/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:18,530 INFO [TRX/USDT] No new candles.
+2026-04-17 17:00:19,463 INFO [AVAX/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 17:00:20,795 INFO [LINK/USDT] +1 candles -> 17543 total raw rows
+2026-04-17 17:00:21,948 INFO [DOT/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 17:00:22,813 INFO [NEAR/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:23,228 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 17:00:23,964 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 17:00:23,964 ERROR 
+1 Failed download:
+2026-04-17 17:00:23,975 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 17:00:23,986 ERROR [APT/USDT] Base download returned empty data.
+2026-04-17 17:00:23,989 INFO [SUI/USDT] First run — downloading base from yfinance...
+2026-04-17 17:00:24,735 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 17:00:24,735 ERROR 
+1 Failed download:
+2026-04-17 17:00:24,746 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 17:00:24,757 ERROR [SUI/USDT] Base download returned empty data.
+2026-04-17 17:00:25,342 INFO [ARB/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:26,690 INFO [LTC/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 17:00:27,477 INFO [INJ/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:28,534 INFO [HBAR/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:29,660 INFO [AAVE/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 17:00:30,696 INFO [ONDO/USDT] +1 candles -> 17350 total raw rows
+2026-04-17 17:00:31,799 INFO [SPX] No new candles.
+2026-04-17 17:00:32,916 INFO [QQQ] No new candles.
+2026-04-17 17:00:34,023 INFO [GLD] +1 candles -> 11490 total raw rows
+2026-04-17 17:00:35,133 INFO [TLT] No new candles.
+2026-04-17 17:00:36,381 INFO [VIX] +1 candles -> 7136 total raw rows
+2026-04-17 17:00:38,799 INFO [DXY] +1 candles -> 11998 total raw rows
+2026-04-17 17:00:39,731 INFO [ZEC/USDT] Signal registered: SHORT entry=337.1200
+2026-04-17 17:00:40,729 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-17 17:00:40,731 INFO [ZEC/USDT] SHORT signal fired P=0.29
+2026-04-17 17:00:40,734 INFO === Hourly pipeline END ===
+2026-04-17 18:00:00,582 INFO === Hourly pipeline START ===
+2026-04-17 18:00:06,082 INFO [BTC/USDT] +1 candles -> 17547 total raw rows
+2026-04-17 18:00:08,032 INFO [ETH/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 18:00:09,937 INFO [TRX/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 18:00:11,621 INFO [FIL/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 18:00:13,247 INFO [BCH/USDT] +1 candles -> 17547 total raw rows
+2026-04-17 18:00:14,832 INFO [ZEC/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 18:00:16,482 INFO [XRP/USDT] +1 candles -> 17547 total raw rows
+2026-04-17 18:00:17,987 INFO [BNB/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:19,400 INFO [SOL/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 18:00:20,929 INFO [ADA/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 18:00:22,388 INFO [DOGE/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:23,306 INFO [TRX/USDT] No new candles.
+2026-04-17 18:00:24,542 INFO [AVAX/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 18:00:26,160 INFO [LINK/USDT] +1 candles -> 17544 total raw rows
+2026-04-17 18:00:27,662 INFO [DOT/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 18:00:29,061 INFO [NEAR/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:29,646 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 18:00:30,469 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:00:30,474 ERROR 
+1 Failed download:
+2026-04-17 18:00:30,479 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:00:30,487 ERROR [APT/USDT] Base download returned empty data.
+2026-04-17 18:00:30,490 INFO [SUI/USDT] First run — downloading base from yfinance...
+2026-04-17 18:00:31,277 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:00:31,296 ERROR 
+1 Failed download:
+2026-04-17 18:00:31,300 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:00:31,310 ERROR [SUI/USDT] Base download returned empty data.
+2026-04-17 18:00:32,043 INFO [ARB/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:33,370 INFO [LTC/USDT] +1 candles -> 17546 total raw rows
+2026-04-17 18:00:34,657 INFO [INJ/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:35,988 INFO [HBAR/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:37,198 INFO [AAVE/USDT] +1 candles -> 17545 total raw rows
+2026-04-17 18:00:38,534 INFO [ONDO/USDT] +1 candles -> 17351 total raw rows
+2026-04-17 18:00:39,914 INFO [SPX] No new candles.
+2026-04-17 18:00:40,874 INFO [QQQ] No new candles.
+2026-04-17 18:00:42,111 INFO [GLD] +1 candles -> 11491 total raw rows
+2026-04-17 18:00:43,194 INFO [TLT] No new candles.
+2026-04-17 18:00:44,456 INFO [VIX] +1 candles -> 7137 total raw rows
+2026-04-17 18:00:46,036 INFO [DXY] +1 candles -> 11999 total raw rows
+2026-04-17 18:00:48,099 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-17 18:00:48,101 INFO [ZEC/USDT] SHORT repeat \#1 P=0.30
+2026-04-17 18:00:48,103 INFO === Hourly pipeline END ===
+2026-04-17 18:15:37,968 INFO [BTC/USDT] No new candles.
+2026-04-17 18:15:38,200 INFO [ETH/USDT] No new candles.
+2026-04-17 18:15:38,442 INFO [TRX/USDT] No new candles.
+2026-04-17 18:15:38,714 INFO [FIL/USDT] No new candles.
+2026-04-17 18:15:38,947 INFO [BCH/USDT] No new candles.
+2026-04-17 18:15:39,176 INFO [ZEC/USDT] No new candles.
+2026-04-17 18:15:39,852 INFO [XRP/USDT] No new candles.
+2026-04-17 18:15:40,166 INFO [BNB/USDT] No new candles.
+2026-04-17 18:15:40,432 INFO [SOL/USDT] No new candles.
+2026-04-17 18:15:40,688 INFO [ADA/USDT] No new candles.
+2026-04-17 18:15:41,116 INFO [DOGE/USDT] No new candles.
+2026-04-17 18:15:41,398 INFO [TRX/USDT] No new candles.
+2026-04-17 18:15:41,639 INFO [AVAX/USDT] No new candles.
+2026-04-17 18:15:41,917 INFO [LINK/USDT] No new candles.
+2026-04-17 18:15:42,248 INFO [DOT/USDT] No new candles.
+2026-04-17 18:15:42,472 INFO [NEAR/USDT] No new candles.
+2026-04-17 18:15:42,575 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 18:15:44,326 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:15:44,332 ERROR 
+1 Failed download:
+2026-04-17 18:15:44,333 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:15:44,342 ERROR [APT/USDT] Base download returned empty data.
+2026-04-17 18:15:44,345 INFO [SUI/USDT] First run — downloading base from yfinance...
+2026-04-17 18:15:45,097 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:15:45,103 ERROR 
+1 Failed download:
+2026-04-17 18:15:45,104 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:15:45,108 ERROR [SUI/USDT] Base download returned empty data.
+2026-04-17 18:15:45,274 INFO [ARB/USDT] No new candles.
+2026-04-17 18:15:45,500 INFO [LTC/USDT] No new candles.
+2026-04-17 18:15:45,734 INFO [INJ/USDT] No new candles.
+2026-04-17 18:15:45,970 INFO [HBAR/USDT] No new candles.
+2026-04-17 18:15:46,238 INFO [AAVE/USDT] No new candles.
+2026-04-17 18:15:46,513 INFO [ONDO/USDT] No new candles.
+2026-04-17 18:15:47,652 INFO [SPX] No new candles.
+2026-04-17 18:15:48,396 INFO [QQQ] No new candles.
+2026-04-17 18:15:49,398 INFO [GLD] +1 candles -> 11492 total raw rows
+2026-04-17 18:15:50,464 INFO [TLT] No new candles.
+2026-04-17 18:15:51,472 INFO [VIX] +1 candles -> 7138 total raw rows
+2026-04-17 18:15:53,630 INFO [DXY] +1 candles -> 12000 total raw rows
+2026-04-17 18:15:59,671 INFO [BTC/USDT] No new candles.
+2026-04-17 18:15:59,895 INFO [ETH/USDT] No new candles.
+2026-04-17 18:16:00,116 INFO [TRX/USDT] No new candles.
+2026-04-17 18:16:00,330 INFO [FIL/USDT] No new candles.
+2026-04-17 18:16:00,549 INFO [BCH/USDT] No new candles.
+2026-04-17 18:16:00,768 INFO [ZEC/USDT] No new candles.
+2026-04-17 18:16:00,983 INFO [XRP/USDT] No new candles.
+2026-04-17 18:16:01,193 INFO [BNB/USDT] No new candles.
+2026-04-17 18:16:01,422 INFO [SOL/USDT] No new candles.
+2026-04-17 18:16:01,726 INFO [ADA/USDT] No new candles.
+2026-04-17 18:16:01,941 INFO [DOGE/USDT] No new candles.
+2026-04-17 18:16:02,169 INFO [TRX/USDT] No new candles.
+2026-04-17 18:16:02,466 INFO [AVAX/USDT] No new candles.
+2026-04-17 18:16:02,717 INFO [LINK/USDT] No new candles.
+2026-04-17 18:16:02,962 INFO [DOT/USDT] No new candles.
+2026-04-17 18:16:03,179 INFO [NEAR/USDT] No new candles.
+2026-04-17 18:16:03,242 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 18:16:04,110 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:16:04,115 ERROR 
+1 Failed download:
+2026-04-17 18:16:04,116 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:16:04,122 ERROR [APT/USDT] Base download returned empty data.
+2026-04-17 18:16:04,124 INFO [SUI/USDT] First run — downloading base from yfinance...
+2026-04-17 18:16:04,947 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:16:04,954 ERROR 
+1 Failed download:
+2026-04-17 18:16:04,955 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:16:04,960 ERROR [SUI/USDT] Base download returned empty data.
+2026-04-17 18:16:05,123 INFO [ARB/USDT] No new candles.
+2026-04-17 18:16:05,340 INFO [LTC/USDT] No new candles.
+2026-04-17 18:16:05,554 INFO [INJ/USDT] No new candles.
+2026-04-17 18:16:05,772 INFO [HBAR/USDT] No new candles.
+2026-04-17 18:16:05,982 INFO [AAVE/USDT] No new candles.
+2026-04-17 18:16:06,201 INFO [ONDO/USDT] No new candles.
+2026-04-17 18:19:28,680 WARNING [BTC/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for BTC/USDT: binanceusdm does not have market symbol BTC/USDT
+2026-04-17 18:19:28,847 WARNING [ETH/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for ETH/USDT: binanceusdm does not have market symbol ETH/USDT
+2026-04-17 18:19:28,984 WARNING [TRX/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for TRX/USDT: binanceusdm does not have market symbol TRX/USDT
+2026-04-17 18:19:29,115 WARNING [FIL/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for FIL/USDT: binanceusdm does not have market symbol FIL/USDT
+2026-04-17 18:19:29,254 WARNING [BCH/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for BCH/USDT: binanceusdm does not have market symbol BCH/USDT
+2026-04-17 18:19:29,375 WARNING [ZEC/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for ZEC/USDT: binanceusdm does not have market symbol ZEC/USDT
+2026-04-17 18:19:29,504 WARNING [XRP/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for XRP/USDT: binanceusdm does not have market symbol XRP/USDT
+2026-04-17 18:19:29,636 WARNING [BNB/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for BNB/USDT: binanceusdm does not have market symbol BNB/USDT
+2026-04-17 18:19:29,764 WARNING [SOL/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for SOL/USDT: binanceusdm does not have market symbol SOL/USDT
+2026-04-17 18:19:29,889 WARNING [ADA/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for ADA/USDT: binanceusdm does not have market symbol ADA/USDT
+2026-04-17 18:19:30,009 WARNING [DOGE/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for DOGE/USDT: binanceusdm does not have market symbol DOGE/USDT
+2026-04-17 18:19:30,124 WARNING [TRX/USDT] Fetch failed (2 consecutive): ccxt BadSymbol for TRX/USDT: binanceusdm does not have market symbol TRX/USDT
+2026-04-17 18:19:30,249 WARNING [AVAX/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for AVAX/USDT: binanceusdm does not have market symbol AVAX/USDT
+2026-04-17 18:19:30,375 WARNING [LINK/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for LINK/USDT: binanceusdm does not have market symbol LINK/USDT
+2026-04-17 18:19:30,492 WARNING [DOT/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for DOT/USDT: binanceusdm does not have market symbol DOT/USDT
+2026-04-17 18:19:30,609 WARNING [NEAR/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for NEAR/USDT: binanceusdm does not have market symbol NEAR/USDT
+2026-04-17 18:19:30,672 INFO [APT/USDT] First run — downloading base from yfinance...
+2026-04-17 18:21:10,320 INFO [BTCUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:11,851 INFO [BTCUSDT] Base saved: 17475 candles
+2026-04-17 18:21:12,068 INFO [ETHUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:12,717 INFO [ETHUSDT] Base saved: 17472 candles
+2026-04-17 18:21:13,005 INFO [TRXUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:15,361 INFO [TRXUSDT] Base saved: 17351 candles
+2026-04-17 18:21:15,550 INFO [FILUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:17,937 INFO [FILUSDT] Base saved: 17351 candles
+2026-04-17 18:21:18,163 INFO [BCHUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:20,340 INFO [BCHUSDT] Base saved: 17351 candles
+2026-04-17 18:21:20,553 INFO [ZECUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:23,333 INFO [ZECUSDT] Base saved: 17351 candles
+2026-04-17 18:21:23,569 INFO [XRPUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:26,100 INFO [XRPUSDT] Base saved: 17351 candles
+2026-04-17 18:21:26,296 INFO [BNBUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:36,319 ERROR 
+1 Failed download:
+2026-04-17 18:21:36,322 ERROR ['BNB-USD']: TypeError("'NoneType' object is not subscriptable")
+2026-04-17 18:21:36,329 ERROR [BNBUSDT] Base download returned empty data.
+2026-04-17 18:21:36,332 INFO [SOLUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:38,946 INFO [SOLUSDT] Base saved: 17351 candles
+2026-04-17 18:21:39,159 INFO [ADAUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:41,974 INFO [ADAUSDT] Base saved: 17351 candles
+2026-04-17 18:21:42,421 INFO [DOGEUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:44,986 INFO [DOGEUSDT] Base saved: 17351 candles
+2026-04-17 18:21:45,186 INFO [AVAXUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:47,640 INFO [AVAXUSDT] Base saved: 17351 candles
+2026-04-17 18:21:47,838 INFO [LINKUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:50,216 INFO [LINKUSDT] Base saved: 17351 candles
+2026-04-17 18:21:50,408 INFO [DOTUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:56,170 INFO [DOTUSDT] Base saved: 17351 candles
+2026-04-17 18:21:56,397 INFO [NEARUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:58,894 INFO [NEARUSDT] Base saved: 17351 candles
+2026-04-17 18:21:59,081 INFO [APTUSDT] First run — downloading base from yfinance...
+2026-04-17 18:21:59,941 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:21:59,944 ERROR 
+1 Failed download:
+2026-04-17 18:21:59,946 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:21:59,951 ERROR [APTUSDT] Base download returned empty data.
+2026-04-17 18:21:59,952 INFO [SUIUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:01,783 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:22:01,792 ERROR 
+1 Failed download:
+2026-04-17 18:22:01,794 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:22:01,798 ERROR [SUIUSDT] Base download returned empty data.
+2026-04-17 18:22:01,800 INFO [ARBUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:11,823 ERROR 
+1 Failed download:
+2026-04-17 18:22:11,825 ERROR ['ARB-USD']: TypeError("'NoneType' object is not subscriptable")
+2026-04-17 18:22:11,829 ERROR [ARBUSDT] Base download returned empty data.
+2026-04-17 18:22:11,831 INFO [LTCUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:14,269 INFO [LTCUSDT] Base saved: 17351 candles
+2026-04-17 18:22:14,461 INFO [INJUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:16,850 INFO [INJUSDT] Base saved: 17351 candles
+2026-04-17 18:22:17,041 INFO [HBARUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:19,844 INFO [HBARUSDT] Base saved: 17351 candles
+2026-04-17 18:22:20,039 INFO [AAVEUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:22,727 INFO [AAVEUSDT] Base saved: 17351 candles
+2026-04-17 18:22:22,926 INFO [ONDOUSDT] First run — downloading base from yfinance...
+2026-04-17 18:22:25,591 INFO [ONDOUSDT] Base saved: 17351 candles
+2026-04-17 18:22:27,244 INFO [SPX] No new candles.
+2026-04-17 18:22:28,212 INFO [QQQ] No new candles.
+2026-04-17 18:22:36,201 INFO [GLD] No new candles.
+2026-04-17 18:22:37,428 INFO [TLT] No new candles.
+2026-04-17 18:22:38,388 INFO [VIX] No new candles.
+2026-04-17 18:22:39,427 INFO [DXY] No new candles.
+2026-04-17 18:23:12,960 INFO [BTCUSDT] No new candles.
+2026-04-17 18:23:13,206 INFO [ETHUSDT] No new candles.
+2026-04-17 18:23:13,465 INFO [TRXUSDT] No new candles.
+2026-04-17 18:23:13,755 INFO [FILUSDT] No new candles.
+2026-04-17 18:23:14,001 INFO [BCHUSDT] No new candles.
+2026-04-17 18:23:14,234 INFO [ZECUSDT] No new candles.
+2026-04-17 18:23:14,565 INFO [XRPUSDT] No new candles.
+2026-04-17 18:23:14,631 INFO [BNBUSDT] First run — downloading base from yfinance...
+2026-04-17 18:23:16,829 INFO [BNBUSDT] Base saved: 17351 candles
+2026-04-17 18:23:17,171 INFO [SOLUSDT] No new candles.
+2026-04-17 18:23:17,430 INFO [ADAUSDT] No new candles.
+2026-04-17 18:23:17,674 INFO [DOGEUSDT] No new candles.
+2026-04-17 18:23:17,927 INFO [AVAXUSDT] No new candles.
+2026-04-17 18:23:18,195 INFO [LINKUSDT] No new candles.
+2026-04-17 18:23:18,453 INFO [DOTUSDT] No new candles.
+2026-04-17 18:23:18,792 INFO [NEARUSDT] No new candles.
+2026-04-17 18:23:18,853 INFO [APTUSDT] First run — downloading base from yfinance...
+2026-04-17 18:23:19,560 ERROR $APT-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:23:19,567 ERROR 
+1 Failed download:
+2026-04-17 18:23:19,568 ERROR ['APT-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:23:19,573 ERROR [APTUSDT] Base download returned empty data.
+2026-04-17 18:23:19,575 INFO [SUIUSDT] First run — downloading base from yfinance...
+2026-04-17 18:23:20,289 ERROR $SUI-USD: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:23:20,289 ERROR 
+1 Failed download:
+2026-04-17 18:23:20,294 ERROR ['SUI-USD']: possibly delisted; no price data found  (1h 2024-04-18 -> 2026-04-18)
+2026-04-17 18:23:20,299 ERROR [SUIUSDT] Base download returned empty data.
+2026-04-17 18:23:20,301 INFO [ARBUSDT] First run — downloading base from yfinance...
+2026-04-17 18:23:30,321 ERROR 
+1 Failed download:
+2026-04-17 18:23:30,322 ERROR ['ARB-USD']: TypeError("'NoneType' object is not subscriptable")
+2026-04-17 18:23:30,326 ERROR [ARBUSDT] Base download returned empty data.
+2026-04-17 18:23:30,483 INFO [LTCUSDT] No new candles.
+2026-04-17 18:23:30,750 INFO [INJUSDT] No new candles.
+2026-04-17 18:23:30,988 INFO [HBARUSDT] No new candles.
+2026-04-17 18:23:31,248 INFO [AAVEUSDT] No new candles.
+2026-04-17 18:23:31,526 INFO [ONDOUSDT] No new candles.
+2026-04-17 18:23:33,028 INFO [SPX] No new candles.
+2026-04-17 18:23:34,041 INFO [QQQ] No new candles.
+2026-04-17 18:23:36,036 INFO [GLD] No new candles.
+2026-04-17 18:23:38,091 INFO [TLT] No new candles.
+2026-04-17 18:23:39,088 INFO [VIX] No new candles.
+2026-04-17 18:23:40,173 INFO [DXY] No new candles.
+2026-04-17 18:26:51,378 INFO [BTCUSDT] No new candles.
+2026-04-17 18:26:51,696 INFO [ETHUSDT] No new candles.
+2026-04-17 18:26:52,041 INFO [TRXUSDT] No new candles.
+2026-04-17 18:26:52,289 INFO [FILUSDT] No new candles.
+2026-04-17 18:26:52,542 INFO [BCHUSDT] No new candles.
+2026-04-17 18:26:52,793 INFO [ZECUSDT] No new candles.
+2026-04-17 18:26:53,044 INFO [XRPUSDT] No new candles.
+2026-04-17 18:26:53,293 INFO [SOLUSDT] No new candles.
+2026-04-17 18:26:53,547 INFO [ADAUSDT] No new candles.
+2026-04-17 18:26:53,796 INFO [DOGEUSDT] No new candles.
+2026-04-17 18:26:54,048 INFO [AVAXUSDT] No new candles.
+2026-04-17 18:26:54,297 INFO [AAVEUSDT] No new candles.
+2026-04-17 18:26:54,550 INFO [LINKUSDT] No new candles.
+2026-04-17 18:26:54,796 INFO [DOTUSDT] No new candles.
+2026-04-17 18:26:55,049 INFO [NEARUSDT] No new candles.
+2026-04-17 18:26:55,113 INFO [APTUSDT] First run — downloading base from yfinance...
+2026-04-17 18:27:16,382 ERROR Failed to get ticker 'APT21794-USD' reason: Failed to perform, curl: (35) TLS connect error: error:00000000:invalid library (0):OPENSSL_internal:invalid library (0). See https://curl.se/libcurl/c/libcurl-errors.html first for more details.
+2026-04-17 18:27:20,385 INFO [APTUSDT] Base saved: 17351 candles
+2026-04-17 18:27:20,632 INFO [SUIUSDT] First run — downloading base from yfinance...
+2026-04-17 18:27:23,486 INFO [SUIUSDT] Base saved: 17351 candles
+2026-04-17 18:27:23,676 INFO [ARBUSDT] First run — downloading base from yfinance...
+2026-04-17 18:27:25,419 INFO [ARBUSDT] Base saved: 17351 candles
+2026-04-17 18:27:25,783 INFO [LTCUSDT] No new candles.
+2026-04-17 18:27:26,032 INFO [INJUSDT] No new candles.
+2026-04-17 18:27:26,310 INFO [HBARUSDT] No new candles.
+2026-04-17 18:27:26,942 INFO [ONDOUSDT] No new candles.
+2026-04-17 18:27:37,187 ERROR 
+1 Failed download:
+2026-04-17 18:27:37,190 ERROR ['^GSPC']: TypeError("'NoneType' object is not subscriptable")
+2026-04-17 18:27:37,195 INFO [SPX] No new candles.
+2026-04-17 18:27:37,963 INFO [QQQ] No new candles.
+2026-04-17 18:27:38,765 INFO [GLD] No new candles.
+2026-04-17 18:27:39,588 INFO [TLT] No new candles.
+2026-04-17 18:27:41,658 INFO [VIX] No new candles.
+2026-04-17 18:27:43,670 INFO [DXY] No new candles.
+2026-04-17 18:29:55,450 INFO [BTCUSDT] No new candles.
+2026-04-17 18:29:55,707 INFO [ETHUSDT] No new candles.
+2026-04-17 18:29:56,059 INFO [TRXUSDT] No new candles.
+2026-04-17 18:29:56,325 INFO [FILUSDT] No new candles.
+2026-04-17 18:29:56,796 INFO [BCHUSDT] No new candles.
+2026-04-17 18:29:57,167 INFO [ZECUSDT] No new candles.
+2026-04-17 18:29:57,414 INFO [XRPUSDT] No new candles.
+2026-04-17 18:29:57,631 INFO [SOLUSDT] No new candles.
+2026-04-17 18:29:57,899 INFO [ADAUSDT] No new candles.
+2026-04-17 18:29:58,133 INFO [DOGEUSDT] No new candles.
+2026-04-17 18:29:58,388 INFO [AVAXUSDT] No new candles.
+2026-04-17 18:29:58,632 INFO [AAVEUSDT] No new candles.
+2026-04-17 18:29:58,883 INFO [LINKUSDT] No new candles.
+2026-04-17 18:29:59,130 INFO [DOTUSDT] No new candles.
+2026-04-17 18:29:59,384 INFO [NEARUSDT] No new candles.
+2026-04-17 18:29:59,641 INFO [APTUSDT] No new candles.
+2026-04-17 18:29:59,881 INFO [SUIUSDT] No new candles.
+2026-04-17 18:30:00,133 INFO [ARBUSDT] No new candles.
+2026-04-17 18:30:00,402 INFO [LTCUSDT] No new candles.
+2026-04-17 18:30:00,675 INFO [INJUSDT] No new candles.
+2026-04-17 18:30:00,922 INFO [HBARUSDT] No new candles.
+2026-04-17 18:30:01,173 INFO [ONDOUSDT] No new candles.
+2026-04-17 18:30:03,085 INFO [SPX] No new candles.
+2026-04-17 18:30:03,909 INFO [QQQ] No new candles.
+2026-04-17 18:30:04,695 INFO [GLD] No new candles.
+2026-04-17 18:30:05,462 INFO [TLT] No new candles.
+2026-04-17 18:30:06,360 INFO [VIX] No new candles.
+2026-04-17 18:30:16,461 ERROR 
+1 Failed download:
+2026-04-17 18:30:16,462 ERROR ['DX-Y.NYB']: TypeError("'NoneType' object is not subscriptable")
+2026-04-17 18:30:16,467 INFO [DXY] No new candles.
