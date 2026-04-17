@@ -2258,3 +2258,89 @@
 1 Failed download:
 2026-04-17 18:30:16,462 ERROR ['DX-Y.NYB']: TypeError("'NoneType' object is not subscriptable")
 2026-04-17 18:30:16,467 INFO [DXY] No new candles.
+2026-04-17 18:31:03,049 WARNING [BTC/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for BTC/USDT: binanceusdm does not have market symbol BTC/USDT
+2026-04-17 18:31:03,193 WARNING [ETH/USDT] Fetch failed (1 consecutive): ccxt BadSymbol for ETH/USDT: binanceusdm does not have market symbol ETH/USDT
+2026-04-17 18:31:03,416 INFO [TRXUSDT] No new candles.
+2026-04-17 18:31:03,737 INFO [FILUSDT] No new candles.
+2026-04-17 18:31:03,999 INFO [BCHUSDT] No new candles.
+2026-04-17 18:31:04,239 INFO [ZECUSDT] No new candles.
+2026-04-17 18:31:04,483 INFO [XRPUSDT] No new candles.
+2026-04-17 18:31:04,841 INFO [SOLUSDT] No new candles.
+2026-04-17 18:31:05,060 INFO [ADAUSDT] No new candles.
+2026-04-17 18:31:05,324 INFO [DOGEUSDT] No new candles.
+2026-04-17 18:31:05,564 INFO [AVAXUSDT] No new candles.
+2026-04-17 18:31:05,821 INFO [AAVEUSDT] No new candles.
+2026-04-17 18:31:06,059 INFO [LINKUSDT] No new candles.
+2026-04-17 18:31:06,360 INFO [DOTUSDT] No new candles.
+2026-04-17 18:31:06,645 INFO [NEARUSDT] No new candles.
+2026-04-17 18:31:06,876 INFO [APTUSDT] No new candles.
+2026-04-17 18:31:07,121 INFO [SUIUSDT] No new candles.
+2026-04-17 18:31:07,397 INFO [ARBUSDT] No new candles.
+2026-04-17 18:31:07,625 INFO [LTCUSDT] No new candles.
+2026-04-17 18:31:07,878 INFO [INJUSDT] No new candles.
+2026-04-17 18:31:08,117 INFO [HBARUSDT] No new candles.
+2026-04-17 18:31:08,404 INFO [ONDOUSDT] No new candles.
+2026-04-17 18:31:10,444 INFO [SPX] No new candles.
+2026-04-17 18:31:11,187 INFO [QQQ] No new candles.
+2026-04-17 18:31:11,950 INFO [GLD] No new candles.
+2026-04-17 18:31:12,764 INFO [TLT] No new candles.
+2026-04-17 18:31:13,531 INFO [VIX] No new candles.
+2026-04-17 18:31:14,526 INFO [DXY] No new candles.
+2026-04-17 18:31:17,954 WARNING [BTC/USDT] Fetch failed (2 consecutive): ccxt BadSymbol for BTC/USDT: binanceusdm does not have market symbol BTC/USDT
+2026-04-17 18:31:18,074 WARNING [ETH/USDT] Fetch failed (2 consecutive): ccxt BadSymbol for ETH/USDT: binanceusdm does not have market symbol ETH/USDT
+2026-04-17 18:31:18,297 INFO [TRXUSDT] No new candles.
+2026-04-17 18:31:18,549 INFO [FILUSDT] No new candles.
+2026-04-17 18:31:18,803 INFO [BCHUSDT] No new candles.
+2026-04-17 18:31:19,052 INFO [ZECUSDT] No new candles.
+2026-04-17 18:31:19,362 INFO [XRPUSDT] No new candles.
+2026-04-17 18:31:19,587 INFO [SOLUSDT] No new candles.
+2026-04-17 18:31:19,838 INFO [ADAUSDT] No new candles.
+2026-04-17 18:31:20,083 INFO [DOGEUSDT] No new candles.
+2026-04-17 18:31:20,338 INFO [AVAXUSDT] No new candles.
+2026-04-17 18:31:20,600 INFO [AAVEUSDT] No new candles.
+2026-04-17 18:31:20,889 INFO [LINKUSDT] No new candles.
+2026-04-17 18:31:21,107 INFO [DOTUSDT] No new candles.
+2026-04-17 18:31:21,420 INFO [NEARUSDT] No new candles.
+2026-04-17 18:31:21,653 INFO [APTUSDT] No new candles.
+2026-04-17 18:31:21,905 INFO [SUIUSDT] No new candles.
+2026-04-17 18:31:22,165 INFO [ARBUSDT] No new candles.
+2026-04-17 18:31:22,405 INFO [LTCUSDT] No new candles.
+2026-04-17 18:31:22,669 INFO [INJUSDT] No new candles.
+2026-04-17 18:31:22,905 INFO [HBARUSDT] No new candles.
+2026-04-17 18:31:23,168 INFO [ONDOUSDT] No new candles.
+2026-04-17 18:31:25,156 INFO [SPX] No new candles.
+2026-04-17 18:31:26,134 INFO [QQQ] No new candles.
+2026-04-17 18:31:27,536 INFO [GLD] No new candles.
+2026-04-17 18:31:28,391 INFO [TLT] No new candles.
+2026-04-17 18:31:29,445 INFO [VIX] No new candles.
+2026-04-17 18:31:30,484 INFO [DXY] No new candles.
+2026-04-17 18:33:20,665 INFO === Hourly pipeline START ===
+2026-04-17 18:33:23,735 WARNING [BTC/USDT] Fetch failed (3 consecutive): ccxt BadSymbol for BTC/USDT: binanceusdm does not have market symbol BTC/USDT
+2026-04-17 18:33:23,851 WARNING [ETH/USDT] Fetch failed (3 consecutive): ccxt BadSymbol for ETH/USDT: binanceusdm does not have market symbol ETH/USDT
+2026-04-17 18:33:24,110 INFO [TRXUSDT] No new candles.
+2026-04-17 18:33:24,361 INFO [FILUSDT] No new candles.
+2026-04-17 18:33:24,609 INFO [BCHUSDT] No new candles.
+2026-04-17 18:33:24,864 INFO [ZECUSDT] No new candles.
+2026-04-17 18:33:25,115 INFO [XRPUSDT] No new candles.
+2026-04-17 18:33:25,366 INFO [SOLUSDT] No new candles.
+2026-04-17 18:33:25,611 INFO [ADAUSDT] No new candles.
+2026-04-17 18:33:25,860 INFO [DOGEUSDT] No new candles.
+2026-04-17 18:33:26,124 INFO [AVAXUSDT] No new candles.
+2026-04-17 18:33:26,625 INFO [AAVEUSDT] No new candles.
+2026-04-17 18:33:26,899 INFO [LINKUSDT] No new candles.
+2026-04-17 18:33:27,140 INFO [DOTUSDT] No new candles.
+2026-04-17 18:33:27,396 INFO [NEARUSDT] No new candles.
+2026-04-17 18:33:27,660 INFO [APTUSDT] No new candles.
+2026-04-17 18:33:27,911 INFO [SUIUSDT] No new candles.
+2026-04-17 18:33:28,163 INFO [ARBUSDT] No new candles.
+2026-04-17 18:33:28,407 INFO [LTCUSDT] No new candles.
+2026-04-17 18:33:28,642 INFO [INJUSDT] No new candles.
+2026-04-17 18:33:28,911 INFO [HBARUSDT] No new candles.
+2026-04-17 18:33:29,406 INFO [ONDOUSDT] No new candles.
+2026-04-17 18:33:30,190 INFO [SPX] No new candles.
+2026-04-17 18:33:30,930 INFO [QQQ] No new candles.
+2026-04-17 18:33:31,696 INFO [GLD] No new candles.
+2026-04-17 18:33:32,861 INFO [TLT] No new candles.
+2026-04-17 18:33:33,674 INFO [VIX] No new candles.
+2026-04-17 18:33:34,641 INFO [DXY] No new candles.
+2026-04-17 18:33:34,990 INFO === Hourly pipeline END ===
