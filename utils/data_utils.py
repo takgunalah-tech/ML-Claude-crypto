@@ -39,7 +39,7 @@ _fetch_failure_counts: dict[str, int] = {}
 
 def _ticker_to_filename(ticker: str) -> str:
     """'BTC/USDT' → 'BTC_USDT_1h'  (safe for filesystem)"""
-    return ticker.replace('/', '_').replace('^', '').replace('-', '_') + f'_{config.TIMEFRAME}'
+    return ticker.replace('/', '_').replace(':', '_').replace('^', '').replace('-', '_') + f'_{config.TIMEFRAME}'
 
 
 def _base_csv_path(ticker: str, asset_type: str) -> str:
@@ -174,8 +174,7 @@ def _get_exchange(exchange_id: str):
 
 def check_exchange_connectivity(exchange_id: str = None) -> tuple[bool, str]:
     """Quick connectivity test — tries to load markets. Returns (ok, message)."""
-    # exchange_id = exchange_id or config.EXCHANGE_SPOT
-    exchange_id = exchange_id or config.EXCHANGE_FUTURES
+    exchange_id = exchange_id or config.EXCHANGE
     try:
         ex = _get_exchange(exchange_id)
         ex.load_markets()
