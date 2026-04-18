@@ -7,6 +7,7 @@ XGBoost training, monetary profit-factor evaluation, validity gates, SHAP driver
 import os
 import json
 import logging
+from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 import xgboost as xgb
@@ -15,6 +16,13 @@ import xgboost as xgb
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
+from utils.governance_utils import (
+    append_model_registry,
+    audit_event,
+    build_model_metadata,
+    sanitize_for_json,
+    validate_pipeline_signature,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -129,7 +137,8 @@ def evaluate_model(
     atr_norm: np.ndarray = None,
 ) -> dict:
     """
-    Return full metrics dict: monetary PF, trade_count, win_rate.
+    Return full metrics dict: monetary PF, trade_count, win_rate, expectancy,
+    max drawdown, and loss streak.
     Pass the same tp_pct/sl_pct/k1/k2/atr_norm used in labeling for correct PF.
     """
     if threshold is None:
@@ -143,7 +152,14 @@ def evaluate_model(
 
     n_trades = int(mask.sum())
     if n_trades == 0:
-        return {'PF': 0.0, 'trade_count': 0, 'win_rate': 0.0}
+        return {
+            'PF': 0.0,
+            'trade_count': 0,
+            'win_rate': 0.0,
+            'expectancy': 0.0,
+            'max_drawdown': 0.0,
+            'loss_streak': 0,
+        }
 
     y_sel = np.array(y)[mask]
     wins  = int(y_sel.sum())
@@ -160,10 +176,29 @@ def evaluate_model(
     gross_loss   = ((1 - y_sel) * losses_per_trade).sum()
     pf = gross_profit / gross_loss if gross_loss > 0 else float('inf')
 
+    pnl = np.where(y_sel == 1, profits_per_trade, -losses_per_trade)
+    expectancy = float(np.mean(pnl)) if len(pnl) else 0.0
+    equity = np.cumsum(pnl)
+    running_peak = np.maximum.accumulate(np.maximum(equity, 0))
+    drawdown = running_peak - equity
+    max_drawdown = float(drawdown.max()) if len(drawdown) else 0.0
+
+    loss_streak = 0
+    current_loss_streak = 0
+    for outcome in y_sel:
+        if outcome == 0:
+            current_loss_streak += 1
+            loss_streak = max(loss_streak, current_loss_streak)
+        else:
+            current_loss_streak = 0
+
     return {
         'PF':          round(float(pf), 4),
         'trade_count': n_trades,
         'win_rate':    round(float(wins / n_trades), 4),
+        'expectancy':  round(expectancy, 6),
+        'max_drawdown': round(max_drawdown, 6),
+        'loss_streak': int(loss_streak),
     }
 
 
@@ -181,6 +216,8 @@ def check_validity(test1: dict, test2: dict) -> bool:
     if test1['PF'] < config.MIN_PF_TEST1:
         return False
     if test1['PF'] > 0 and test2['PF'] < test1['PF'] * config.PF_STABILITY_RATIO:
+        return False
+    if test1.get('max_drawdown', 0.0) > config.MAX_DRAWDOWN:
         return False
     return True
 
@@ -252,9 +289,26 @@ def _meta_path(ticker: str) -> str:
 def save_model(model: xgb.XGBClassifier, ticker: str, meta: dict) -> None:
     """Save XGBoost model (native JSON) + metadata."""
     os.makedirs(config.MODELS_DIR, exist_ok=True)
+    meta = build_model_metadata(ticker, meta)
     model.save_model(_model_path(ticker))
     with open(_meta_path(ticker), 'w') as f:
-        json.dump(meta, f, indent=2)
+        json.dump(sanitize_for_json(meta), f, indent=2)
+    append_model_registry({
+        'timestamp': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+        'ticker': ticker,
+        'model_id': meta.get('model_id'),
+        'pipeline_signature': meta.get('pipeline_signature'),
+        'deployment_status': 'saved',
+        'metrics': {
+            'test1': meta.get('test1'),
+            'test2': meta.get('test2'),
+        },
+    })
+    audit_event('model_saved', {
+        'ticker': ticker,
+        'model_id': meta.get('model_id'),
+        'pipeline_signature': meta.get('pipeline_signature'),
+    })
     logger.info(f'[{ticker}] Model saved.')
 
 
@@ -268,6 +322,12 @@ def load_model(ticker: str) -> tuple[xgb.XGBClassifier | None, dict | None]:
     model.load_model(mp)
     with open(ep) as f:
         meta = json.load(f)
+    ok, reason = validate_pipeline_signature(meta.get('pipeline_signature'))
+    if not ok:
+        logger.warning(f'[{ticker}] Model blocked: {reason}')
+        audit_event('model_blocked', {'ticker': ticker, 'reason': reason})
+        return None, None
+    meta.setdefault('pipeline_signature_status', reason)
     return model, meta
 
 
@@ -287,6 +347,9 @@ def list_valid_models() -> list[str]:
         try:
             with open(path) as fh:
                 meta = json.load(fh)
+            ok, _ = validate_pipeline_signature(meta.get('pipeline_signature'))
+            if not ok:
+                continue
             tickers.append(meta['ticker'])
         except (json.JSONDecodeError, KeyError):
             logger.warning(f'Could not read ticker from {fname} — skipping.')

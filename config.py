@@ -3,6 +3,19 @@ import os
 
 load_dotenv()
 
+# ── System contract / versioning ─────────────────────────────────────────────
+PIPELINE_VERSION = '2.0'
+DATA_SCHEMA_VERSION = '1.0'
+FEATURE_VERSION = '1.0.0'
+LABEL_LOGIC_VERSION = '1.0.0'
+MODEL_META_VERSION = '2.0'
+
+# Compatibility-first migration switches:
+# Keep these False by default so older saved models and notebook flows still run
+# while the repo gradually adopts the stricter v2 contract.
+ENFORCE_PIPELINE_SIGNATURE = False
+ENFORCE_DATA_QUALITY = False
+
 # ── Tickers ───────────────────────────────────────────────────────────────────
 # CRYPTO_TICKERS = [
 #     'BTC/USDT', 'ETH/USDT', 'TRX/USDT', 'FIL/USDT', 'BCH/USDT', 'ZEC/USDT', 
@@ -99,6 +112,7 @@ K2_GRID  = [0.2, 0.3, 0.4]   # ATR multiplier for SL
 MIN_TRADE_COUNT    = 20
 MIN_PF_TEST1       = 1.20   # raised from 1.05 — must clear breakeven + fees
 PF_STABILITY_RATIO = 0.70   # PF(test2) / PF(test1) must be >= this
+MAX_DRAWDOWN       = 0.25   # soft v2 gate; enforced by check_validity()
 
 # ── Signal thresholds ─────────────────────────────────────────────────────────
 LONG_THRESHOLD  = 0.60   # P(win) >= 0.60 → fire LONG
@@ -106,6 +120,8 @@ SHORT_THRESHOLD = 0.40   # P(win) <= 0.40 → fire SHORT  (dead zone: 0.40–0.6
 
 # ── Signal lifecycle ──────────────────────────────────────────────────────────
 MAX_SIGNAL_REPEATS = 1   # how many times a signal can repeat before being archived
+SIGNAL_TTL_HOURS   = 12
+SIGNAL_DECAY_LAMBDA = 0.05
 
 # ── Position sizing ───────────────────────────────────────────────────────────
 MAX_LOSS_USDT = 5.0       # max loss per trade in USDT
@@ -118,6 +134,9 @@ MORNING_REPORT_HOUR = 7   # 7am UTC
 # ── Scheduler ─────────────────────────────────────────────────────────────────
 SCHEDULER_INTERVAL_MIN  = 60
 RETRAIN_INTERVAL_HOURS  = 72
+
+# ── Data quality / governance ─────────────────────────────────────────────────
+DATA_QUALITY_THRESHOLD = 0.70
 
 # ── Training performance ───────────────────────────────────────────────────────
 # Grid search uses a lightweight model (fast ranking), final model uses full depth.

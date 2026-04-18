@@ -28,6 +28,8 @@ import numpy as np
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
+from utils.data_quality import compute_data_quality
+from utils.governance_utils import audit_event
 
 logger = logging.getLogger(__name__)
 
@@ -596,6 +598,10 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
 
         working_df = apply_integrity_protocol(new_df.copy(), asset_type)
         save_snapshot_csv(working_df, ticker, asset_type)     # Layer 1
+        dq = compute_data_quality(working_df, asset_type=asset_type)
+        if not dq['passes_threshold']:
+            logger.warning(f'[{ticker}] Data quality below threshold: {dq}')
+            audit_event('data_quality_warning', {'ticker': ticker, 'asset_type': asset_type, **dq})
         _fetch_failure_counts[ticker] = 0
         return working_df
 
@@ -680,6 +686,10 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     # ── Build and save Layer 1 snapshot ──────────────────────────────────────
     working_df = apply_integrity_protocol(merged_raw.copy(), asset_type)
     save_snapshot_csv(working_df, ticker, asset_type)        # Layer 1 updated
+    dq = compute_data_quality(working_df, asset_type=asset_type)
+    if not dq['passes_threshold']:
+        logger.warning(f'[{ticker}] Data quality below threshold: {dq}')
+        audit_event('data_quality_warning', {'ticker': ticker, 'asset_type': asset_type, **dq})
     return working_df
 
 

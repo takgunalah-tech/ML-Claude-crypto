@@ -23,12 +23,14 @@ Schema per coin:
 
 import os
 import json
+import math
 import logging
 from datetime import datetime, timezone, timedelta
 
 import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
+from utils.governance_utils import audit_event
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +62,20 @@ def _now_utc() -> str:
     return datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
 
+def _parse_utc(ts: str | None) -> datetime | None:
+    if not ts:
+        return None
+    try:
+        return datetime.strptime(ts, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)
+    except (TypeError, ValueError):
+        return None
+
+
+def _expiry_utc(hours: int | float = None) -> str:
+    ttl_hours = config.SIGNAL_TTL_HOURS if hours is None else hours
+    return (datetime.now(timezone.utc) + timedelta(hours=ttl_hours)).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
 def _rr(signal: dict, current_price: float) -> float:
     """Remaining risk-reward ratio from current_price to TP / SL."""
     try:
@@ -74,6 +90,50 @@ def _rr(signal: dict, current_price: float) -> float:
         return reward / risk if risk > 0 else 0.0
     except Exception:
         return 0.0
+
+
+def get_effective_p_win(signal: dict, now: datetime | None = None) -> float:
+    """
+    Apply optional time decay to signal confidence.
+    Compatibility note: if older signals do not carry decay fields, fall back to
+    the stored raw probability.
+    """
+    raw_p = float(signal.get('p_win', 0.0))
+    first_signal_at = _parse_utc(signal.get('first_signal_at'))
+    if first_signal_at is None:
+        return raw_p
+
+    decay_lambda = float(signal.get('decay_lambda', config.SIGNAL_DECAY_LAMBDA))
+    current_dt = now or datetime.now(timezone.utc)
+    age_hours = max((current_dt - first_signal_at).total_seconds() / 3600, 0.0)
+    return round(raw_p * math.exp(-decay_lambda * age_hours), 4)
+
+
+def expire_stale_signals(now: datetime | None = None) -> int:
+    """Archive active signals whose TTL has elapsed."""
+    current_dt = now or datetime.now(timezone.utc)
+    state = _load_state()
+    changed = False
+    expired = 0
+
+    for coin, sig in state.items():
+        if sig.get('archived', False):
+            continue
+        expiry_at = _parse_utc(sig.get('expiry_at'))
+        if expiry_at is None:
+            continue
+        if current_dt >= expiry_at:
+            sig['archived'] = True
+            sig['archive_reason'] = 'EXPIRED'
+            sig['state'] = 'EXPIRED'
+            state[coin] = sig
+            changed = True
+            expired += 1
+            audit_event('signal_expired', {'coin': coin, 'direction': sig.get('direction')})
+
+    if changed:
+        _save_state(state)
+    return expired
 
 
 # ── Public API ────────────────────────────────────────────────────────────────
@@ -133,11 +193,23 @@ def register_signal(
         'k1':              k1,
         'k2':              k2,
         'first_signal_at': _now_utc(),
+        'expiry_at':       _expiry_utc(),
+        'ttl_hours':       config.SIGNAL_TTL_HOURS,
+        'decay_lambda':    config.SIGNAL_DECAY_LAMBDA,
         'repeat_count':    0,
+        'state':           'OPEN',
         'archived':        False,
         'archive_reason':  None,
     }
     _save_state(state)
+    audit_event('signal_registered', {
+        'coin': coin,
+        'direction': direction,
+        'entry': entry,
+        'tp': tp,
+        'sl': sl,
+        'p_win': p_win,
+    })
     logger.info(f'[{coin}] Signal registered: {direction} entry={entry:.4f}')
 
 
@@ -156,9 +228,19 @@ def check_signal_aging(coin: str, current_price: float) -> str:
     if sig.get('archived', False):
         return 'already_archived'
 
+    expiry_at = _parse_utc(sig.get('expiry_at'))
+    if expiry_at is not None and datetime.now(timezone.utc) >= expiry_at:
+        sig['archived'] = True
+        sig['archive_reason'] = 'EXPIRED'
+        sig['state'] = 'EXPIRED'
+        state[coin] = sig
+        _save_state(state)
+        return 'archive'
+
     if sig['repeat_count'] >= config.MAX_SIGNAL_REPEATS:
         sig['archived']       = True
         sig['archive_reason'] = 'MAX_REPEATS'
+        sig['state']          = 'ARCHIVED'
         state[coin] = sig
         _save_state(state)
         return 'archive'
@@ -176,6 +258,7 @@ def archive_signal(coin: str, reason: str) -> None:
     if coin in state:
         state[coin]['archived']       = True
         state[coin]['archive_reason'] = reason
+        state[coin]['state']          = 'ARCHIVED'
         _save_state(state)
 
 
@@ -188,6 +271,9 @@ def check_open_signals_status(current_prices: dict[str, float]) -> dict[str, str
     state   = _load_state()
     result  = {}
     changed = False
+
+    expire_stale_signals()
+    state = _load_state()
 
     for coin, sig in state.items():
         if sig.get('archived', False):
@@ -216,9 +302,11 @@ def check_open_signals_status(current_prices: dict[str, float]) -> dict[str, str
         if hit:
             sig['archived']       = True
             sig['archive_reason'] = hit
+            sig['state']          = hit
             state[coin] = sig
             changed = True
             result[coin] = hit
+            audit_event('signal_closed', {'coin': coin, 'reason': hit, 'direction': direction})
         else:
             result[coin] = 'OPEN'
 
@@ -229,9 +317,10 @@ def check_open_signals_status(current_prices: dict[str, float]) -> dict[str, str
 
 def get_active_signals() -> list[dict]:
     """Return all non-archived signal records, including coin key."""
+    expire_stale_signals()
     state = _load_state()
     return [
-        {**v, 'coin': k}
+        {**v, 'coin': k, 'effective_p_win': get_effective_p_win(v)}
         for k, v in state.items()
         if not v.get('archived', False)   # default False = assume active
     ]
