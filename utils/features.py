@@ -238,8 +238,7 @@ def compute_anchor_features(df: pd.DataFrame, prefix: str) -> pd.DataFrame:
 
 def compute_altcoin_features(
     df: pd.DataFrame,
-    btc_anchor: pd.DataFrame,
-    eth_anchor: pd.DataFrame,
+    anchor_dfs: dict[str, pd.DataFrame],
     macro_state: pd.Series,
 ) -> pd.DataFrame:
     """
@@ -338,18 +337,16 @@ def compute_altcoin_features(
     out['Session'] = hour.map(_session)
 
     # ── Cross-Asset Injection ─────────────────────────────────────────────────
-    btc_cols = [c for c in btc_anchor.columns if c != 'timestamp']
-    eth_cols = [c for c in eth_anchor.columns if c != 'timestamp']
+    all_anchor_cols = []
+    for prefix, a_df in anchor_dfs.items():
+        cols = [c for c in a_df.columns if c != 'timestamp']
+        a_idx = a_df.set_index('timestamp')[cols]
+        out = out.join(a_idx, how='left')
+        all_anchor_cols.extend(cols)
 
-    btc_idx = btc_anchor.set_index('timestamp')[btc_cols]
-    eth_idx = eth_anchor.set_index('timestamp')[eth_cols]
-
-    out = out.join(btc_idx, how='left')
-    out = out.join(eth_idx, how='left')
-
-    # Forward-fill to handle minor timestamp misalignment (1-2 candle delay)
-    btc_eth_cols = btc_cols + eth_cols
-    out[btc_eth_cols] = out[btc_eth_cols].ffill(limit=2)
+    # Forward-fill anchor data to handle minor timestamp misalignment
+    if all_anchor_cols:
+        out[all_anchor_cols] = out[all_anchor_cols].ffill(limit=2)
 
     if isinstance(macro_state, pd.Series):
         macro_aligned = macro_state.reindex(out.index).ffill(limit=4)
@@ -372,20 +369,19 @@ def build_all_features(
     """
     macro_state = compute_macro_risk_state(macro_dfs)
 
-    btc_df = crypto_dfs.get(config.ANCHOR_TICKERS[0])
-    eth_df = crypto_dfs.get(config.ANCHOR_TICKERS[1])
-    if btc_df is None or eth_df is None:
-        raise ValueError(f'{config.ANCHOR_TICKERS} are required anchor assets.')
-
-    btc_anchor = compute_anchor_features(btc_df, 'BTC')
-    eth_anchor = compute_anchor_features(eth_df, 'ETH')
+    anchor_dfs_processed = {}
+    for ticker in config.ANCHOR_TICKERS:
+        a_df = crypto_dfs.get(ticker)
+        if a_df is not None:
+            prefix = ticker.split('/')[0]
+            anchor_dfs_processed[prefix] = compute_anchor_features(a_df, prefix)
 
     feature_dfs = {}
     for ticker in config.ALTCOIN_TICKERS:
         if ticker not in crypto_dfs:
             continue
         df   = crypto_dfs[ticker]
-        feat = compute_altcoin_features(df, btc_anchor, eth_anchor, macro_state)
+        feat = compute_altcoin_features(df, anchor_dfs_processed, macro_state)
         feature_dfs[ticker] = feat
 
     return feature_dfs
@@ -475,14 +471,12 @@ def build_all_features_incremental(
     """
     macro_state = compute_macro_risk_state(macro_dfs)
 
-    btc_df = crypto_dfs.get(config.ANCHOR_TICKERS[0])
-    eth_df = crypto_dfs.get(config.ANCHOR_TICKERS[1])
-    if btc_df is None or eth_df is None:
-        raise ValueError(f'{config.ANCHOR_TICKERS} are required anchor assets.')
-
-    # Compute anchors once for all altcoins
-    btc_anchor = compute_anchor_features(btc_df, 'BTC')
-    eth_anchor = compute_anchor_features(eth_df, 'ETH')
+    anchor_dfs_processed = {}
+    for ticker in config.ANCHOR_TICKERS:
+        a_df = crypto_dfs.get(ticker)
+        if a_df is not None:
+            prefix = ticker.split('/')[0]
+            anchor_dfs_processed[prefix] = compute_anchor_features(a_df, prefix)
 
     feature_dfs: dict[str, pd.DataFrame] = {}
 
@@ -496,7 +490,7 @@ def build_all_features_incremental(
         if stored_feat is None:
             # First run: full computation
             logger.info(f'[{ticker}] Feature parquet not found — full compute.')
-            feat = compute_altcoin_features(raw_df, btc_anchor, eth_anchor, macro_state)
+            feat = compute_altcoin_features(raw_df, anchor_dfs_processed, macro_state)
             _save_feature_parquet(ticker, feat)
             feature_dfs[ticker] = feat
             continue
@@ -528,7 +522,7 @@ def build_all_features_incremental(
         )
 
         # Compute features on delta slice (warm-up buffer ensures correct rolling windows)
-        delta_feat = compute_altcoin_features(delta_df, btc_anchor, eth_anchor, macro_state)
+        delta_feat = compute_altcoin_features(delta_df, anchor_dfs_processed, macro_state)
         delta_feat['timestamp'] = pd.to_datetime(delta_feat['timestamp'], utc=True)
 
         # Keep only rows strictly newer than last stored timestamp

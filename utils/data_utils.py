@@ -166,7 +166,6 @@ def _get_exchange(exchange_id: str):
         ex = getattr(ccxt, exchange_id)({
             'enableRateLimit': True,
             'timeout': 30000,
-            'options': {'defaultType': 'spot'},
         })
         _exchange_cache[exchange_id] = ex
     return _exchange_cache[exchange_id]
@@ -244,8 +243,7 @@ def fetch_crypto_incremental_ccxt(ticker: str, since_ms: int) -> pd.DataFrame:
     multiple hours were missed). Used for every update AFTER base data exists.
     Exchange instance is cached — markets loaded only once.
     """
-    # exchange = _get_exchange(config.EXCHANGE_SPOT)
-    exchange = _get_exchange(config.EXCHANGE_FUTURES)
+    exchange = _get_exchange(config.EXCHANGE)
     all_rows = []
     current_since = since_ms
 
@@ -468,21 +466,16 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     expected_next = last_ts + timedelta(hours=1)
     # actual_first  = pd.Timestamp(new_df['timestamp'].iloc[0])
 
-    # ======change start========
+    # Ensure all timestamps are timezone-naive UTC for consistent merging
+    actual_first = pd.Timestamp(new_df['timestamp'].iloc[0])
+    if actual_first.tz is not None:
+        actual_first = actual_first.tz_convert(None)
 
-    # 1. Clean the actual_first timestamp
-    actual_first = pd.Timestamp(new_df['timestamp'].iloc[0]).tz_localize(None)
-    # 2. Clean the entire timestamp column (Safer than checking the index)
     if pd.api.types.is_datetime64tz_dtype(new_df['timestamp']):
         new_df['timestamp'] = new_df['timestamp'].dt.tz_convert(None)
-    # 3. Clean expected_next
-    expected_next_naive = pd.Timestamp(expected_next).tz_localize(None)
-    # 4. Now the calculation is safe
+
+    expected_next_naive = pd.Timestamp(expected_next).replace(tzinfo=None)
     gap_hours = (actual_first - expected_next_naive).total_seconds() / 3600
-
-    # ======change end========
-
-    # gap_hours = (actual_first - expected_next).total_seconds() / 3600
  
     if gap_hours > 1.5:
         logger.warning(
@@ -503,8 +496,7 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     ohlcv_cols = ['timestamp', 'open', 'high', 'low', 'close', 'volume']
     new_ohlcv  = new_df[[c for c in ohlcv_cols if c in new_df.columns]]
     
-    # === ADD THIS LINE TO FIX THE MERGE ERROR ===
-    raw_base_df['timestamp'] = pd.to_datetime(raw_base_df['timestamp']).dt.tz_localize(None)
+    raw_base_df['timestamp'] = pd.to_datetime(raw_base_df['timestamp']).dt.tz_convert(None) if pd.api.types.is_datetime64tz_dtype(raw_base_df['timestamp']) else pd.to_datetime(raw_base_df['timestamp'])
 
     merged_raw = merge_incremental(raw_base_df, new_ohlcv)
     save_base_csv(merged_raw, ticker, asset_type)            # Layer 0 updated
@@ -521,7 +513,14 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
 def update_all_tickers() -> dict[str, pd.DataFrame]:
     """Update all crypto + macro tickers. Returns dict ticker → working_df."""
     results = {}
-    for ticker in config.CRYPTO_TICKERS:
+    
+    # Process anchors first to ensure they are available for cross-asset features
+    for ticker in config.ANCHOR_TICKERS:
+        df = update_ticker(ticker, 'crypto')
+        if df is not None:
+            results[ticker] = df
+
+    for ticker in config.ALTCOIN_TICKERS:
         df = update_ticker(ticker, 'crypto')
         if df is not None:
             results[ticker] = df

@@ -10,15 +10,16 @@ load_dotenv()
 #     "NEAR/USDT", "APT/USDT", "SUI/USDT", "ARB/USDT", "LTC/USDT", "INJ/USDT", "HBAR/USDT", "AAVE/USDT", "ONDO/USDT",
 # ]
 CRYPTO_TICKERS = [
-    'BTC/USDT:USDT', 'ETH/USDT:USDT', 'TRX/USDT:USDT', 'FIL/USDT:USDT', 'BCH/USDT:USDT', 'ZEC/USDT:USDT', 
-    'XRP/USDT:USDT', 'SOL/USDT:USDT', 'ADA/USDT:USDT', 'DOGE/USDT:USDT', 'AVAX/USDT:USDT', 'AAVE/USDT:USDT',
-    'LINK/USDT:USDT', 'DOT/USDT:USDT', 'NEAR/USDT:USDT', 'APT/USDT:USDT', 'SUI/USDT:USDT', 'ARB/USDT:USDT', 
-    'LTC/USDT:USDT', 'INJ/USDT:USDT', 'HBAR/USDT:USDT',  'ONDO/USDT:USDT'
+    'BTC/USDT:USDT', 'ETH/USDT:USDT', 'BNB/USDT:USDT', 'TRX/USDT:USDT', 'FIL/USDT:USDT', 'BCH/USDT:USDT', 
+    'ZEC/USDT:USDT', 'XRP/USDT:USDT', 'SOL/USDT:USDT', 'ADA/USDT:USDT', 'DOGE/USDT:USDT', 'AVAX/USDT:USDT', 
+    'AAVE/USDT:USDT', 'LINK/USDT:USDT', 'DOT/USDT:USDT', 'NEAR/USDT:USDT', 'APT/USDT:USDT', 'SUI/USDT:USDT', 
+    'ARB/USDT:USDT', 'LTC/USDT:USDT', 'INJ/USDT:USDT', 'HBAR/USDT:USDT',  'ONDO/USDT:USDT'
 ]
 
 CRYPTO_YF_MAP = {
     'BTC/USDT:USDT':  'BTC-USD',
     'ETH/USDT:USDT':  'ETH-USD',
+    'BNB/USDT:USDT':  'BNB-USD',
     'TRX/USDT:USDT':  'TRX-USD',
     'FIL/USDT:USDT':  'FIL-USD',
     'BCH/USDT:USDT':  'BCH-USD',
@@ -33,7 +34,7 @@ CRYPTO_YF_MAP = {
     'NEAR/USDT:USDT': 'NEAR-USD',
     'APT/USDT:USDT':  'APT21794-USD',
     'SUI/USDT:USDT':  'SUI20947-USD',
-    'ARB/USDT:USDT':  'ARB-USD',
+    'ARB/USDT:USDT':  'ARB11841-USD',
     'LTC/USDT:USDT':  'LTC-USD',
     'INJ/USDT:USDT':  'INJ-USD',
     'HBAR/USDT:USDT': 'HBAR-USD',
@@ -69,7 +70,7 @@ MACRO_TICKERS = {
 # Exchange config
 EXCHANGE_SPOT    = 'binance'       # spot OHLCV incremental updates via ccxt
 EXCHANGE_FUTURES = 'binanceusdm'   # USDT-margined futures (funding rate, OI — future use)
-EXCHANGE         = EXCHANGE_SPOT   # backwards-compat alias
+EXCHANGE         = EXCHANGE_FUTURES # Global alias for primary data source
 TIMEFRAME        = '1h'
 
 # ── Data paths ────────────────────────────────────────────────────────────────
