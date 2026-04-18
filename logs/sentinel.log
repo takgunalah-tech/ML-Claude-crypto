@@ -2617,3 +2617,98 @@
 2026-04-18 17:00:50,729 INFO [VIX] No new candles.
 2026-04-18 17:00:51,821 INFO [DXY] No new candles.
 2026-04-18 17:00:52,293 INFO === Hourly pipeline END ===
+2026-04-18 19:53:26,500 INFO [BTC/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:27,787 INFO [ETH/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:28,625 INFO [BNB/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:29,573 INFO [TRX/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:30,454 INFO [FIL/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:31,350 INFO [BCH/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:32,231 INFO [ZEC/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:33,150 INFO [XRP/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:34,009 INFO [SOL/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:34,925 INFO [ADA/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:35,868 INFO [DOGE/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:36,831 INFO [AVAX/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:37,676 INFO [AAVE/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:38,521 INFO [LINK/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:39,364 INFO [DOT/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:40,220 INFO [NEAR/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:41,070 INFO [APT/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:41,907 INFO [SUI/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:42,766 INFO [ARB/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:43,659 INFO [LTC/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:44,502 INFO [INJ/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:45,331 INFO [HBAR/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:46,159 INFO [ONDO/USDT:USDT] +2 candles -> 17508 total raw rows
+2026-04-18 19:53:48,404 INFO [SPX] No new candles.
+2026-04-18 19:53:49,147 INFO [QQQ] No new candles.
+2026-04-18 19:53:49,912 INFO [GLD] No new candles.
+2026-04-18 19:53:50,930 INFO [TLT] No new candles.
+2026-04-18 19:54:01,014 ERROR 
+1 Failed download:
+2026-04-18 19:54:01,015 ERROR ['^VIX']: TypeError("'NoneType' object is not subscriptable")
+2026-04-18 19:54:01,019 INFO [VIX] No new candles.
+2026-04-18 19:54:02,088 INFO [DXY] No new candles.
+2026-04-18 19:54:10,271 INFO [BTC/USDT:USDT] No new candles.
+2026-04-18 19:54:10,629 INFO [ETH/USDT:USDT] No new candles.
+2026-04-18 19:54:10,978 INFO [BNB/USDT:USDT] No new candles.
+2026-04-18 19:54:11,324 INFO [TRX/USDT:USDT] No new candles.
+2026-04-18 19:54:11,679 INFO [FIL/USDT:USDT] No new candles.
+2026-04-18 19:54:12,045 INFO [BCH/USDT:USDT] No new candles.
+2026-04-18 19:54:12,398 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-18 19:54:12,745 INFO [XRP/USDT:USDT] No new candles.
+2026-04-18 19:54:13,142 INFO [SOL/USDT:USDT] No new candles.
+2026-04-18 19:54:13,485 INFO [ADA/USDT:USDT] No new candles.
+2026-04-18 19:54:13,839 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-18 19:54:14,227 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-18 19:54:14,589 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-18 19:54:14,944 INFO [LINK/USDT:USDT] No new candles.
+2026-04-18 19:54:15,288 INFO [DOT/USDT:USDT] No new candles.
+2026-04-18 19:54:15,652 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-18 19:54:16,022 INFO [APT/USDT:USDT] No new candles.
+2026-04-18 19:54:16,399 INFO [SUI/USDT:USDT] No new candles.
+2026-04-18 19:54:16,755 INFO [ARB/USDT:USDT] No new candles.
+2026-04-18 19:54:17,118 INFO [LTC/USDT:USDT] No new candles.
+2026-04-18 19:54:17,479 INFO [INJ/USDT:USDT] No new candles.
+2026-04-18 19:54:17,850 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-18 19:54:18,393 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-18 19:54:19,427 INFO [SPX] No new candles.
+2026-04-18 19:54:29,502 ERROR 
+1 Failed download:
+2026-04-18 19:54:29,503 ERROR ['QQQ']: TypeError("'NoneType' object is not subscriptable")
+2026-04-18 19:54:29,510 INFO [QQQ] No new candles.
+2026-04-18 19:54:30,313 INFO [GLD] No new candles.
+2026-04-18 19:54:31,101 INFO [TLT] No new candles.
+2026-04-18 19:54:31,890 INFO [VIX] No new candles.
+2026-04-18 19:54:32,716 INFO [DXY] No new candles.
+2026-04-18 20:08:13,376 INFO === Hourly pipeline START ===
+2026-04-18 20:08:17,286 INFO [BTC/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:18,126 INFO [ETH/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:18,966 INFO [BNB/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:19,799 INFO [TRX/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:20,676 INFO [FIL/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:21,523 INFO [BCH/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:22,366 INFO [ZEC/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:23,217 INFO [XRP/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:24,085 INFO [SOL/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:25,198 INFO [ADA/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:26,092 INFO [DOGE/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:26,990 INFO [AVAX/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:27,940 INFO [AAVE/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:28,860 INFO [LINK/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:29,789 INFO [DOT/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:30,659 INFO [NEAR/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:31,525 INFO [APT/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:32,491 INFO [SUI/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:33,396 INFO [ARB/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:34,298 INFO [LTC/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:35,140 INFO [INJ/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:35,990 INFO [HBAR/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:36,849 INFO [ONDO/USDT:USDT] +1 candles -> 17509 total raw rows
+2026-04-18 20:08:37,835 INFO [SPX] No new candles.
+2026-04-18 20:08:38,782 INFO [QQQ] No new candles.
+2026-04-18 20:08:39,803 INFO [GLD] No new candles.
+2026-04-18 20:08:40,804 INFO [TLT] No new candles.
+2026-04-18 20:08:41,728 INFO [VIX] No new candles.
+2026-04-18 20:08:42,719 INFO [DXY] No new candles.
+2026-04-18 20:08:42,904 INFO === Hourly pipeline END ===

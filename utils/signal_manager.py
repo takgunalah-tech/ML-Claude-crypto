@@ -53,7 +53,16 @@ def _save_state(state: dict) -> None:
     with open(tmp, 'w') as f:
         json.dump(state, f, indent=2)
     import shutil
-    shutil.move(tmp, _STATE_FILE)
+    last_error = None
+    for _ in range(5):
+        try:
+            shutil.move(tmp, _STATE_FILE)
+            return
+        except PermissionError as e:
+            last_error = e
+            import time
+            time.sleep(0.5)
+    raise last_error
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -74,6 +83,26 @@ def _parse_utc(ts: str | None) -> datetime | None:
 def _expiry_utc(hours: int | float = None) -> str:
     ttl_hours = config.SIGNAL_TTL_HOURS if hours is None else hours
     return (datetime.now(timezone.utc) + timedelta(hours=ttl_hours)).strftime('%Y-%m-%dT%H:%M:%SZ')
+
+
+def _get_signal_expiry(signal: dict) -> datetime | None:
+    """
+    Backward-compatible expiry resolution.
+
+    New signals store `expiry_at` explicitly.
+    Legacy signals may only have `first_signal_at`, so infer expiry using the
+    configured TTL to avoid leaving pre-migration signals open forever.
+    """
+    explicit_expiry = _parse_utc(signal.get('expiry_at'))
+    if explicit_expiry is not None:
+        return explicit_expiry
+
+    first_signal_at = _parse_utc(signal.get('first_signal_at'))
+    if first_signal_at is None:
+        return None
+
+    ttl_hours = float(signal.get('ttl_hours', config.SIGNAL_TTL_HOURS))
+    return first_signal_at + timedelta(hours=ttl_hours)
 
 
 def _rr(signal: dict, current_price: float) -> float:
@@ -119,7 +148,7 @@ def expire_stale_signals(now: datetime | None = None) -> int:
     for coin, sig in state.items():
         if sig.get('archived', False):
             continue
-        expiry_at = _parse_utc(sig.get('expiry_at'))
+        expiry_at = _get_signal_expiry(sig)
         if expiry_at is None:
             continue
         if current_dt >= expiry_at:
@@ -228,7 +257,7 @@ def check_signal_aging(coin: str, current_price: float) -> str:
     if sig.get('archived', False):
         return 'already_archived'
 
-    expiry_at = _parse_utc(sig.get('expiry_at'))
+    expiry_at = _get_signal_expiry(sig)
     if expiry_at is not None and datetime.now(timezone.utc) >= expiry_at:
         sig['archived'] = True
         sig['archive_reason'] = 'EXPIRED'
