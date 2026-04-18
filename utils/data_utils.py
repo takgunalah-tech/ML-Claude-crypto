@@ -69,13 +69,25 @@ def load_base_csv(ticker: str, asset_type: str) -> pd.DataFrame:
 
 
 def save_base_csv(df: pd.DataFrame, ticker: str, asset_type: str) -> None:
-    """Atomically overwrite Layer 0 CSV (write .tmp → rename) — crash-safe."""
+    """Atomically overwrite Layer 0 CSV (write .tmp → rename) — crash-safe.
+
+    Retries a few times because notebooks / schedulers may briefly keep a file
+    handle open while the hourly pipeline is running.
+    """
     path = _base_csv_path(ticker, asset_type)
     df_out = df[['timestamp', 'open', 'high', 'low', 'close', 'volume']].copy()
     df_out['timestamp'] = df_out['timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
     tmp = path + '.tmp'
     df_out.to_csv(tmp, index=False)
-    shutil.move(tmp, path)
+    last_error = None
+    for _ in range(5):
+        try:
+            shutil.move(tmp, path)
+            return
+        except PermissionError as e:
+            last_error = e
+            time.sleep(0.5)
+    raise last_error
 
 
 # ── Load / Save — Layer 1 (working snapshot CSV) ─────────────────────────────
@@ -88,8 +100,16 @@ def save_snapshot_csv(df: pd.DataFrame, ticker: str, asset_type: str) -> None:
         df_out['timestamp'] = df_out['timestamp'].dt.strftime('%Y-%m-%dT%H:%M:%SZ')
     tmp = path + '.tmp'
     df_out.to_csv(tmp, index=False)
-    shutil.move(tmp, path)
-    logger.debug(f'[{ticker}] Snapshot saved: {len(df_out)} rows × {len(df_out.columns)} cols')
+    last_error = None
+    for _ in range(5):
+        try:
+            shutil.move(tmp, path)
+            logger.debug(f'[{ticker}] Snapshot saved: {len(df_out)} rows × {len(df_out.columns)} cols')
+            return
+        except PermissionError as e:
+            last_error = e
+            time.sleep(0.5)
+    raise last_error
 
 
 def load_snapshot_csv(ticker: str, asset_type: str) -> pd.DataFrame | None:
@@ -111,6 +131,38 @@ def merge_incremental(base_df: pd.DataFrame, new_df: pd.DataFrame) -> pd.DataFra
     combined = pd.concat([base_df, new_df], ignore_index=True)
     combined = combined.drop_duplicates('timestamp').sort_values('timestamp').reset_index(drop=True)
     return combined
+
+
+def _find_missing_ranges(
+    df: pd.DataFrame,
+    freq: str = '1h',
+    min_missing: int = 1,
+) -> list[tuple[pd.Timestamp, pd.Timestamp, int]]:
+    """
+    Return internal missing timestamp ranges as:
+    [(expected_next_ts, actual_next_ts, missing_candles), ...]
+
+    Example:
+      if rows jump from 10:00 to 13:00 on 1h data, the range returned is
+      (11:00, 13:00, 2) meaning 11:00 and 12:00 are missing.
+    """
+    if df is None or len(df) < 2 or 'timestamp' not in df.columns:
+        return []
+
+    ts = pd.to_datetime(df['timestamp']).sort_values().reset_index(drop=True)
+    expected_delta = pd.Timedelta(freq)
+    diffs = ts.diff()
+
+    gaps: list[tuple[pd.Timestamp, pd.Timestamp, int]] = []
+    for i in range(1, len(ts)):
+        delta = diffs.iloc[i]
+        if pd.isna(delta) or delta <= expected_delta:
+            continue
+        missing = int(delta / expected_delta) - 1
+        if missing < min_missing:
+            continue
+        gaps.append((ts.iloc[i - 1] + expected_delta, ts.iloc[i], missing))
+    return gaps
 
 
 # ── Validation ────────────────────────────────────────────────────────────────
@@ -274,6 +326,58 @@ def fetch_crypto_incremental_ccxt(ticker: str, since_ms: int) -> pd.DataFrame:
     return df[['timestamp', 'open', 'high', 'low', 'close', 'volume']]
 
 
+def fetch_crypto_range_ccxt(
+    ticker: str,
+    start_dt: datetime,
+    end_dt: datetime,
+) -> pd.DataFrame:
+    """
+    Fetch crypto OHLCV for a bounded historical time range [start_dt, end_dt).
+
+    This is used only for repairing internal historical gaps already present in
+    the raw base CSV. It avoids mutating the working layer until the raw layer
+    has had a chance to self-heal.
+    """
+    if start_dt >= end_dt:
+        return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+
+    exchange = _get_exchange(config.EXCHANGE)
+    all_rows = []
+    current_since = int(pd.Timestamp(start_dt).timestamp() * 1000)
+    end_ms = int(pd.Timestamp(end_dt).timestamp() * 1000)
+
+    while current_since < end_ms:
+        try:
+            candles = exchange.fetch_ohlcv(
+                ticker, config.TIMEFRAME, since=current_since, limit=1000
+            )
+        except Exception as e:
+            raise RuntimeError(f'ccxt {type(e).__name__} for {ticker}: {e}') from e
+
+        if not candles:
+            break
+
+        filtered = [row for row in candles if row[0] < end_ms]
+        if filtered:
+            all_rows.extend(filtered)
+
+        last_ts = candles[-1][0]
+        if last_ts >= end_ms - 1 or len(candles) < 1000:
+            break
+
+        current_since = last_ts + 1
+        time.sleep(exchange.rateLimit / 1000)
+
+    if not all_rows:
+        return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+
+    df = pd.DataFrame(all_rows, columns=['ts_ms', 'open', 'high', 'low', 'close', 'volume'])
+    df['timestamp'] = pd.to_datetime(df['ts_ms'], unit='ms', utc=True).dt.tz_localize(None)
+    df = df.drop(columns='ts_ms')
+    df = df.drop_duplicates('timestamp').sort_values('timestamp').reset_index(drop=True)
+    return df[['timestamp', 'open', 'high', 'low', 'close', 'volume']]
+
+
 # ── Fetch: Macro (yfinance, both base and incremental) ───────────────────────
 
 def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
@@ -335,6 +439,67 @@ def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
     return df
 
 
+def repair_base_gaps(ticker: str, asset_type: str, base_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Attempt to backfill internal gaps in the raw base layer.
+
+    Safety rules:
+      - Crypto only: repair missing internal 1h candles from ccxt
+      - Macro is left untouched because market-hours/weekend gaps are expected
+      - If repair fails, preserve the original base_df and let the working-layer
+        integrity protocol handle continuity as a fallback
+    """
+    if asset_type != 'crypto' or base_df is None or base_df.empty:
+        return base_df
+
+    gaps = _find_missing_ranges(base_df, freq='1h', min_missing=1)
+    if not gaps:
+        return base_df
+
+    repaired_df = base_df.copy()
+    repaired_any = False
+
+    for gap_start, gap_end, missing in gaps:
+        logger.warning(
+            f'[{ticker}] Raw base gap detected: {missing} missing candles '
+            f'between {gap_start} and {gap_end}. Attempting backfill.'
+        )
+        try:
+            backfill_df = fetch_crypto_range_ccxt(ticker, gap_start.to_pydatetime(), gap_end.to_pydatetime())
+        except Exception as e:
+            logger.warning(f'[{ticker}] Gap backfill failed: {e}')
+            continue
+
+        if backfill_df.empty:
+            logger.warning(f'[{ticker}] Gap backfill returned no candles.')
+            continue
+
+        valid, reason = validate_ohlcv(backfill_df)
+        if not valid:
+            logger.warning(f'[{ticker}] Gap backfill validation failed: {reason}')
+            continue
+
+        repaired_df = merge_incremental(repaired_df, backfill_df)
+        repaired_any = True
+
+        remaining = _find_missing_ranges(repaired_df, freq='1h', min_missing=missing)
+        still_missing_same_gap = any(
+            remaining_start <= gap_start and remaining_end >= gap_end
+            for remaining_start, remaining_end, _ in remaining
+        )
+        if still_missing_same_gap:
+            logger.warning(
+                f'[{ticker}] Gap backfill incomplete for range {gap_start} -> {gap_end}. '
+                f'Working layer may still forward-fill the remainder.'
+            )
+        else:
+            logger.info(f'[{ticker}] Gap repaired in raw base layer ({missing} candles).')
+
+    if repaired_any:
+        repaired_df = repaired_df.sort_values('timestamp').drop_duplicates('timestamp').reset_index(drop=True)
+    return repaired_df
+
+
 # ── Integrity Protocol — applied to working_df ONLY (not to base CSV) ────────
 
 def apply_integrity_protocol(df: pd.DataFrame, asset_type: str) -> pd.DataFrame:
@@ -394,6 +559,15 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     """
     # ── Load Layer 0 ─────────────────────────────────────────────────────────
     raw_base_df = load_base_csv(ticker, asset_type)
+
+    # Repair existing internal raw gaps before deciding whether the working
+    # layer needs to smooth over them. This keeps the source-of-record as
+    # complete as possible without changing the downstream contract.
+    repaired_base_df = repair_base_gaps(ticker, asset_type, raw_base_df)
+    if repaired_base_df is not raw_base_df and not repaired_base_df.equals(raw_base_df):
+        raw_base_df = repaired_base_df
+        save_base_csv(raw_base_df, ticker, asset_type)
+        logger.info(f'[{ticker}] Raw base CSV updated after gap repair.')
 
     # ── FIRST RUN: Layer 0 empty → download full history from yfinance ───────
     if raw_base_df.empty:
@@ -499,6 +673,7 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     raw_base_df['timestamp'] = pd.to_datetime(raw_base_df['timestamp']).dt.tz_convert(None) if pd.api.types.is_datetime64tz_dtype(raw_base_df['timestamp']) else pd.to_datetime(raw_base_df['timestamp'])
 
     merged_raw = merge_incremental(raw_base_df, new_ohlcv)
+    merged_raw = repair_base_gaps(ticker, asset_type, merged_raw)
     save_base_csv(merged_raw, ticker, asset_type)            # Layer 0 updated
     logger.info(f'[{ticker}] +{len(new_df)} candles -> {len(merged_raw)} total raw rows')
 

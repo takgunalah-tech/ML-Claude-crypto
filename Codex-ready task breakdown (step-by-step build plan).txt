@@ -1,0 +1,301 @@
+PROJECT SENTINEL — BUILD PLAN (Codex-Ready)
+PHASE 0 — Project Skeleton (Foundation)
+Task 0.1 — Create Folder Structure
+
+Goal: Enforce architecture separation from day 1
+
+project_sentinel/
+│
+├── config/
+├── data/
+│   ├── base/
+│   └── working/
+│
+├── features/
+├── labeling/
+├── models/
+├── registry/
+├── pipelines/
+├── execution/
+├── monitoring/
+├── utils/
+├── state/
+└── tests/
+
+✅ Acceptance:
+
+All directories exist
+No logic mixed across layers
+Task 0.2 — Global Config System
+
+File: config/config.py
+
+Define:
+
+PIPELINE_VERSION = "2.0"
+
+DATA_QUALITY_THRESHOLD = 0.7
+
+SIGNAL_TTL_HOURS = 8
+SIGNAL_DECAY_LAMBDA = 0.05
+
+MIN_TRADE_COUNT = 20
+MIN_PF = 1.2
+MAX_DRAWDOWN = 0.25
+
+✅ Acceptance:
+
+Single source of truth for all constants
+PHASE 1 — Data Layer
+Task 1.1 — Data Loader (Base Layer)
+
+File: data/data_loader.py
+
+Functions:
+
+load_crypto_ohlcv(symbol, timeframe)
+load_macro_data(symbol)
+
+Rules:
+
+Save ONLY raw OHLCV
+No modification
+
+✅ Acceptance:
+
+Data saved in /data/base/
+No derived columns
+Task 1.2 — Integrity + Working Builder
+
+File: data/data_integrity.py
+
+Functions:
+
+apply_integrity_rules(df)
+build_working_dataset(symbol)
+Task 1.3 — Data Quality Scoring (NEW)
+
+File: data/data_quality.py
+
+Function:
+
+compute_data_quality(df) -> float
+
+Metrics:
+
+gap_ratio
+fill_ratio
+freshness_delay
+volatility_jump
+
+Return:
+
+score ∈ [0,1]
+
+✅ Acceptance:
+
+Each dataset has a quality score
+Logged + stored
+PHASE 2 — Feature Store
+Task 2.1 — Feature Base Class
+
+File: features/base_feature.py
+
+class Feature:
+    name: str
+    version: str
+    
+    def compute(self, df): ...
+Task 2.2 — Feature Registry
+
+File: features/feature_registry.py
+
+FEATURE_REGISTRY = {
+    "rsi": RSIv1,
+    "atr": ATRv1,
+}
+Task 2.3 — Feature Versioning System
+
+File: features/versioning.py
+
+def generate_feature_hash(feature_logic) -> str
+Task 2.4 — Feature Pipeline
+
+File: pipelines/feature_pipeline.py
+
+build_features(symbol, df, feature_list)
+
+Requirements:
+
+point-in-time correct
+no future leakage
+
+✅ Acceptance:
+
+Same function used in training + inference
+PHASE 3 — Labeling System
+Task 3.1 — Label Generator
+
+File: labeling/labeler.py
+
+generate_labels(df, tp_config, sl_config, horizon)
+Task 3.2 — Label Metadata
+
+Store:
+
+{
+  "tp_logic": "...",
+  "sl_logic": "...",
+  "horizon": 48,
+  "atr_config": ...
+}
+Task 3.3 — Sample Filter
+remove_ambiguous_samples(df)
+
+✅ Acceptance:
+
+Logs % removed
+PHASE 4 — Pipeline Signature System (CRITICAL)
+Task 4.1 — Signature Generator
+
+File: utils/pipeline_signature.py
+
+def generate_pipeline_signature(config, features, labeling) -> str
+Task 4.2 — Signature Validator
+def validate_signature(model_sig, runtime_sig):
+    assert model_sig == runtime_sig
+
+✅ Acceptance:
+
+Inference FAILS if mismatch
+PHASE 5 — Model Training
+Task 5.1 — Training Pipeline
+
+File: pipelines/train_pipeline.py
+
+train_model(X, y) -> model
+Task 5.2 — Metrics Engine
+
+File: models/metrics.py
+
+Compute:
+
+profit_factor
+max_drawdown
+expectancy
+win_rate
+loss_streak
+Task 5.3 — Validation Gate
+def validate_model(metrics):
+    return (
+        metrics["pf"] >= MIN_PF and
+        metrics["drawdown"] <= MAX_DRAWDOWN and
+        metrics["trades"] >= MIN_TRADE_COUNT
+    )
+PHASE 6 — Model Registry
+Task 6.1 — Model Metadata Schema
+
+File: registry/model_meta.py
+
+class ModelMeta:
+    model_id
+    pipeline_signature
+    feature_versions
+    metrics
+    training_period
+Task 6.2 — Save Model
+save_model(model, metadata)
+Task 6.3 — Load Model
+load_best_model(symbol)
+
+✅ Acceptance:
+
+Only VALID models load
+PHASE 7 — Regime Engine (NEW)
+Task 7.1 — Regime Detector
+
+File: models/regime.py
+
+detect_regime(df) -> "high_vol" | "low_vol"
+Task 7.2 — Model Selector
+select_model(regime)
+PHASE 8 — Inference Engine
+Task 8.1 — Inference Pipeline
+
+File: execution/inference.py
+
+Steps:
+
+load latest data
+check data quality
+build features
+validate pipeline signature
+run model.predict_proba()
+Task 8.2 — Signal Generator
+generate_signal(p)
+PHASE 9 — Signal Lifecycle
+Task 9.1 — Signal Schema
+
+File: execution/signal.py
+
+class Signal:
+    timestamp
+    expiry
+    probability
+    state
+Task 9.2 — Signal Decay
+p_adj = p * exp(-lambda * age)
+Task 9.3 — Signal Store
+
+File: state/signals_state.json
+
+PHASE 10 — Monitoring & Governance
+Task 10.1 — Drift Detection
+
+File: monitoring/drift.py
+
+detect_feature_drift()
+detect_prediction_drift()
+Task 10.2 — Audit Logger
+
+File: monitoring/logger.py
+
+Log:
+
+signal decisions
+rejected trades
+model usage
+PHASE 11 — Automation Loop
+Task 11.1 — Main Scheduler
+
+File: main.py
+
+while True:
+    update_data()
+    compute_quality()
+    build_features()
+    train_if_needed()
+    run_inference()
+    send_signals()
+    sleep(1h)
+🔥 Execution Order (Critical)
+
+Codex should follow THIS order:
+
+1 → 0 (structure)
+2 → data layer
+3 → feature system
+4 → labeling
+5 → pipeline signature
+6 → training + validation
+7 → registry
+8 → inference
+9 → signals
+10 → monitoring
+11 → automation
+🚨 Key Guardrails (Codex MUST NOT BREAK)
+NEVER compute features outside feature pipeline
+NEVER skip pipeline signature check
+NEVER use different logic between train/inference
+NEVER allow model without validation gates
+NEVER use low-quality data without flag
