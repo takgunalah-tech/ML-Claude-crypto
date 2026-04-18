@@ -372,10 +372,10 @@ def build_all_features(
     """
     macro_state = compute_macro_risk_state(macro_dfs)
 
-    btc_df = crypto_dfs.get('BTC/USDT')
-    eth_df = crypto_dfs.get('ETH/USDT')
+    btc_df = crypto_dfs.get(config.ANCHOR_TICKERS[0])
+    eth_df = crypto_dfs.get(config.ANCHOR_TICKERS[1])
     if btc_df is None or eth_df is None:
-        raise ValueError('BTC/USDT and ETH/USDT are required anchor assets.')
+        raise ValueError(f'{config.ANCHOR_TICKERS} are required anchor assets.')
 
     btc_anchor = compute_anchor_features(btc_df, 'BTC')
     eth_anchor = compute_anchor_features(eth_df, 'ETH')
@@ -475,10 +475,10 @@ def build_all_features_incremental(
     """
     macro_state = compute_macro_risk_state(macro_dfs)
 
-    btc_df = crypto_dfs.get('BTC/USDT')
-    eth_df = crypto_dfs.get('ETH/USDT')
+    btc_df = crypto_dfs.get(config.ANCHOR_TICKERS[0])
+    eth_df = crypto_dfs.get(config.ANCHOR_TICKERS[1])
     if btc_df is None or eth_df is None:
-        raise ValueError('BTC/USDT and ETH/USDT are required anchor assets.')
+        raise ValueError(f'{config.ANCHOR_TICKERS} are required anchor assets.')
 
     # Compute anchors once for all altcoins
     btc_anchor = compute_anchor_features(btc_df, 'BTC')
