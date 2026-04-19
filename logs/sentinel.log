@@ -3663,3 +3663,128 @@
 2026-04-19 16:00:58,891 INFO [VIX] No new candles.
 2026-04-19 16:01:00,002 INFO [DXY] No new candles.
 2026-04-19 16:01:00,211 INFO === Hourly pipeline END ===
+2026-04-19 16:07:58,728 WARNING [BTC/USDT:USDT] Fetch failed (1 consecutive): ccxt NetworkError for BTC/USDT:USDT: binanceusdm GET https://fapi.binance.com/fapi/v1/exchangeInfo
+2026-04-19 16:08:14,808 INFO [ETH/USDT:USDT] No new candles.
+2026-04-19 16:08:15,159 INFO [BNB/USDT:USDT] No new candles.
+2026-04-19 16:08:15,500 INFO [TRX/USDT:USDT] No new candles.
+2026-04-19 16:08:15,842 INFO [FIL/USDT:USDT] No new candles.
+2026-04-19 16:08:16,262 INFO [BCH/USDT:USDT] No new candles.
+2026-04-19 16:08:16,632 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-19 16:08:16,994 INFO [XRP/USDT:USDT] No new candles.
+2026-04-19 16:08:17,343 INFO [SOL/USDT:USDT] No new candles.
+2026-04-19 16:08:17,696 INFO [ADA/USDT:USDT] No new candles.
+2026-04-19 16:08:18,036 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-19 16:08:18,379 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-19 16:08:18,722 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-19 16:08:19,060 INFO [LINK/USDT:USDT] No new candles.
+2026-04-19 16:08:19,405 INFO [DOT/USDT:USDT] No new candles.
+2026-04-19 16:08:19,750 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-19 16:08:20,100 INFO [APT/USDT:USDT] No new candles.
+2026-04-19 16:08:20,444 INFO [SUI/USDT:USDT] No new candles.
+2026-04-19 16:08:20,791 INFO [ARB/USDT:USDT] No new candles.
+2026-04-19 16:08:21,139 INFO [LTC/USDT:USDT] No new candles.
+2026-04-19 16:08:21,492 INFO [INJ/USDT:USDT] No new candles.
+2026-04-19 16:08:21,827 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-19 16:08:22,171 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-19 16:08:22,418 WARNING [CRV/USDT:USDT] Raw base gap detected: 1 missing candles between 2025-01-02 14:00:00 and 2025-01-02 15:00:00. Attempting backfill.
+2026-04-19 16:08:22,679 INFO [CRV/USDT:USDT] Gap repaired in raw base layer (1 candles).
+2026-04-19 16:08:22,680 WARNING [CRV/USDT:USDT] Raw base gap detected: 100 missing candles between 2025-11-17 06:00:00 and 2025-11-21 10:00:00. Attempting backfill.
+2026-04-19 16:08:22,929 INFO [CRV/USDT:USDT] Gap repaired in raw base layer (100 candles).
+2026-04-19 16:08:22,930 WARNING [CRV/USDT:USDT] Raw base gap detected: 20 missing candles between 2025-11-28 23:00:00 and 2025-11-29 19:00:00. Attempting backfill.
+2026-04-19 16:08:23,186 INFO [CRV/USDT:USDT] Gap repaired in raw base layer (20 candles).
+2026-04-19 16:08:23,187 WARNING [CRV/USDT:USDT] Raw base gap detected: 35 missing candles between 2025-11-29 20:00:00 and 2025-12-01 07:00:00. Attempting backfill.
+2026-04-19 16:08:23,448 INFO [CRV/USDT:USDT] Gap repaired in raw base layer (35 candles).
+2026-04-19 16:08:23,643 INFO [CRV/USDT:USDT] Raw base CSV updated after gap repair.
+2026-04-19 16:08:23,744 INFO [CRV/USDT:USDT] No new candles.
+2026-04-19 16:08:35,216 ERROR 
+1 Failed download:
+2026-04-19 16:08:35,217 ERROR ['^GSPC']: TypeError("'NoneType' object is not subscriptable")
+2026-04-19 16:08:35,222 INFO [SPX] No new candles.
+2026-04-19 16:08:36,152 INFO [QQQ] No new candles.
+2026-04-19 16:08:37,106 INFO [GLD] No new candles.
+2026-04-19 16:08:37,938 INFO [TLT] No new candles.
+2026-04-19 16:08:38,746 INFO [VIX] No new candles.
+2026-04-19 16:08:40,744 INFO [DXY] No new candles.
+2026-04-19 16:09:05,551 INFO [BTC/USDT:USDT] No new candles.
+2026-04-19 16:09:05,958 INFO [ETH/USDT:USDT] No new candles.
+2026-04-19 16:09:06,369 INFO [BNB/USDT:USDT] No new candles.
+2026-04-19 16:09:06,743 INFO [TRX/USDT:USDT] No new candles.
+2026-04-19 16:09:07,163 INFO [FIL/USDT:USDT] No new candles.
+2026-04-19 16:09:07,610 INFO [BCH/USDT:USDT] No new candles.
+2026-04-19 16:09:08,077 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-19 16:09:08,462 INFO [XRP/USDT:USDT] No new candles.
+2026-04-19 16:09:09,085 INFO [SOL/USDT:USDT] No new candles.
+2026-04-19 16:09:09,627 INFO [ADA/USDT:USDT] No new candles.
+2026-04-19 16:09:10,028 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-19 16:09:10,478 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-19 16:09:10,840 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-19 16:09:11,217 INFO [LINK/USDT:USDT] No new candles.
+2026-04-19 16:09:11,596 INFO [DOT/USDT:USDT] No new candles.
+2026-04-19 16:09:12,015 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-19 16:09:12,422 INFO [APT/USDT:USDT] No new candles.
+2026-04-19 16:09:12,802 INFO [SUI/USDT:USDT] No new candles.
+2026-04-19 16:09:13,170 INFO [ARB/USDT:USDT] No new candles.
+2026-04-19 16:09:13,533 INFO [LTC/USDT:USDT] No new candles.
+2026-04-19 16:09:13,903 INFO [INJ/USDT:USDT] No new candles.
+2026-04-19 16:09:14,455 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-19 16:09:14,841 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-19 16:09:15,205 INFO [CRV/USDT:USDT] No new candles.
+2026-04-19 16:09:16,020 INFO [SPX] No new candles.
+2026-04-19 16:09:16,943 INFO [QQQ] No new candles.
+2026-04-19 16:09:17,764 INFO [GLD] No new candles.
+2026-04-19 16:09:18,570 INFO [TLT] No new candles.
+2026-04-19 16:09:19,324 INFO [VIX] No new candles.
+2026-04-19 16:09:20,317 INFO [DXY] No new candles.
+2026-04-19 16:18:57,799 INFO === Hourly pipeline START ===
+2026-04-19 16:19:01,727 INFO [BTC/USDT:USDT] No new candles.
+2026-04-19 16:19:02,091 INFO [ETH/USDT:USDT] No new candles.
+2026-04-19 16:19:02,443 INFO [BNB/USDT:USDT] No new candles.
+2026-04-19 16:19:02,791 INFO [TRX/USDT:USDT] No new candles.
+2026-04-19 16:19:03,183 INFO [FIL/USDT:USDT] No new candles.
+2026-04-19 16:19:03,549 INFO [BCH/USDT:USDT] No new candles.
+2026-04-19 16:19:03,915 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-19 16:19:04,270 INFO [XRP/USDT:USDT] No new candles.
+2026-04-19 16:19:04,619 INFO [SOL/USDT:USDT] No new candles.
+2026-04-19 16:19:04,969 INFO [ADA/USDT:USDT] No new candles.
+2026-04-19 16:19:05,315 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-19 16:19:05,705 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-19 16:19:06,137 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-19 16:19:06,519 INFO [LINK/USDT:USDT] No new candles.
+2026-04-19 16:19:06,887 INFO [DOT/USDT:USDT] No new candles.
+2026-04-19 16:19:07,254 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-19 16:19:07,601 INFO [APT/USDT:USDT] No new candles.
+2026-04-19 16:19:07,976 INFO [SUI/USDT:USDT] No new candles.
+2026-04-19 16:19:08,340 INFO [ARB/USDT:USDT] No new candles.
+2026-04-19 16:19:08,766 INFO [LTC/USDT:USDT] No new candles.
+2026-04-19 16:19:09,137 INFO [INJ/USDT:USDT] No new candles.
+2026-04-19 16:19:09,484 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-19 16:19:09,834 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-19 16:19:10,189 INFO [CRV/USDT:USDT] No new candles.
+2026-04-19 16:19:11,200 INFO [SPX] No new candles.
+2026-04-19 16:19:12,124 INFO [QQQ] No new candles.
+2026-04-19 16:19:13,070 INFO [GLD] No new candles.
+2026-04-19 16:19:14,080 INFO [TLT] No new candles.
+2026-04-19 16:19:16,247 INFO [VIX] No new candles.
+2026-04-19 16:19:26,331 ERROR 
+1 Failed download:
+2026-04-19 16:19:26,332 ERROR ['DX-Y.NYB']: TypeError("'NoneType' object is not subscriptable")
+2026-04-19 16:19:26,337 INFO [DXY] No new candles.
+2026-04-19 16:19:26,528 ERROR Hourly pipeline error: module 'config' has no attribute 'PIPELINE_VERSION'
+2026-04-19 16:19:27,246 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-19 16:19:27,247 INFO === Hourly pipeline END ===
+2026-04-19 17:00:00,498 INFO === Hourly pipeline START ===
+2026-04-19 17:00:04,624 INFO [BTC/USDT:USDT] +1 candles -> 17530 total raw rows
+2026-04-19 17:00:04,904 ERROR Hourly pipeline error: module 'config' has no attribute 'DATA_QUALITY_THRESHOLD'
+2026-04-19 17:00:05,631 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-19 17:00:05,633 INFO === Hourly pipeline END ===
+2026-04-19 18:00:00,598 INFO === Hourly pipeline START ===
+2026-04-19 18:00:04,609 INFO [BTC/USDT:USDT] No new candles.
+2026-04-19 18:00:05,790 INFO [ETH/USDT:USDT] +1 candles -> 17531 total raw rows
+2026-04-19 18:00:06,124 ERROR Hourly pipeline error: module 'config' has no attribute 'DATA_QUALITY_THRESHOLD'
+2026-04-19 18:00:06,972 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-19 18:00:06,974 INFO === Hourly pipeline END ===
+2026-04-19 19:00:00,953 INFO === Hourly pipeline START ===
+2026-04-19 19:00:05,147 INFO [BTC/USDT:USDT] +1 candles -> 17532 total raw rows
+2026-04-19 19:00:05,418 ERROR Hourly pipeline error: module 'config' has no attribute 'DATA_QUALITY_THRESHOLD'
+2026-04-19 19:00:05,797 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-19 19:00:05,798 INFO === Hourly pipeline END ===
