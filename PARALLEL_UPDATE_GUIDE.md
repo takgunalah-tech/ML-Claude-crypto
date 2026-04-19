@@ -38,6 +38,46 @@ for config_tuple in PARAM_CONFIGS:
 
 ---
 
+### For Cell 13 (NEW) - Config Patch & Data Diagnostic
+
+Add this cell **before** the main backtesting loop. It fixes the `DATA_QUALITY_THRESHOLD` error and checks exactly why tickers might be failing.
+
+```python
+# 1. PATCH MISSING CONFIG ATTRIBUTES
+if not hasattr(config, 'DATA_QUALITY_THRESHOLD'):
+    print("🔧 Patching missing config.DATA_QUALITY_THRESHOLD (Defaulting to 0.8)...")
+    config.DATA_QUALITY_THRESHOLD = 0.8
+
+print("\n--- PRE-RUN DATA & SYNC DIAGNOSTIC ---")
+print(f"{'Ticker':<15} | {'Status':<10} | {'Train':<6} | {'Test1':<5} | {'Test2':<5}")
+print("-" * 55)
+
+for ticker in TEST_COINS:
+    try:
+        # Try to load existing data
+        df = load_coin_data(ticker, return_raw=True)
+        
+        if df is None or df.empty:
+            print(f"{ticker:15} | ❌ EMPTY   | 0      | 0     | 0")
+            continue
+            
+        df_train, df_test1, df_test2 = split_data_by_days(df, verbose=False)
+        
+        # Determine status
+        status = "✓ OK"
+        if len(df_train) < 500: status = "⚠️ SHORT"
+        if len(df_test2) < 24:  status = "⚠️ NO_OOS"
+        
+        print(f"{ticker:15} | {status:<10} | {len(df_train):<6} | {len(df_test1):<5} | {len(df_test2):<5}")
+        
+        if status != "✓ OK":
+            print(f"  └─ Reason: {len(df_train)} rows in Train (Need ~500+)")
+            
+    except Exception as e:
+        print(f"{ticker:15} | ❌ ERROR   | {str(e)[:30]}...")
+print("-" * 55)
+```
+
 ### For Cell 14 (Line ~719) - Main Backtesting Loop with Parallel
 
 This is the critical cell. Replace the entire for-loop section with parallel evaluation.
@@ -61,10 +101,22 @@ for config_tuple in PARAM_CONFIGS:
     for ticker in TEST_COINS:
         # Load data
         df = load_coin_data(ticker, return_raw=True)
+        if df is None or df.empty:
+            print(f"{ticker:15} | ✗ Data load failed")
+            continue
+            
         df_train, df_test1, df_test2 = split_data_by_days(df, verbose=False)
         
+        if len(df_train) < 500: # Sanity check for training size
+            print(f"{ticker:15} | ✗ Insufficient training data ({len(df_train)} rows)")
+            continue
+
         # Generate all parameter combinations
         all_combos = list(itertools.product(tp_grid, sl_grid, k1_grid, k2_grid, min_pf_list, pf_ratio_list))
+        
+        if not all_combos:
+            print(f"{ticker:15} | ✗ Parameter grid is empty")
+            continue
         
         # PARALLEL EVALUATION using joblib
         results_list = Parallel(n_jobs=-1)(

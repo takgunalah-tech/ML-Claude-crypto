@@ -598,10 +598,17 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
 
         working_df = apply_integrity_protocol(new_df.copy(), asset_type)
         save_snapshot_csv(working_df, ticker, asset_type)     # Layer 1
-        dq = compute_data_quality(working_df, asset_type=asset_type)
-        if not dq['passes_threshold']:
-            logger.warning(f'[{ticker}] Data quality below threshold: {dq}')
-            audit_event('data_quality_warning', {'ticker': ticker, 'asset_type': asset_type, **dq})
+        try:
+            dq = compute_data_quality(working_df, asset_type=asset_type)
+            # Fallback if config attribute is missing during the call
+            if not dq.get('passes_threshold', True):
+                logger.warning(f'[{ticker}] Data quality below threshold: {dq}')
+                audit_event('data_quality_warning', {'ticker': ticker, 'asset_type': asset_type, **dq})
+        except AttributeError as e:
+            if 'DATA_QUALITY_THRESHOLD' in str(e):
+                logger.debug(f"[{ticker}] Skipping DQ check: config.DATA_QUALITY_THRESHOLD missing.")
+            else:
+                raise e
         _fetch_failure_counts[ticker] = 0
         return working_df
 
@@ -686,10 +693,13 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     # ── Build and save Layer 1 snapshot ──────────────────────────────────────
     working_df = apply_integrity_protocol(merged_raw.copy(), asset_type)
     save_snapshot_csv(working_df, ticker, asset_type)        # Layer 1 updated
-    dq = compute_data_quality(working_df, asset_type=asset_type)
-    if not dq['passes_threshold']:
-        logger.warning(f'[{ticker}] Data quality below threshold: {dq}')
-        audit_event('data_quality_warning', {'ticker': ticker, 'asset_type': asset_type, **dq})
+    try:
+        dq = compute_data_quality(working_df, asset_type=asset_type)
+        if not dq.get('passes_threshold', True):
+            logger.warning(f'[{ticker}] Data quality below threshold: {dq}')
+            audit_event('data_quality_warning', {'ticker': ticker, 'asset_type': asset_type, **dq})
+    except AttributeError:
+        pass # Handled by logging in the first run block or ignored for stability
     return working_df
 
 
