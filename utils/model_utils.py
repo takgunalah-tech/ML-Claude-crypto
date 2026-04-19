@@ -95,7 +95,11 @@ def compute_profit_factor(
     Returns (profit_factor, trade_count).
     """
     if threshold is None:
-        threshold = config.LONG_THRESHOLD if direction == 'long' else config.SHORT_THRESHOLD
+        threshold = (
+            config.VALIDATION_LONG_THRESHOLD
+            if direction == 'long'
+            else config.VALIDATION_SHORT_THRESHOLD
+        )
 
     p_win = model.predict_proba(X)[:, 1]
 
@@ -142,7 +146,11 @@ def evaluate_model(
     Pass the same tp_pct/sl_pct/k1/k2/atr_norm used in labeling for correct PF.
     """
     if threshold is None:
-        threshold = config.LONG_THRESHOLD if direction == 'long' else config.SHORT_THRESHOLD
+        threshold = (
+            config.VALIDATION_LONG_THRESHOLD
+            if direction == 'long'
+            else config.VALIDATION_SHORT_THRESHOLD
+        )
 
     p_win = model.predict_proba(X)[:, 1]
     if direction == 'long':
@@ -206,12 +214,16 @@ def evaluate_model(
 
 def check_validity(test1: dict, test2: dict) -> bool:
     """
-    A model is valid if ALL three gates pass:
+    A model is valid if all core gates pass:
       1. test1 trade_count >= MIN_TRADE_COUNT
-      2. test1 PF >= MIN_PF_TEST1
-      3. test2 PF >= test1 PF * PF_STABILITY_RATIO  (out-of-sample stability)
+      2. test2 trade_count >= MIN_TRADE_COUNT_TEST2
+      3. test1 PF >= MIN_PF_TEST1
+      4. test2 PF >= test1 PF * PF_STABILITY_RATIO  (out-of-sample stability)
+      5. test1 max_drawdown <= MAX_DRAWDOWN
     """
     if test1['trade_count'] < config.MIN_TRADE_COUNT:
+        return False
+    if test2['trade_count'] < config.MIN_TRADE_COUNT_TEST2:
         return False
     if test1['PF'] < config.MIN_PF_TEST1:
         return False
@@ -277,13 +289,34 @@ def get_shap_drivers(
 # ── Save / Load model ─────────────────────────────────────────────────────────
 
 def _model_path(ticker: str) -> str:
-    safe = ticker.replace('/', '_').replace('^', '')
+    safe = ticker.replace('/', '_').replace(':', '_').replace('^', '')
     return os.path.join(config.MODELS_DIR, f'{safe}.json')
 
 
 def _meta_path(ticker: str) -> str:
-    safe = ticker.replace('/', '_').replace('^', '')
+    safe = ticker.replace('/', '_').replace(':', '_').replace('^', '')
     return os.path.join(config.MODELS_DIR, f'{safe}_meta.json')
+
+
+def _legacy_model_path_candidates(ticker: str) -> list[tuple[str, str]]:
+    """
+    Backward-compatible lookup for historical filename conventions.
+
+    Older runs used spot-style names like ZEC_USDT.json even when the runtime
+    ticker was ZEC/USDT:USDT. New canonical names keep the full futures suffix
+    as ZEC_USDT_USDT.json.
+    """
+    candidates = [(_model_path(ticker), _meta_path(ticker))]
+
+    legacy_ticker = ticker.replace(':USDT', '')
+    if legacy_ticker != ticker:
+        legacy_safe = legacy_ticker.replace('/', '_').replace(':', '_').replace('^', '')
+        candidates.append((
+            os.path.join(config.MODELS_DIR, f'{legacy_safe}.json'),
+            os.path.join(config.MODELS_DIR, f'{legacy_safe}_meta.json'),
+        ))
+
+    return candidates
 
 
 def save_model(model: xgb.XGBClassifier, ticker: str, meta: dict) -> None:
@@ -314,9 +347,13 @@ def save_model(model: xgb.XGBClassifier, ticker: str, meta: dict) -> None:
 
 def load_model(ticker: str) -> tuple[xgb.XGBClassifier | None, dict | None]:
     """Load saved model + metadata. Returns (None, None) if not found."""
-    mp = _model_path(ticker)
-    ep = _meta_path(ticker)
-    if not os.path.exists(mp) or not os.path.exists(ep):
+    mp = None
+    ep = None
+    for model_path, meta_path in _legacy_model_path_candidates(ticker):
+        if os.path.exists(model_path) and os.path.exists(meta_path):
+            mp, ep = model_path, meta_path
+            break
+    if mp is None or ep is None:
         return None, None
     model = xgb.XGBClassifier()
     model.load_model(mp)

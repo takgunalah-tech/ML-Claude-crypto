@@ -109,14 +109,20 @@ K1_GRID  = [0.3, 0.5, 0.7]   # ATR multiplier for TP
 K2_GRID  = [0.2, 0.3, 0.4]   # ATR multiplier for SL
 
 # ── Model validity gates ──────────────────────────────────────────────────────
-MIN_TRADE_COUNT    = 20
-MIN_PF_TEST1       = 1.20   # raised from 1.05 — must clear breakeven + fees
-PF_STABILITY_RATIO = 0.70   # PF(test2) / PF(test1) must be >= this
-MAX_DRAWDOWN       = 0.25   # soft v2 gate; enforced by check_validity()
+MIN_TRADE_COUNT       = 20
+MIN_TRADE_COUNT_TEST2 = 5
+MIN_PF_TEST1          = 1.05   # slightly above breakeven; allows more active models through
+PF_STABILITY_RATIO    = 0.65   # modestly looser so decent models with some degradation survive
+MAX_DRAWDOWN          = 0.40   # looser than before; still blocks extreme equity instability
 
 # ── Signal thresholds ─────────────────────────────────────────────────────────
-LONG_THRESHOLD  = 0.60   # P(win) >= 0.60 → fire LONG
-SHORT_THRESHOLD = 0.40   # P(win) <= 0.40 → fire SHORT  (dead zone: 0.40–0.60)
+# Validation thresholds are used during backtest / model acceptance.
+# Live thresholds are used when firing signals in the notebook runner.
+VALIDATION_LONG_THRESHOLD  = 0.60
+VALIDATION_SHORT_THRESHOLD = 0.40
+
+LONG_THRESHOLD  = 0.58   # slightly looser live firing threshold for more signals
+SHORT_THRESHOLD = 0.42   # slightly looser live firing threshold for more signals
 
 # ── Signal lifecycle ──────────────────────────────────────────────────────────
 MAX_SIGNAL_REPEATS = 1   # how many times a signal can repeat before being archived

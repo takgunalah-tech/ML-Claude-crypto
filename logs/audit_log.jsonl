@@ -1,1 +1,2 @@
 {"event_type":"signal_expired","payload":{"coin":"ZEC/USDT","direction":"SHORT"},"timestamp":"2026-04-18T12:34:00Z"}
+{"event_type":"model_saved","payload":{"model_id":"ZEC/USDT:USDT|2026-04-18T12:40:07.326365+00:00|71480891f955","pipeline_signature":"71480891f955c08664267d4b328163746d1acc70a576b17e351a30bf161c6fbd","ticker":"ZEC/USDT:USDT"},"timestamp":"2026-04-18T12:40:07Z"}
