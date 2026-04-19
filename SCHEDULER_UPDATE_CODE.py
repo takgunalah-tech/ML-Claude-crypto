@@ -198,13 +198,13 @@ schedule.every().hour.at(":00").do(run_hourly_pipeline)
 # Retrain every Saturday at 06:00 UTC (US market close)
 schedule.every().saturday.at("06:00").do(run_retrain)
 
-# Morning report daily at 08:00 UTC
-schedule.every().day.at("08:00").do(send_morning_report_job)
+# Morning report daily at 00:00 UTC (8:00 AM GMT+8)
+schedule.every().day.at("00:00").do(send_morning_report_job)
 
 print('Scheduler initialized:')
 print('  - Hourly pipeline: every hour at :00')
 print('  - Retrain: every Saturday at 06:00 UTC')
-print('  - Morning report: every day at 08:00 UTC')
+print('  - Morning report: every day at 00:00 UTC (8:00 AM GMT+8)')
 
 # Run one cycle immediately
 print('\nRunning initial inference cycle...')

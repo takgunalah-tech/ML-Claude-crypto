@@ -3505,3 +3505,96 @@
 2026-04-19 14:00:32,328 INFO [VIX] No new candles.
 2026-04-19 14:00:32,583 INFO [DXY] No new candles.
 2026-04-19 14:00:32,834 INFO === Hourly pipeline END ===
+2026-04-19 14:40:03,695 INFO === Hourly pipeline START ===
+2026-04-19 14:40:08,060 INFO [BTC/USDT:USDT] No new candles.
+2026-04-19 14:40:09,032 INFO [ETH/USDT:USDT] +1 candles -> 17527 total raw rows
+2026-04-19 14:40:09,750 INFO [BNB/USDT:USDT] No new candles.
+2026-04-19 14:40:10,202 INFO [TRX/USDT:USDT] No new candles.
+2026-04-19 14:40:10,651 INFO [FIL/USDT:USDT] No new candles.
+2026-04-19 14:40:11,086 INFO [BCH/USDT:USDT] No new candles.
+2026-04-19 14:40:11,495 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-19 14:40:11,987 INFO [XRP/USDT:USDT] No new candles.
+2026-04-19 14:40:12,424 INFO [SOL/USDT:USDT] No new candles.
+2026-04-19 14:40:12,816 INFO [ADA/USDT:USDT] No new candles.
+2026-04-19 14:40:13,308 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-19 14:40:13,731 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-19 14:40:14,164 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-19 14:40:14,876 INFO [LINK/USDT:USDT] No new candles.
+2026-04-19 14:40:15,327 INFO [DOT/USDT:USDT] No new candles.
+2026-04-19 14:40:15,988 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-19 14:40:16,947 INFO [APT/USDT:USDT] No new candles.
+2026-04-19 14:40:17,363 INFO [SUI/USDT:USDT] No new candles.
+2026-04-19 14:40:17,879 INFO [ARB/USDT:USDT] No new candles.
+2026-04-19 14:40:18,440 INFO [LTC/USDT:USDT] No new candles.
+2026-04-19 14:40:18,971 INFO [INJ/USDT:USDT] No new candles.
+2026-04-19 14:40:19,491 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-19 14:40:19,976 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-19 14:40:20,936 INFO [SPX] No new candles.
+2026-04-19 14:40:21,946 INFO [QQQ] No new candles.
+2026-04-19 14:40:23,031 INFO [GLD] No new candles.
+2026-04-19 14:40:24,053 INFO [TLT] No new candles.
+2026-04-19 14:40:25,006 INFO [VIX] No new candles.
+2026-04-19 14:40:26,024 INFO [DXY] No new candles.
+2026-04-19 14:40:26,285 INFO === Hourly pipeline END ===
+2026-04-19 15:00:00,924 INFO === Hourly pipeline START ===
+2026-04-19 15:00:05,662 INFO [BTC/USDT:USDT] No new candles.
+2026-04-19 15:00:06,346 INFO [ETH/USDT:USDT] No new candles.
+2026-04-19 15:00:08,174 INFO [BNB/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:10,272 INFO [TRX/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:12,242 INFO [FIL/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:13,877 INFO [BCH/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:15,422 INFO [ZEC/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:16,828 INFO [XRP/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:18,767 INFO [SOL/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:20,540 INFO [ADA/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:22,135 INFO [DOGE/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:23,712 INFO [AVAX/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:25,200 INFO [AAVE/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:26,624 INFO [LINK/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:28,631 INFO [DOT/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:30,077 INFO [NEAR/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:31,822 INFO [APT/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:33,380 INFO [SUI/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:34,827 INFO [ARB/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:36,349 INFO [LTC/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:38,257 INFO [INJ/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:39,918 INFO [HBAR/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:41,467 INFO [ONDO/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:42,905 INFO [SPX] No new candles.
+2026-04-19 15:00:43,950 INFO [QQQ] No new candles.
+2026-04-19 15:00:45,049 INFO [GLD] No new candles.
+2026-04-19 15:00:46,065 INFO [TLT] No new candles.
+2026-04-19 15:00:47,073 INFO [VIX] No new candles.
+2026-04-19 15:00:48,221 INFO [DXY] No new candles.
+2026-04-19 15:00:48,825 INFO === Hourly pipeline END ===
+2026-04-19 15:00:48,827 INFO === Hourly pipeline START ===
+2026-04-19 15:00:52,695 INFO [BTC/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:54,317 INFO [ETH/USDT:USDT] +1 candles -> 17528 total raw rows
+2026-04-19 15:00:55,467 INFO [BNB/USDT:USDT] No new candles.
+2026-04-19 15:00:56,197 INFO [TRX/USDT:USDT] No new candles.
+2026-04-19 15:00:56,781 INFO [FIL/USDT:USDT] No new candles.
+2026-04-19 15:00:57,450 INFO [BCH/USDT:USDT] No new candles.
+2026-04-19 15:00:58,121 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-19 15:00:58,778 INFO [XRP/USDT:USDT] No new candles.
+2026-04-19 15:00:59,331 INFO [SOL/USDT:USDT] No new candles.
+2026-04-19 15:01:00,016 INFO [ADA/USDT:USDT] No new candles.
+2026-04-19 15:01:00,667 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-19 15:01:01,267 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-19 15:01:02,210 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-19 15:01:02,868 INFO [LINK/USDT:USDT] No new candles.
+2026-04-19 15:01:03,540 INFO [DOT/USDT:USDT] No new candles.
+2026-04-19 15:01:04,111 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-19 15:01:04,583 INFO [APT/USDT:USDT] No new candles.
+2026-04-19 15:01:05,266 INFO [SUI/USDT:USDT] No new candles.
+2026-04-19 15:01:06,109 INFO [ARB/USDT:USDT] No new candles.
+2026-04-19 15:01:06,684 INFO [LTC/USDT:USDT] No new candles.
+2026-04-19 15:01:07,338 INFO [INJ/USDT:USDT] No new candles.
+2026-04-19 15:01:08,006 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-19 15:01:08,717 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-19 15:01:09,879 INFO [SPX] No new candles.
+2026-04-19 15:01:10,930 INFO [QQQ] No new candles.
+2026-04-19 15:01:12,019 INFO [GLD] No new candles.
+2026-04-19 15:01:13,108 INFO [TLT] No new candles.
+2026-04-19 15:01:14,139 INFO [VIX] No new candles.
+2026-04-19 15:01:15,529 INFO [DXY] No new candles.
+2026-04-19 15:01:15,943 INFO === Hourly pipeline END ===
