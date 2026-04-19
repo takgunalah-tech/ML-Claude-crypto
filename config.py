@@ -109,6 +109,8 @@ SHORT_THRESHOLD = 0.40   # P(win) <= 0.40 → fire SHORT  (dead zone: 0.40–0.6
 
 # ── Signal lifecycle ──────────────────────────────────────────────────────────
 MAX_SIGNAL_REPEATS = 1   # how many times a signal can repeat before being archived
+SIGNAL_TTL_HOURS   = 8   # how long a signal remains valid
+SIGNAL_DECAY_LAMBDA = 0.05 # decay constant for probability aging
 
 # ── Position sizing ───────────────────────────────────────────────────────────
 MAX_LOSS_USDT = 5.0       # max loss per trade in USDT
