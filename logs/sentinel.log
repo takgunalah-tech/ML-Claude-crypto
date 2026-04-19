@@ -3788,3 +3788,8 @@
 2026-04-19 19:00:05,418 ERROR Hourly pipeline error: module 'config' has no attribute 'DATA_QUALITY_THRESHOLD'
 2026-04-19 19:00:05,797 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
 2026-04-19 19:00:05,798 INFO === Hourly pipeline END ===
+2026-04-19 20:00:00,749 INFO === Hourly pipeline START ===
+2026-04-19 20:00:04,907 INFO [BTC/USDT:USDT] +1 candles -> 17533 total raw rows
+2026-04-19 20:00:05,142 ERROR Hourly pipeline error: module 'config' has no attribute 'DATA_QUALITY_THRESHOLD'
+2026-04-19 20:00:05,867 ERROR Telegram request error: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5587827410:AAE4SmWngDR-Kwt2JiyKJ6xurp-JensModY/sendMessage (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1032)')))
+2026-04-19 20:00:05,868 INFO === Hourly pipeline END ===

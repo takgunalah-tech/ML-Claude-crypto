@@ -98,8 +98,10 @@ K2_GRID  = [0.2, 0.3, 0.4]   # ATR multiplier for SL
 
 # ── Model validity gates ──────────────────────────────────────────────────────
 MIN_TRADE_COUNT    = 20
+MIN_TRADE_COUNT_TEST2 = 5
 MIN_PF_TEST1       = 1.20   # raised from 1.05 — must clear breakeven + fees
 PF_STABILITY_RATIO = 0.70   # PF(test2) / PF(test1) must be >= this
+MAX_DRAWDOWN       = 0.40   # Max allowable drawdown for valid models
 
 # ── Signal thresholds ─────────────────────────────────────────────────────────
 LONG_THRESHOLD  = 0.60   # P(win) >= 0.60 → fire LONG
@@ -125,3 +127,13 @@ RETRAIN_INTERVAL_HOURS  = 72
 # Set to None to use FINAL_ESTIMATORS for both (disables two-stage training).
 GRID_SEARCH_ESTIMATORS  = 50   # n_estimators used during grid search (ranking pass)
 FINAL_ESTIMATORS        = 300  # n_estimators used for the production model
+# ── Governance & Quality ──────────────────────────────────────────────────────
+PIPELINE_VERSION           = "1.0"
+FEATURE_VERSION            = "1.0"
+DATA_SCHEMA_VERSION        = "1.0"
+LABEL_LOGIC_VERSION        = "1.0"
+MODEL_META_VERSION         = "1.0"
+ENFORCE_PIPELINE_SIGNATURE = False
+ENFORCE_DATA_QUALITY       = False
+DATA_QUALITY_THRESHOLD     = 0.75
+TELEGRAM_SSL_VERIFY        = False  # Set to False to bypass local issuer certificate errors

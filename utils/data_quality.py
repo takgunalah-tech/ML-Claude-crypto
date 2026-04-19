@@ -88,5 +88,5 @@ def compute_data_quality(
         'fill_ratio': round(float(fill_ratio), 4),
         'freshness_delay_hours': round(float(freshness_delay), 2),
         'volatility_jump_score': round(float(volatility_jump_score), 4),
-        'passes_threshold': score >= config.DATA_QUALITY_THRESHOLD,
+        'passes_threshold': score >= getattr(config, 'DATA_QUALITY_THRESHOLD', 0.75),
     }

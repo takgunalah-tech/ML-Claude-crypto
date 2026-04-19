@@ -61,8 +61,9 @@ def _send(text: str) -> bool:
     max_retries = 3
     for attempt in range(max_retries):
         try:
-            # Increased timeout to 30 seconds
-            resp = requests.post(url, json=payload, timeout=30)
+            # Respect SSL verification setting from config
+            verify_ssl = getattr(config, 'TELEGRAM_SSL_VERIFY', True)
+            resp = requests.post(url, json=payload, timeout=30, verify=verify_ssl)
             
             if resp.status_code == 429:  # Rate Limited
                 retry_after = resp.json().get('parameters', {}).get('retry_after', 5)

@@ -598,6 +598,7 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
 
         working_df = apply_integrity_protocol(new_df.copy(), asset_type)
         save_snapshot_csv(working_df, ticker, asset_type)     # Layer 1
+
         try:
             dq = compute_data_quality(working_df, asset_type=asset_type)
             # Fallback if config attribute is missing during the call
@@ -693,6 +694,7 @@ def update_ticker(ticker: str, asset_type: str) -> pd.DataFrame | None:
     # ── Build and save Layer 1 snapshot ──────────────────────────────────────
     working_df = apply_integrity_protocol(merged_raw.copy(), asset_type)
     save_snapshot_csv(working_df, ticker, asset_type)        # Layer 1 updated
+
     try:
         dq = compute_data_quality(working_df, asset_type=asset_type)
         if not dq.get('passes_threshold', True):
