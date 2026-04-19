@@ -8,6 +8,11 @@ Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID in .env or environment.
 import requests
 import logging
 from datetime import datetime, timezone, timedelta
+import urllib3
+from urllib3.exceptions import InsecureRequestWarning
+
+# Suppress warnings when SSL verification is disabled in config
+urllib3.disable_warnings(InsecureRequestWarning)
 
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))

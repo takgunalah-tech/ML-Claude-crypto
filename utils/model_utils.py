@@ -146,11 +146,10 @@ def evaluate_model(
     Pass the same tp_pct/sl_pct/k1/k2/atr_norm used in labeling for correct PF.
     """
     if threshold is None:
-        threshold = (
-            config.VALIDATION_LONG_THRESHOLD
-            if direction == 'long'
-            else config.VALIDATION_SHORT_THRESHOLD
-        )
+        if direction == 'long':
+            threshold = getattr(config, 'VALIDATION_LONG_THRESHOLD', getattr(config, 'LONG_THRESHOLD', 0.60))
+        else:
+            threshold = getattr(config, 'VALIDATION_SHORT_THRESHOLD', getattr(config, 'SHORT_THRESHOLD', 0.40))
 
     p_win = model.predict_proba(X)[:, 1]
     if direction == 'long':
@@ -215,21 +214,27 @@ def evaluate_model(
 def check_validity(test1: dict, test2: dict) -> bool:
     """
     A model is valid if all core gates pass:
-      1. test1 trade_count >= MIN_TRADE_COUNT
-      2. test2 trade_count >= MIN_TRADE_COUNT_TEST2
-      3. test1 PF >= MIN_PF_TEST1
-      4. test2 PF >= test1 PF * PF_STABILITY_RATIO  (out-of-sample stability)
-      5. test1 max_drawdown <= MAX_DRAWDOWN
+      1. test1 trade_count >= MIN_TRADE_COUNT (fallback 20)
+      2. test2 trade_count >= MIN_TRADE_COUNT_TEST2 (fallback 5)
+      3. test1 PF >= MIN_PF_TEST1 (fallback 1.2)
+      4. test2 PF >= test1 PF * PF_STABILITY_RATIO (fallback 0.70)
+      5. test1 max_drawdown <= MAX_DRAWDOWN (fallback 0.25)
     """
-    if test1['trade_count'] < config.MIN_TRADE_COUNT:
+    min_t1   = getattr(config, 'MIN_TRADE_COUNT', 20)
+    min_t2   = getattr(config, 'MIN_TRADE_COUNT_TEST2', 5)
+    min_pf   = getattr(config, 'MIN_PF_TEST1', getattr(config, 'MIN_PF', 1.2))
+    stab_rat = getattr(config, 'PF_STABILITY_RATIO', 0.70)
+    max_dd   = getattr(config, 'MAX_DRAWDOWN', 0.25)
+
+    if test1['trade_count'] < min_t1:
         return False
-    if test2['trade_count'] < config.MIN_TRADE_COUNT_TEST2:
+    if test2['trade_count'] < min_t2:
         return False
-    if test1['PF'] < config.MIN_PF_TEST1:
+    if test1['PF'] < min_pf:
         return False
-    if test1['PF'] > 0 and test2['PF'] < test1['PF'] * config.PF_STABILITY_RATIO:
+    if test1['PF'] > 0 and test2['PF'] < test1['PF'] * stab_rat:
         return False
-    if test1.get('max_drawdown', 0.0) > config.MAX_DRAWDOWN:
+    if test1.get('max_drawdown', 0.0) > max_dd:
         return False
     return True
 

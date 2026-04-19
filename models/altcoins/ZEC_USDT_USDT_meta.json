@@ -1,0 +1,151 @@
+{
+  "ticker": "ZEC/USDT:USDT",
+  "feature_columns": [
+    "RSI_7",
+    "RSI_14",
+    "RSI_21",
+    "MACD",
+    "MACD_sig",
+    "MACD_hist",
+    "BB_upper",
+    "BB_lower",
+    "BB_mid",
+    "BB_width",
+    "BB_pct",
+    "EMA_9",
+    "EMA_21",
+    "EMA_50",
+    "EMA_200",
+    "SMA_20",
+    "SMA_50",
+    "ATR_14",
+    "ATR_14_norm",
+    "ADX_14",
+    "DI_plus",
+    "DI_minus",
+    "VWAP_dev",
+    "Vol_ratio",
+    "pivot_P",
+    "dist_to_resistance",
+    "dist_to_support",
+    "RSI_momentum",
+    "ATR_expansion",
+    "MR_strength",
+    "EMA_stack",
+    "Hour_UTC",
+    "Session",
+    "BTC_ADX",
+    "BTC_EMA_cross",
+    "BTC_BB_width",
+    "BTC_Regime",
+    "BTC_ATR_rel",
+    "BTC_HV_ratio",
+    "BTC_Vol_State",
+    "BTC_Breakout_Prob",
+    "BTC_Continuation_Prob",
+    "BTC_RSI_bias",
+    "BTC_MACD_bias",
+    "BTC_EMA9_21_bias",
+    "BTC_Direction_Bias",
+    "ETH_ADX",
+    "ETH_EMA_cross",
+    "ETH_BB_width",
+    "ETH_Regime",
+    "ETH_ATR_rel",
+    "ETH_HV_ratio",
+    "ETH_Vol_State",
+    "ETH_Breakout_Prob",
+    "ETH_Continuation_Prob",
+    "ETH_RSI_bias",
+    "ETH_MACD_bias",
+    "ETH_EMA9_21_bias",
+    "ETH_Direction_Bias",
+    "Macro_Risk_State"
+  ],
+  "label_params": {
+    "tp_pct": 0.03,
+    "sl_pct": 0.01,
+    "k1": 0.3,
+    "k2": 0.2
+  },
+  "test1": {
+    "PF": 2.2172,
+    "trade_count": 37,
+    "win_rate": 0.4595,
+    "expectancy": 0.008856,
+    "max_drawdown": 0.119017,
+    "loss_streak": 9
+  },
+  "test2": {
+    "PF": 1.9605,
+    "trade_count": 7,
+    "win_rate": 0.4286,
+    "expectancy": 0.007393,
+    "max_drawdown": 0.05388,
+    "loss_streak": 4
+  },
+  "trained_at": "2026-04-19T13:02:58.194938+00:00",
+  "runner_ups": [
+    {
+      "params": {
+        "tp_pct": 0.03,
+        "sl_pct": 0.01,
+        "k1": 0.3,
+        "k2": 0.2
+      },
+      "score": "Infinity",
+      "pf": "Infinity",
+      "n_trades": 138
+    },
+    {
+      "params": {
+        "tp_pct": 0.03,
+        "sl_pct": 0.01,
+        "k1": 0.5,
+        "k2": 0.2
+      },
+      "score": "Infinity",
+      "pf": "Infinity",
+      "n_trades": 123
+    },
+    {
+      "params": {
+        "tp_pct": 0.03,
+        "sl_pct": 0.01,
+        "k1": 0.7,
+        "k2": 0.2
+      },
+      "score": "Infinity",
+      "pf": "Infinity",
+      "n_trades": 68
+    }
+  ],
+  "model_meta_version": "1.0",
+  "pipeline_version": "1.0",
+  "data_schema_version": "1.0",
+  "pipeline_signature": "d20c7a563491ddea990ef2188db123772b18743432a87bfbbca0b2f573e83c64",
+  "feature_versions": {
+    "feature_version": "1.0",
+    "feature_groups": [
+      "macro",
+      "anchor",
+      "altcoin"
+    ],
+    "feature_pipeline": "utils.features"
+  },
+  "label_config": {
+    "tp_pct": 0.03,
+    "sl_pct": 0.01,
+    "k1": 0.3,
+    "k2": 0.2
+  },
+  "training_config": {
+    "final_estimators": 300,
+    "grid_search_estimators": 50,
+    "min_trade_count": 20,
+    "min_pf_test1": 1.2,
+    "pf_stability_ratio": 0.7,
+    "max_drawdown": 0.4
+  },
+  "model_id": "ZEC/USDT:USDT|2026-04-19T13:02:58.194938+00:00|d20c7a563491"
+}
