@@ -2,6 +2,7 @@
 
 import schedule
 import time
+from datetime import datetime, timezone, timedelta
 
 # ── Job: hourly inference ─────────────────────────────────────────────────────
 def run_hourly_pipeline():
@@ -174,14 +175,20 @@ def run_retrain():
 
 # ── Job: morning report ───────────────────────────────────────────────────────
 def send_morning_report_job():
+    logger.info('=== Morning Report Job START ===')
     try:
         dfs = update_all_tickers()
         prices = {t: float(dfs[t]['close'].iloc[-1])
                   for t in config.ALTCOIN_TICKERS if t in dfs and not dfs[t].empty}
         since = datetime.now(timezone.utc) - timedelta(hours=24)
-        send_morning_report(get_active_signals(), get_archived_signals(since=since), prices)
+        success = send_morning_report(get_active_signals(), get_archived_signals(since=since), prices)
+        if success:
+            logger.info('Morning report sent successfully.')
+        else:
+            logger.warning('Morning report failed to send (check Telegram logs).')
     except Exception as e:
         logger.error(f'Morning report error: {e}')
+    logger.info('=== Morning Report Job END ===')
 
 
 # ── Schedule Setup ────────────────────────────────────────────────────────────
