@@ -66,60 +66,63 @@
     "tp_pct": 0.03,
     "sl_pct": 0.01,
     "k1": 0.3,
-    "k2": 0.2
+    "k2": 0.2,
+    "best_score": "Infinity",
+    "best_pf": "Infinity",
+    "best_n": 146,
+    "runner_ups": [
+      {
+        "params": {
+          "tp_pct": 0.03,
+          "sl_pct": 0.01,
+          "k1": 0.3,
+          "k2": 0.2
+        },
+        "score": "Infinity",
+        "pf": "Infinity",
+        "n_trades": 146
+      },
+      {
+        "params": {
+          "tp_pct": 0.03,
+          "sl_pct": 0.01,
+          "k1": 0.7,
+          "k2": 0.2
+        },
+        "score": "Infinity",
+        "pf": "Infinity",
+        "n_trades": 77
+      },
+      {
+        "params": {
+          "tp_pct": 0.035,
+          "sl_pct": 0.01,
+          "k1": 0.3,
+          "k2": 0.2
+        },
+        "score": "Infinity",
+        "pf": "Infinity",
+        "n_trades": 95
+      }
+    ]
   },
   "test1": {
-    "PF": 2.2172,
-    "trade_count": 37,
-    "win_rate": 0.4595,
-    "expectancy": 0.008856,
-    "max_drawdown": 0.119017,
-    "loss_streak": 9
+    "PF": 2.6729,
+    "trade_count": 61,
+    "win_rate": 0.5082,
+    "expectancy": 0.011024,
+    "max_drawdown": 0.158972,
+    "loss_streak": 12
   },
   "test2": {
-    "PF": 1.9605,
-    "trade_count": 7,
-    "win_rate": 0.4286,
-    "expectancy": 0.007393,
-    "max_drawdown": 0.05388,
-    "loss_streak": 4
+    "PF": 2.5225,
+    "trade_count": 6,
+    "win_rate": 0.5,
+    "expectancy": 0.010364,
+    "max_drawdown": 0.040842,
+    "loss_streak": 3
   },
-  "trained_at": "2026-04-19T13:02:58.194938+00:00",
-  "runner_ups": [
-    {
-      "params": {
-        "tp_pct": 0.03,
-        "sl_pct": 0.01,
-        "k1": 0.3,
-        "k2": 0.2
-      },
-      "score": "Infinity",
-      "pf": "Infinity",
-      "n_trades": 138
-    },
-    {
-      "params": {
-        "tp_pct": 0.03,
-        "sl_pct": 0.01,
-        "k1": 0.5,
-        "k2": 0.2
-      },
-      "score": "Infinity",
-      "pf": "Infinity",
-      "n_trades": 123
-    },
-    {
-      "params": {
-        "tp_pct": 0.03,
-        "sl_pct": 0.01,
-        "k1": 0.7,
-        "k2": 0.2
-      },
-      "score": "Infinity",
-      "pf": "Infinity",
-      "n_trades": 68
-    }
-  ],
+  "trained_at": "2026-04-20T00:20:48.730902+00:00",
   "model_meta_version": "1.0",
   "pipeline_version": "1.0",
   "data_schema_version": "1.0",
@@ -137,7 +140,45 @@
     "tp_pct": 0.03,
     "sl_pct": 0.01,
     "k1": 0.3,
-    "k2": 0.2
+    "k2": 0.2,
+    "best_score": "Infinity",
+    "best_pf": "Infinity",
+    "best_n": 146,
+    "runner_ups": [
+      {
+        "params": {
+          "tp_pct": 0.03,
+          "sl_pct": 0.01,
+          "k1": 0.3,
+          "k2": 0.2
+        },
+        "score": "Infinity",
+        "pf": "Infinity",
+        "n_trades": 146
+      },
+      {
+        "params": {
+          "tp_pct": 0.03,
+          "sl_pct": 0.01,
+          "k1": 0.7,
+          "k2": 0.2
+        },
+        "score": "Infinity",
+        "pf": "Infinity",
+        "n_trades": 77
+      },
+      {
+        "params": {
+          "tp_pct": 0.035,
+          "sl_pct": 0.01,
+          "k1": 0.3,
+          "k2": 0.2
+        },
+        "score": "Infinity",
+        "pf": "Infinity",
+        "n_trades": 95
+      }
+    ]
   },
   "training_config": {
     "final_estimators": 300,
@@ -147,5 +188,5 @@
     "pf_stability_ratio": 0.7,
     "max_drawdown": 0.4
   },
-  "model_id": "ZEC/USDT:USDT|2026-04-19T13:02:58.194938+00:00|d20c7a563491"
+  "model_id": "ZEC/USDT:USDT|2026-04-20T00:20:48.730902+00:00|d20c7a563491"
 }

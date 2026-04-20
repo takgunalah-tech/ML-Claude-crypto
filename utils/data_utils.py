@@ -256,11 +256,17 @@ def fetch_crypto_base_yfinance(ticker: str) -> pd.DataFrame:
     start = (datetime.utcnow() - timedelta(days=729)).strftime('%Y-%m-%d')
     end   = (datetime.utcnow() + timedelta(days=1)).strftime('%Y-%m-%d')
 
-    raw = yf.download(
-        yf_symbol, start=start, end=end,
-        interval='1h', auto_adjust=True, progress=False,
-    )
-    if raw is None or raw.empty:
+    try:
+        raw = yf.download(
+            yf_symbol, start=start, end=end,
+            interval='1h', auto_adjust=True, progress=False,
+            timeout=20
+        )
+    except Exception as e:
+        logger.error(f'[{ticker}] yfinance download exception: {e}')
+        return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
+
+    if raw is None or not isinstance(raw, pd.DataFrame) or raw.empty:
         return pd.DataFrame(columns=['timestamp', 'open', 'high', 'low', 'close', 'volume'])
 
     # Flatten MultiIndex columns (yfinance >= 0.2 returns ('Close','BTC-USD') etc.)
@@ -402,12 +408,13 @@ def fetch_macro_ohlcv(ticker: str, start_dt: datetime) -> pd.DataFrame:
             interval='1h',
             auto_adjust=True,
             progress=False,
+            timeout=20
         )
     except Exception as e:
         logger.warning(f'[{ticker}] yf.download raised: {e}')
         return _EMPTY
 
-    if raw is None or raw.empty:
+    if raw is None or not isinstance(raw, pd.DataFrame) or raw.empty:
         return _EMPTY
 
     # Flatten MultiIndex columns (yfinance >= 0.2)

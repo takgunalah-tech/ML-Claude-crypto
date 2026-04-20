@@ -15,5 +15,25 @@
     "archived": true,
     "archive_reason": "EXPIRED",
     "state": "EXPIRED"
+  },
+  "ZEC/USDT:USDT": {
+    "direction": "SHORT",
+    "entry": 303.34,
+    "tp": 293.31480586,
+    "sl": 306.99006276,
+    "qty": 1.36983946,
+    "p_win": 0.297,
+    "tp_pct": 0.03,
+    "sl_pct": 0.01,
+    "k1": 0.3,
+    "k2": 0.2,
+    "first_signal_at": "2026-04-20T00:30:14Z",
+    "expiry_at": "2026-04-20T08:30:14Z",
+    "ttl_hours": 8,
+    "decay_lambda": 0.05,
+    "repeat_count": 0,
+    "state": "OPEN",
+    "archived": false,
+    "archive_reason": null
   }
 }
