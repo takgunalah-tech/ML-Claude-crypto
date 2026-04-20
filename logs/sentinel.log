@@ -4894,3 +4894,116 @@
 2026-04-20 07:59:30,444 INFO [ADA/USDT:USDT] No new candles.
 2026-04-20 07:59:30,814 INFO [DOGE/USDT:USDT] No new candles.
 2026-04-20 07:59:31,201 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-20 08:14:47,511 INFO [BTC/USDT:USDT] No new candles.
+2026-04-20 08:14:47,927 INFO [ETH/USDT:USDT] No new candles.
+2026-04-20 08:14:48,306 INFO [BNB/USDT:USDT] No new candles.
+2026-04-20 08:14:48,707 INFO [TRX/USDT:USDT] No new candles.
+2026-04-20 08:14:49,079 INFO [FIL/USDT:USDT] No new candles.
+2026-04-20 08:14:49,468 INFO [BCH/USDT:USDT] No new candles.
+2026-04-20 08:14:49,869 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-20 08:14:50,636 INFO [XRP/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:51,536 INFO [SOL/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:52,516 INFO [ADA/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:53,492 INFO [DOGE/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:54,430 INFO [AVAX/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:55,373 INFO [AAVE/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:56,460 INFO [LINK/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:57,564 INFO [DOT/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:58,743 INFO [NEAR/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:14:59,808 INFO [APT/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:00,827 INFO [SUI/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:01,969 INFO [ARB/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:03,230 INFO [LTC/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:04,361 INFO [INJ/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:05,449 INFO [HBAR/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:06,610 INFO [ONDO/USDT:USDT] +1 candles -> 17545 total raw rows
+2026-04-20 08:15:08,085 INFO [CRV/USDT:USDT] +1 candles -> 17521 total raw rows
+2026-04-20 08:15:11,163 INFO [SPX] No new candles.
+2026-04-20 08:15:12,161 INFO [QQQ] No new candles.
+2026-04-20 08:15:13,257 INFO [GLD] +2 candles -> 11505 total raw rows
+2026-04-20 08:15:13,409 WARNING [GLD] Data quality below threshold: {'score': 0.6428, 'gap_ratio': 0.3475, 'fill_ratio': 0.0, 'freshness_delay_hours': 0.25, 'volatility_jump_score': 1.0, 'passes_threshold': False}
+2026-04-20 08:15:14,333 INFO [TLT] No new candles.
+2026-04-20 08:15:15,295 INFO [VIX] No new candles.
+2026-04-20 08:15:16,428 INFO [DXY] +2 candles -> 12013 total raw rows
+2026-04-20 08:15:16,589 WARNING [DXY] Data quality below threshold: {'score': 0.6558, 'gap_ratio': 0.3184, 'fill_ratio': 0.0, 'freshness_delay_hours': 0.25, 'volatility_jump_score': 1.0, 'passes_threshold': False}
+2026-04-20 08:15:25,895 INFO [BTC/USDT:USDT] No new candles.
+2026-04-20 08:15:26,342 INFO [ETH/USDT:USDT] No new candles.
+2026-04-20 08:15:26,872 INFO [BNB/USDT:USDT] No new candles.
+2026-04-20 08:15:27,221 INFO [TRX/USDT:USDT] No new candles.
+2026-04-20 08:15:27,597 INFO [FIL/USDT:USDT] No new candles.
+2026-04-20 08:15:27,944 INFO [BCH/USDT:USDT] No new candles.
+2026-04-20 08:15:28,301 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-20 08:15:28,656 INFO [XRP/USDT:USDT] No new candles.
+2026-04-20 08:15:29,024 INFO [SOL/USDT:USDT] No new candles.
+2026-04-20 08:15:29,379 INFO [ADA/USDT:USDT] No new candles.
+2026-04-20 08:15:29,735 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-20 08:15:30,092 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-20 08:15:30,448 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-20 08:15:30,802 INFO [LINK/USDT:USDT] No new candles.
+2026-04-20 08:15:31,149 INFO [DOT/USDT:USDT] No new candles.
+2026-04-20 08:15:31,503 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-20 08:15:31,852 INFO [APT/USDT:USDT] No new candles.
+2026-04-20 08:15:32,205 INFO [SUI/USDT:USDT] No new candles.
+2026-04-20 08:15:32,556 INFO [ARB/USDT:USDT] No new candles.
+2026-04-20 08:15:32,905 INFO [LTC/USDT:USDT] No new candles.
+2026-04-20 08:15:33,255 INFO [INJ/USDT:USDT] No new candles.
+2026-04-20 08:15:33,599 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-20 08:15:33,952 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-20 08:15:34,300 INFO [CRV/USDT:USDT] No new candles.
+2026-04-20 08:15:35,269 INFO [SPX] No new candles.
+2026-04-20 08:15:36,186 INFO [QQQ] No new candles.
+2026-04-20 08:15:37,697 ERROR $GC=F: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:15:37,707 ERROR 
+1 Failed download:
+2026-04-20 08:15:37,708 ERROR ['GC=F']: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:15:37,712 INFO [GLD] No new candles.
+2026-04-20 08:15:38,685 INFO [TLT] No new candles.
+2026-04-20 08:15:39,597 INFO [VIX] No new candles.
+2026-04-20 08:15:42,808 ERROR $DX-Y.NYB: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:15:42,812 ERROR 
+1 Failed download:
+2026-04-20 08:15:42,814 ERROR ['DX-Y.NYB']: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:15:42,818 INFO [DXY] No new candles.
+2026-04-20 08:20:48,825 INFO [ZEC/USDT:USDT] Model saved.
+2026-04-20 08:29:52,060 INFO === Hourly pipeline START ===
+2026-04-20 08:29:56,038 INFO [BTC/USDT:USDT] No new candles.
+2026-04-20 08:29:56,398 INFO [ETH/USDT:USDT] No new candles.
+2026-04-20 08:29:56,762 INFO [BNB/USDT:USDT] No new candles.
+2026-04-20 08:29:57,110 INFO [TRX/USDT:USDT] No new candles.
+2026-04-20 08:29:57,458 INFO [FIL/USDT:USDT] No new candles.
+2026-04-20 08:29:57,816 INFO [BCH/USDT:USDT] No new candles.
+2026-04-20 08:29:58,177 INFO [ZEC/USDT:USDT] No new candles.
+2026-04-20 08:29:58,525 INFO [XRP/USDT:USDT] No new candles.
+2026-04-20 08:29:58,922 INFO [SOL/USDT:USDT] No new candles.
+2026-04-20 08:29:59,295 INFO [ADA/USDT:USDT] No new candles.
+2026-04-20 08:29:59,650 INFO [DOGE/USDT:USDT] No new candles.
+2026-04-20 08:30:00,007 INFO [AVAX/USDT:USDT] No new candles.
+2026-04-20 08:30:00,379 INFO [AAVE/USDT:USDT] No new candles.
+2026-04-20 08:30:00,737 INFO [LINK/USDT:USDT] No new candles.
+2026-04-20 08:30:02,799 INFO [DOT/USDT:USDT] No new candles.
+2026-04-20 08:30:03,287 INFO [NEAR/USDT:USDT] No new candles.
+2026-04-20 08:30:03,710 INFO [APT/USDT:USDT] No new candles.
+2026-04-20 08:30:04,090 INFO [SUI/USDT:USDT] No new candles.
+2026-04-20 08:30:04,477 INFO [ARB/USDT:USDT] No new candles.
+2026-04-20 08:30:04,850 INFO [LTC/USDT:USDT] No new candles.
+2026-04-20 08:30:05,270 INFO [INJ/USDT:USDT] No new candles.
+2026-04-20 08:30:05,657 INFO [HBAR/USDT:USDT] No new candles.
+2026-04-20 08:30:06,021 INFO [ONDO/USDT:USDT] No new candles.
+2026-04-20 08:30:06,414 INFO [CRV/USDT:USDT] No new candles.
+2026-04-20 08:30:07,292 INFO [SPX] No new candles.
+2026-04-20 08:30:08,061 INFO [QQQ] No new candles.
+2026-04-20 08:30:09,280 ERROR $GC=F: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:30:09,284 ERROR 
+1 Failed download:
+2026-04-20 08:30:09,286 ERROR ['GC=F']: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:30:09,291 INFO [GLD] No new candles.
+2026-04-20 08:30:10,128 INFO [TLT] No new candles.
+2026-04-20 08:30:10,938 INFO [VIX] No new candles.
+2026-04-20 08:30:12,847 ERROR $DX-Y.NYB: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:30:12,847 ERROR 
+1 Failed download:
+2026-04-20 08:30:12,852 ERROR ['DX-Y.NYB']: possibly delisted; no price data found  (1h 2026-04-20 -> 2026-04-21) (Yahoo error = "Data doesn't exist for startDate = 1776657600, endDate = 1776744000")
+2026-04-20 08:30:12,856 INFO [DXY] No new candles.
+2026-04-20 08:30:14,583 INFO [ZEC/USDT:USDT] Signal registered: SHORT entry=303.3400
+2026-04-20 08:30:15,509 INFO [ZEC/USDT:USDT] SHORT signal fired P=0.30
+2026-04-20 08:30:15,510 INFO === Hourly pipeline END ===
